@@ -193,3 +193,12 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 8. Test mit verschiedenen kostenlosen KI-Zugängen vor dem Februarworkshop.
 
 **Dokumentationsregel:** Bei jeder relevanten Entwicklungsrunde Status, fachliche Entscheidungen, Probleme/Korrekturen und offene Fragen knapp ergänzen; keine behauptete automatische Hintergrundüberwachung.
+
+
+### Präzisierung vom 18. Oktober 2026 – allgemeine KI-Einführung und GitHub
+
+**Einstieg (ca. 12 Minuten):** KI nicht als isolierte Chatbot-Demonstration behandeln, sondern in fünf Rollen knapp sichtbar machen: (1) Fachinhalte erklären und kritisch prüfen, (2) differenzierte Aufgaben und Unterrichtsmaterial entwerfen, (3) Bilder/Animationen und Modelle visualisieren, (4) Daten analysieren, (5) eigene Lernwerkzeuge entwickeln. Die Rolle von Agenten kann als Ausblick erscheinen. Nur kurze Beispiele, keine separaten Live-Demos.
+
+**Aktualisierte Zeitidee für den 180-minütigen Workshop:** 12 Minuten KI-Einführung, 18 Minuten Apfelkonflikt/Stechheber und mathematisches Modell, 15 Minuten Starter-App zeigen, 15 Minuten gemeinsamen Änderungsauftrag formulieren, 40 Minuten erste Entwicklungsrunde, 10 Minuten Pause, 40 Minuten zweite Entwicklungsrunde, 20 Minuten Beispiele/Fehlerdiskussion, 10 Minuten Ergebnissicherung und Weiterarbeit. Summe 180 Minuten.
+
+**GitHub Free / Pro:** Der vorhandene kostenlose Plan ist für ein öffentliches Repository und GitHub Pages ausreichend. Pro bringt hauptsächlich zusätzliche Limits und Funktionen, insbesondere für private Repositories, ist aber weder für dieses Projekt noch für die Workshopteilnahme erforderlich. Ein spezieller GitHub-Pages-Minikurs soll bei Interesse **getrennt** angeboten werden; GitHub im Workshop ist kein Muss.
