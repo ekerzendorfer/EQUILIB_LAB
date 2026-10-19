@@ -234,3 +234,23 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 **Didaktisch:** Animation bleibt symbolisch; keine verwechselbare Behauptung eines exakten Einzelteilchenmodells. Ab jetzt pro Prototypfassung eine dokumentierte Prompt-Vorlage mitspeichern.
 
 **Nächster Dialog:** Gemeinsame Begutachtung von Startmengen-Reglern, Synchronisierung der drei Darstellungen und Beschriftung der Transportgrößen; anschließend kleine gezielte Verbesserungen.
+
+
+### 19. Oktober 2026 – V0.2: Vergleichbarkeit der Transportmengen verbessern
+
+**Auslöser:** Feedback zur getesteten V0.1: Das Grundkonzept gefällt; drei konkrete Wünsche:
+1. **Nicht mehr einzelne Teilchen**, sondern je eine gegenläufig bewegte Kugel, deren Größe ungefähr der transportierten Menge entspricht.
+2. Schalter im Diagramm auf **„Volle Laufzeit“**, um die interessante Anfangsphase nach längerer Simulation jederzeit wieder ansehen zu können.
+3. In den Kennzahlkästen **Hintransport** / **Rücktransport** je ein vertikaler Balken in Richtungfarbe mit mengenproportionaler Höhe.
+
+**Umsetzung:**
+- [V0.2-Code](../prototyp/v0.2/index.html); [Versionen-Prompt und Tests](PROMPTS/V0_2.md).
+- Kugeldurchmesser ungefähr \`6 + 27 * sqrt(transfer / rateMax)\` px, wobei \`rateMax = M * max(pForward, pBackward)\`; bei Transfer 0 Kugel unsichtbar. Beide Richtungen auf derselben Bezugsskala, während Pause sichtbar und beim Start bewegt.
+- Die beiden Balken verwenden die identische Skala 0–\`rateMax\` ME/Schritt.
+- Diagramm wahlweise mit den letzten 40 Schritten oder dem vollständigen Verlauf seit n=0. Historie wird nicht mehr nach 120 Schritten beschnitten; Umschalten ändert keine Modellparameter und lässt sich während des Laufs durchführen.
+- **Rechenmodell unverändert** (dieselbe diskrete A⇄B-Formel); Oberfläche zeigt wie V0.1 die **für den nächsten Schritt erwarteten Transfers**.
+- Tests mit Playwright/Chromium: u. a. nach 131 Schritten vollständige Historie; Balken- und Kugelgrößen, Null-/Gleichtransport, 50/20 ME, Pause/Start und mobile Darstellung. Browser-Sandbox blockiert direkte file://-Navigation; HTML-Inhalt stattdessen isoliert gerendert. Ein lokaler Doppelklick-Test auf einem Endgerät bleibt offen.
+
+**Erkenntnis für den Kongressvortrag:** Eine kleine, fachlich begründete Iteration macht Darstellungen wesentlich aussagekräftiger. Der Versions-Prompt beschreibt einen **funktional reproduzierbaren Änderungsauftrag**, nicht eine Behauptung, exakt diese Implementierung sei mit einem einzigen Prompt erzeugt worden.
+
+**Nächste gemeinsame Begutachtung:** Kugelskalierung (sichtbare Differenz?), Ablesbarkeit und Höhe der Transportbalken, Anfangsphase in der Gesamtdarstellung.
