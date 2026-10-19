@@ -288,3 +288,12 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Für echte Animationen sollen Bildhintergrund und separat berechnete Äpfel/Transportsymbole **getrennte Ebenen** sein; fest eingebrannte Apfelzahlen im Hintergrund würden sonst eine dynamische Mengenänderung falsch darstellen.
 - Zwei weitere Bildversuche enthielten trotz Korrekturanweisung weiterhin Kisten und zusätzliche Beschriftungen. Noch **keine korrigierte Masterillustration freigegeben**. Diese KI-Fehlleistung ist ein authentisches Beispiel für die Bedeutung fachlicher menschlicher Gegenprüfung.
 - Fachliche Freigabekriterien ergänzt in [FALLOBST_KONZEPT.md](FALLOBST_KONZEPT.md).
+
+
+### 19. Oktober 2026 – Erste Phase-I-Illustration, kritische Sichtprüfung
+
+- Nach Zustimmung zur fünffachen Bildserien-Spezifikation wurde das erste **Phase-I-Bild** erzeugt (Seiten- und Vogelperspektive, Stil weitgehend konsistent zu akzeptierter Phase III).
+- Im darauffolgenden Gespräch fehlte zunächst eine Auswertung bzw. Dokumentation; das wurde ausdrücklich bemängelt.
+- Bei genauer Prüfung: **Phase I noch nicht freigegeben**. Trotz sehr guter Gartengestaltung befinden sich einzelne Äpfel auf der rechten Seite und der Nachbar trägt einen Apfel – das widerspricht unserem expliziten Story-Start \`A₀=50\`, \`B₀=0\`.
+- Konkretes Prüfschema und ein **enger Bildedit-Prompt** stehen in [BILDSERIE_PHASE_I.md](BILDSERIE_PHASE_I.md).
+- Die generierte Datei befindet sich weiterhin in den Gesprächsartefakten, **noch nicht als Bilddatei in GitHub**. Der nächste Schritt ist eine begrenzte Bildkorrektur und Abnahme mit dem Nutzer, danach Phase II.
