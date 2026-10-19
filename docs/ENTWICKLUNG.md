@@ -308,3 +308,15 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Phase-I-Erstentwurf war mangelhaft; die neue Phase-I-Fassung ist akzeptiert. Vorherige Fehlerprotokolle bleiben aus Gründen der Entwicklungshistorie erhalten.
 - Die PNGs liegen im Gesprächs-Artefaktbereich; **Bilddateien selbst wurden noch nicht ins GitHub-Repo übernommen**. Eine strukturierte Asset-Ablage ist vor einer statischen Galerie erforderlich.
 - Nächster kleiner Schritt: Bilder als Assets sichern und daraus eine **statische offlinefähige Phasengalerie** entwickeln; erst anschließend quantitative Kopplung/Bewegung.
+
+### 19. Oktober 2026 – Erste integrierte Story-Ansicht V0.1
+
+- Neue **offlinefähige Story-Oberfläche** in der Gesprächs-Arbeitsumgebung erstellt: Einzeldatei `GLEICHGEWICHTS_LAB_Story_V0_1_OFFLINE.html` mit eingebetteten Bildern (ca. 2,4 MB), außerdem ZIP und wartbares HTML-/WebP-Verzeichnis.
+- Navigationsreiter **Geschichte**, **Modell**, **Vergleich** implementiert. Geschichte: fünf Phasen, Phasenleiste, Vor/Zurück, Gesamt-/Seiten-/Vogelansicht, Beobachtung, didaktischer Fokus und Leitfrage.
+- **Modell** bleibt ausdrücklich ein Platzhalter für das unberührte V0.2; **Vergleich** zeigt qualitative/formale Übertragungen zur ausgewählten Phase, klar als **nicht numerisch gekoppelt** beschriftet.
+- Korrektur zweier Mängel aus der bisherigen Galerie: Bildüberschrift in Phase I aus sichtbarem Bildausschnitt entfernt; bei Phase III die tiefer liegende Original-Trennlinie vollständig ausgeklammert und **nur eine** neue UI-Trennlinie verwendet.
+- Aus den fünf PNGs wurden zehn optimierte WebP-Bildausschnitte erzeugt, mit standardisierten Seiten-/Vogelbereichen und dadurch gleichbleibendem Seitenlayout.
+- **Browser-Test:** Desktop-Chromium mit vollständigen eingebetteten Bildern, Navigation, mehreren Ansichtsmodi, Reiterwechseln und Tastaturbedienung ohne JavaScript-Fehler. Direkte file://-Navigation wird in der Test-Sandbox blockiert; realer Doppelklick-Test beim Nutzer noch ausständig.
+- Reproduktions-Prompt und Umsetzungshinweise: [PROMPTS/STORY_V0_1.md](PROMPTS/STORY_V0_1.md).
+- **Wichtig zur Ablage:** Die Bild- und HTML-Dateien sind derzeit als Chat-Artefakte verfügbar, **noch nicht im GitHub-Repository**; der dokumentierte Versionsstand behauptet keine Veröffentlichung des HTML-Codes.
+- Nächster Schritt ist die Sichtprüfung der neuen Reiter-/Vergleichsstruktur; erst danach tatsächliche Kopplung mit dem weiterhin unveränderten V0.2-Rechenkern.
