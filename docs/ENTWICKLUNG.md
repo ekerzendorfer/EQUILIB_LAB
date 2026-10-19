@@ -320,3 +320,5 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Reproduktions-Prompt und Umsetzungshinweise: [PROMPTS/STORY_V0_1.md](PROMPTS/STORY_V0_1.md).
 - **Wichtig zur Ablage:** Die Bild- und HTML-Dateien sind derzeit als Chat-Artefakte verfügbar, **noch nicht im GitHub-Repository**; der dokumentierte Versionsstand behauptet keine Veröffentlichung des HTML-Codes.
 - Nächster Schritt ist die Sichtprüfung der neuen Reiter-/Vergleichsstruktur; erst danach tatsächliche Kopplung mit dem weiterhin unveränderten V0.2-Rechenkern.
+
+- **Nachtrag zur Ablage:** Die vollständig selbstständige Story-HTML wurde anschließend in [prototyp/story-v0.1/index.html](../prototyp/story-v0.1/index.html) eingecheckt und deren gespeicherter GitHub-Blob überprüft. Die separat optimierten WebP-Quellbilder sind nicht einzeln eingecheckt, aber in der Ein-Datei-Version bereits eingebettet.
