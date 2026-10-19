@@ -254,3 +254,13 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 **Erkenntnis für den Kongressvortrag:** Eine kleine, fachlich begründete Iteration macht Darstellungen wesentlich aussagekräftiger. Der Versions-Prompt beschreibt einen **funktional reproduzierbaren Änderungsauftrag**, nicht eine Behauptung, exakt diese Implementierung sei mit einem einzigen Prompt erzeugt worden.
 
 **Nächste gemeinsame Begutachtung:** Kugelskalierung (sichtbare Differenz?), Ablesbarkeit und Höhe der Transportbalken, Anfangsphase in der Gesamtdarstellung.
+
+
+### 19. Oktober 2026 – V0.2 als erste Rückfallversion bestätigt; differenzierte Aufgaben
+
+- **Nutzerrückmeldung:** V0.2 funktioniert wie gewünscht und wird als erster gesicherter Rückfallstand für Februar/Linz festgelegt. Die Datei bleibt unverändert.
+- Vier mögliche KI-Änderungsaufträge für Workshopgruppen beschlossen bzw. vorgemerkt: (A) einstellbares Abspieltempo, (B) Diagramm per Klick vergrößern, (C) Datendownload (CSV), (D) Grafikexport (SVG, optional PNG).
+- **Fachliche Klärung zu »Rauschen«:** Ein nachträglich überlagertes zufälliges Anzeigesignal ist simuliertes *Messrauschen*. Echte *Gleichgewichtsfluktuationen* müssen aus einem eigenen stochastischen Transportmodell resultieren und existieren bei endlicher Teilchenzahl auch vor dem stationären Regime. Keine stille Veränderung der deterministischen A/B-Rohdaten und der Mengenbilanz.
+- [Workshop-Aufgaben V0.2](WORKSHOP_AUFGABEN_V0_2.md) dokumentiert Aufgaben, Schwierigkeitsgrade, Prüfkriterien, Modellgrenzen, differenzierte Zuordnung für heterogene KI-Zugänge und Versionsstrategie.
+- Nach diesen Aufgaben: zuerst die gestaltete Apfelkrieg-Welt und ggf. das stochastische Modell; später realer Stechheber und synchrone abstrakte Ebene.
+- Bei tatsächlicher neuer Implementierung einen **eigenen Versions-Prompt** dokumentieren; Aufgabenbeschreibungen sind noch keine implementierten Features.
