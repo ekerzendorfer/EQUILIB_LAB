@@ -52,3 +52,11 @@ Für den VCÖ-Vortrag können die Iterationen in einer kompakten Vorher-Nachher-
 Eine **statische, offlinefähige Bildergalerie** als eigener kleiner Prototyp wäre der risikoarme nächste Integrationsschritt: Phasen I–V einzeln anzeigen, mit wenigen passenden fachlichen Fragen. Erst wenn diese Darstellung mit realen Bildern und deren Dateiablage sauber läuft, beginnen wir die Trennung in Hintergrund und veränderliche Äpfel und die technische Verknüpfung mit der Simulation.
 
 **Wichtig:** V0.2 als Workshop-Rückfallversion nicht überschreiben. Jede neue Implementierung erhält einen eigenen dokumentierten Entwicklungs-Prompt und einen neuen Versionsstand.
+
+## 6. Nachtrag: Statische Galerie und Story-Integration entstanden
+
+Auf die erste offlinefähige Bildergalerie folgte eine **überarbeitete Galerie** mit einheitlich zugeschnittenen Perspektiven; der Nutzer meldete eine **zusätzliche weiße Linie in Phase III**. Die Ursache war die im Originalbild tiefer gelegene Trennzone.
+
+In der anschließend entwickelten **integrierten Story-Ansicht V0.1** wurde diese Bildzone korrekt entfernt und mit einer einzigen standardisierten Trennlinie neu zusammengesetzt. Ebenso wurde die Phase-I-Überschrift aus dem sichtbaren Bildausschnitt entfernt. Die volle Apfelgeschichte ist mit Navigation, Leitfragen und Ansichtswechsel ausgestattet. Der Modellreiter ist noch Platzhalter, der Vergleichsreiter **qualitativ** und **nicht numerisch gekoppelt**.
+
+Zum Entstehungs-Prompt und tatsächlichen Code-Ablagestatus siehe [PROMPTS/STORY_V0_1.md](PROMPTS/STORY_V0_1.md).
