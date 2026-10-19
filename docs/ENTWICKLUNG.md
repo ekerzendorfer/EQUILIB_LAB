@@ -213,3 +213,24 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Keine vollständig ausgearbeitete Apfel- und Stechheber-Szenerie oder stochastische Einzelteilchen-Simulation in V1; erweiterbare Architektur vorgesehen.
 - Referenz-App (alle Muss-Funktionen) und deutlich reduzierter Starter für heterogene TeilnehmerInnen werden getrennt vorbereitet.
 - **Nächster Schritt:** UI-Skizze/Festlegung und Umsetzung einer reinen, getesteten \`index.html\` als Referenz; anschließend Teilversionen/Workshop-Prompts.
+
+
+### 19. Oktober 2026 – Erster tatsächlich lauffähiger Prototyp V0.1
+
+**Neue fachliche/technische Entscheidung: Start-Gesamtmenge flexibel.**
+- Gesamtbestand M von **10 bis 200 ME**, in Zehnerschritten, werkseitig 50.
+- Startbestand A₀ **0 bis M**, B₀=M−A₀ automatisch.
+- Änderung von M übernimmt ungefähr das bisherige Verhältnis A₀/M (auf ganze ME gerundet), setzt Versuch und Verlauf auf Schritt 0.
+- Die Zylinderskala und das Diagramm passen sich an M an.
+- Begrifflich handelt es sich um kontinuierliche **Modelleinheiten**, nicht um eine stochastisch exakt gezählte Teilchenzahl.
+
+**Implementierung:**
+- [prototyp/v0.1/index.html](../prototyp/v0.1/index.html): eigenständige HTML-Datei ohne externe Abhängigkeiten.
+- [docs/PROMPTS/V0_1.md](PROMPTS/V0_1.md): reproduzierbarer Prompt für einen **funktional entsprechenden** Stand, ergänzt um Testfälle und kleinere Entwicklungsprompts für kostenlose Modelle.
+- Rechenkern getrennt von Darstellung; simultane Hin-/Rückrechnung, Zylinder, SVG-Stufenlinien, Status, symbolische Bewegungen und Bedienung.
+- Zahlen und Bedienabläufe (darunter M=100 und M=20, 60 Schritte, Pause/Play) wurden in einem lokalen Chromium-Rendering getestet. **Die Gesamtabnahme von V1 ist weiterhin offen.**
+- **Wichtige begriffliche Unterscheidung:** Kennzahlen im Prototyp zeigen die *potenziellen Transfers für den nächsten Schritt*; Tests der ursprünglichen Spezifikation nennen teils die *Transfers des gerade abgeschlossenen Schritts*. Dieses UI-Detail soll bei der fachlichen Gegenprüfung geklärt werden.
+
+**Didaktisch:** Animation bleibt symbolisch; keine verwechselbare Behauptung eines exakten Einzelteilchenmodells. Ab jetzt pro Prototypfassung eine dokumentierte Prompt-Vorlage mitspeichern.
+
+**Nächster Dialog:** Gemeinsame Begutachtung von Startmengen-Reglern, Synchronisierung der drei Darstellungen und Beschriftung der Transportgrößen; anschließend kleine gezielte Verbesserungen.
