@@ -17,6 +17,7 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 ## Dokumentation
 
 - [Entwicklungsjournal und Konzeptstand](docs/ENTWICKLUNG.md) – Ausgangsidee, Mathematik, Darstellungsformen, didaktische Entscheidungen, Rückfallkonzept und offene Punkte.
+- [**Funktionsspezifikation V1**](docs/FUNKTIONSSPEZIFIKATION_V1.md) – verbindlicher Umfang für den workshopfähigen Kern, Rechenmodell, synchrone Visualisierungen, Offlinebetrieb und 14 Abnahmetests.
 
 ## Einsatz in Fortbildungen
 
