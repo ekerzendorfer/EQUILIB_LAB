@@ -213,3 +213,10 @@ Bis zur späteren stochastischen Version werden rote Äpfel oder Apfelgruppen in
 Die erste Phase-I-Illustration wurde generiert und auf ihre fachliche Übereinstimmung mit \`A₀=50, B₀=0\` geprüft. Wegen einzelner Äpfel auf der Nachbarseite ist sie **noch ein Entwurf und nicht freigegeben**. Einzelheiten, Checkliste und **gezielter Bildkorrektur-Prompt**: [BILDSERIE_PHASE_I.md](BILDSERIE_PHASE_I.md).
 
 Die bereits angenommene **Phase III** bleibt der gestalterische Stilanker; abweichende Ausgaben werden nicht unbesehen in die Serie übernommen.
+
+
+## 12. Update 19.10.2026 – Fünfteilige Bildserie akzeptiert
+
+Der Nutzer hat den neu erzeugten Phase-I-Entwurf und anschließend die weiteren Phasenentwürfe angenommen. Somit **sind die fünf Bildentwürfe als visuelle Grundlage freigegeben**. Der in Abschnitt 11 dokumentierte Fehler betrifft den **alten Erstentwurf**, nicht die akzeptierte neue Phase-I-Fassung. Die Serie gilt noch nicht als numerisch modellgetreue Animation.
+
+Verbindliches Zuordnungs- und Abnahmeprotokoll: [BILDSERIE_ABNAHME_19_10_2026.md](BILDSERIE_ABNAHME_19_10_2026.md). Als nächste kleine Arbeitsstufe folgt **keine** Änderung am funktionierenden V0.2, sondern zunächst die Ablage der Bilddateien und eine statische Phase-I–V-Galerie.
