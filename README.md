@@ -36,7 +36,8 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - V0.1 bleibt unverändert für den Vorher-Nachher-Vergleich. V0.2 ist **getesteter Prototyp und erste gesicherte Workshop-Rückfallversion**; noch nicht die abschließend abgenommene V1. Workshop-Änderungen erfolgen nur in eigenen Kopien.
 
 
-- [**Bildserie Phase I – Sichtprüfung und Korrektur-Prompt**](docs/BILDSERIE_PHASE_I.md) – aktueller Bildentwurf und präzise fachliche Abnahmekriterien (noch nicht freigegeben).
+- [**Bildserie Fallobst – Freigabestand I–V**](docs/BILDSERIE_ABNAHME_19_10_2026.md) – alle fünf Bildentwürfe gestalterisch freigegeben; Zuordnung, Modellgrenzen und nächste Implementierungsschritte.
+- [**Bildserie Phase I – frühere Prüfung und Korrektur-Prompt**](docs/BILDSERIE_PHASE_I.md) – dokumentiert den früheren, noch fehlerhaften Erstentwurf und die nötige Korrektur.
 
 ## Einsatz in Fortbildungen
 
