@@ -57,3 +57,10 @@ Die Bildwelt darf nicht den Eindruck erwecken, auf Seite B lägen schon Äpfel o
 Diese erste Phase-I-Iteration ist ein nützliches Beispiel für einen didaktischen Qualitätscheck: Das Bild wirkt auf den ersten Blick sehr überzeugend, widerspricht aber in einem Detail dem expliziten \`B₀=0\` des mathematischen Startzustands. Die Lehrkraft entscheidet die fachliche Gültigkeit, nicht die Bild-KI.
 
 **Nächster Arbeitsschritt:** Gezielte Bildbearbeitung und Sichtprüfung mit dem Nutzer, anschließend Phase II. Erst danach Phase IV und V als besonders wichtige fachliche Gegenüberstellung.
+
+
+## 6. Ergebnis nach der Korrekturrunde – 19.10.2026
+
+Der hier dokumentierte Erstentwurf wurde durch eine **neue Phase-I-Fassung** ersetzt. Der Nutzer hat diese als Bildbasis ausdrücklich **akzeptiert**. Der Nachbargarten ist nun frei von auf dem Boden liegenden Äpfeln; der ältere Nachbar hält keinen Apfel. Der Bildentwurf enthält einen Titelbalken, der für die spätere App gegebenenfalls durch HTML-Beschriftung ersetzt wird. Die ältere Checkliste oben wird **als historische Dokumentation des früheren Fehlers** aufbewahrt.
+
+Zusammen mit den weiteren Entwürfen gelten nun **alle Phasen I–V gestalterisch als akzeptiert**. Siehe [Bildserien-Abnahme](BILDSERIE_ABNAHME_19_10_2026.md); die PNG-Dateien sind derzeit noch Gesprächsdateien und **nicht** im Repository abgelegt.
