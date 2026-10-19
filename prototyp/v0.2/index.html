@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GLEICHGEWICHTS-LAB – Prototyp V0.2</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#193344;background:#f3f7fa;--a:#1474a3;--b:#b87023;--muted:#576e7e;--border:#d8e3ea;--paper:white}
+    *{box-sizing:border-box}
+    body{margin:0;line-height:1.45}
+    header{color:#fff;background:linear-gradient(115deg,#12384c,#1b6674);padding:22px clamp(14px,3vw,48px)}
+    .shell{max-width:1200px;margin:0 auto}
+    .eyebrow{font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;opacity:.85;font-weight:700}
+    h1{margin:4px 0;font-size:clamp(1.6rem,3vw,2.25rem);letter-spacing:-.035em}
+    header p{margin:0;color:#c9e0e4}
+    main{max-width:1200px;margin:20px auto;padding:0 16px 30px}
+    .toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:15px}
+    button{border:1px solid #9fb4bf;background:white;border-radius:9px;padding:10px 15px;font:inherit;font-weight:650;color:#1c4053;cursor:pointer;min-height:42px}
+    button:hover:not(:disabled){background:#e8f2f5}
+    button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #e1a744;outline-offset:2px}
+    button.primary{border-color:#126080;background:#166d91;color:white}
+    button.primary:hover:not(:disabled){background:#145a79}
+    button:disabled{opacity:.55;cursor:not-allowed}
+    .phase{font-size:.9rem;color:#567083;margin-left:auto}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:16px}
+    .panel{min-width:0;background:var(--paper);border:1px solid var(--border);border-radius:14px;padding:19px;box-shadow:0 3px 16px #1b51630b}
+    .panel h2{font-size:1.08rem;margin:0 0 4px}
+    .subtitle{font-size:.83rem;color:var(--muted);margin:0 0 14px}
+    .vessels{display:flex;justify-content:space-evenly;align-items:center;gap:9px;min-height:286px;padding:8px 0}
+    .vessel-group{flex:0 1 140px;text-align:center;min-width:76px}
+    .vessel-title{font-size:.85rem;font-weight:750;margin-bottom:4px}
+    .vessel-title.a{color:var(--a)}.vessel-title.b{color:var(--b)}
+    .vessel-number{font-size:1.4rem;font-variant-numeric:tabular-nums;font-weight:750;margin:6px 0 0}
+    .vessel{height:174px;width:76px;max-width:100%;position:relative;border:3px solid #7e9bab;border-top:0;border-radius:0 0 13px 13px;margin:0 auto;background:repeating-linear-gradient(to top,#dfebf022 0px,#dfebf022 33px,#aec3ce33 34px,#aec3ce33 35px);overflow:hidden}
+    .fill{position:absolute;bottom:0;left:0;right:0;height:0%;transition:none}
+    .fill.a{background:linear-gradient(90deg,#4fb0ce,#1474a3)}.fill.b{background:linear-gradient(90deg,#f0bc6a,#b87023)}
+    .transfer{flex:1;min-width:94px;max-width:185px;text-align:center;align-self:center}
+    .direction{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;height:58px;border-radius:6px}
+    .direction .arrow{font-size:1.9rem;line-height:1;font-weight:500}
+    .direction.forward{color:var(--a)}.direction.backward{color:var(--b)}
+    /* Nur EIN Transportsymbol je Richtung. Seine Fläche bildet ungefähr die
+       übertragene Menge ab; es ist kein stochastisches Einzelteilchen. */
+    .particle{position:absolute;left:12%;top:50%;width:var(--particle-size,12px);height:var(--particle-size,12px);border-radius:50%;background:currentColor;border:1.5px solid #fff;box-shadow:0 1px 3px #1a344744;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
+    .direction.active .particle{opacity:.92} /* im Pausenbild sichtbar, im Lauf animiert */
+    .is-running .direction.active .particle{animation:fly 1.05s linear infinite}
+    .is-running .direction.backward.active .particle{animation-name:flyback}
+    @keyframes fly{from{left:12%}to{left:88%}}
+    @keyframes flyback{from{left:88%}to{left:12%}}
+    .transfer-note{color:var(--muted);font-size:.7rem;line-height:1.25}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.82rem;color:#38586c;align-items:center}
+    .dot{width:9px;height:9px;display:inline-block;border-radius:50%;margin-right:4px}.dot.a{background:var(--a)}.dot.b{background:var(--b)}
+    .chart-view{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px;margin:0 0 6px}
+    .chart-view-label{font-size:.76rem;color:var(--muted)}
+    .chart-modes{display:flex;gap:4px;background:#eef4f7;padding:3px;border-radius:9px}
+    .chart-modes button{min-height:32px;padding:5px 9px;font-size:.75rem;font-weight:650;border:1px solid transparent;background:transparent}
+    .chart-modes button[aria-pressed="true"]{background:#fff;border-color:#abc5d2;box-shadow:0 1px 3px #00000013}
+    .chart-wrap{width:100%}
+    svg#chart{display:block;width:100%;height:auto;min-height:240px}
+    .chart-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+    .status-panel{margin-top:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .metric{background:#f2f7f9;border:1px solid var(--border);padding:12px;border-radius:10px;min-width:0}
+    .metric span{font-size:.77rem;color:var(--muted);display:block}
+    .metric strong{display:block;font-size:1.1rem;font-variant-numeric:tabular-nums}
+    .metric.with-rate{display:grid;grid-template-columns:minmax(0,1fr) 23px;gap:8px;align-items:end}
+    .rate-track{height:58px;width:20px;border:1px solid #b5cad5;border-radius:4px 4px 2px 2px;background:linear-gradient(to top,#e8eff3,#f9fcfd);display:flex;align-items:end;overflow:hidden;position:relative}
+    .rate-fill{height:0%;width:100%;transition:none;min-height:0}
+    .rate-fill.a{background:var(--a)}.rate-fill.b{background:var(--b)}
+    .rate-scale{grid-column:1/-1;font-size:.67rem;color:var(--muted);padding-top:2px}
+    .status-text{grid-column:1/-1;padding:10px 12px;background:#edf6f4;border-left:4px solid #18796d;color:#124d47;border-radius:6px}
+    .controls{margin-top:16px}
+    .controls-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .control label{display:flex;justify-content:space-between;gap:12px;font-size:.92rem;font-weight:700;margin-bottom:7px}
+    .control output{font-variant-numeric:tabular-nums;white-space:nowrap}
+    input[type=range]{display:block;width:100%;accent-color:#17718d;cursor:pointer}
+    input[type=range]:disabled{cursor:not-allowed;opacity:.5}
+    .help{margin:7px 0 0;color:var(--muted);font-size:.78rem}
+    .info{margin-top:16px;background:#f9fcfc;border:1px solid var(--border);border-radius:12px;padding:12px 16px}
+    .info summary{cursor:pointer;font-weight:650}
+    .info p{font-size:.91rem;margin:10px 0 0}
+    footer{color:#587183;font-size:.74rem;margin-top:18px;text-align:center}
+    @media(max-width:740px){.grid{grid-template-columns:1fr}.controls-grid{grid-template-columns:1fr}.status-panel{grid-template-columns:repeat(2,minmax(0,1fr))}.phase{width:100%;margin-left:0}.vessels{min-height:240px}.vessel{height:145px}}
+    @media(prefers-reduced-motion:reduce){.particle{animation:none!important}.direction.active .arrow{font-weight:900}}
+  </style>
+</head>
+<body>
+<header><div class="shell"><div class="eyebrow">CHEMIE mit KI · interaktives Modell</div><h1>GLEICHGEWICHTS-LAB</h1><p>V0.2 · Zwei Bestände, ein gemeinsames Gleichgewicht</p></div></header>
+<main>
+  <div class="toolbar" aria-label="Simulationssteuerung">
+    <button class="primary" id="run" type="button">▶ Start</button>
+    <button id="step" type="button">Einzelschritt</button>
+    <button id="reset" type="button">↺ Reset</button>
+    <button id="defaults" type="button">Standardwerte</button>
+    <span class="phase" id="step-label">Schritt 0</span>
+  </div>
+  <div class="grid">
+    <section class="panel" id="visual" aria-labelledby="v-title">
+      <h2 id="v-title">Zwei Modellzylinder</h2>
+      <p class="subtitle">Bestände in Modelleinheiten (ME) · keine reale Flüssigkeitsgeometrie</p>
+      <div class="vessels">
+        <div class="vessel-group"><div class="vessel-title a">Bestand A</div><div class="vessel"><div id="fill-a" class="fill a"></div></div><div class="vessel-number" id="value-a">50,00</div></div>
+        <div class="transfer" aria-label="Gegenläufiger Transport">
+          <div id="forward" class="direction forward active"><span class="arrow" aria-hidden="true">⟶</span><span class="particle" aria-hidden="true"></span></div>
+          <div id="backward" class="direction backward"><span class="arrow" aria-hidden="true">⟵</span><span class="particle" aria-hidden="true"></span></div>
+          <div class="transfer-note">Kugelgröße ≈ Transfermenge<br>– kein Einzelteilchenmodell</div>
+        </div>
+        <div class="vessel-group"><div class="vessel-title b">Bestand B</div><div class="vessel"><div id="fill-b" class="fill b"></div></div><div class="vessel-number" id="value-b">0,00</div></div>
+      </div>
+      <div class="legend"><span><i class="dot a"></i> A → B</span><span><i class="dot b"></i> B → A</span><span id="vessel-scale">Skala je Zylinder: 0–50 ME</span></div>
+    </section>
+    <section class="panel" aria-labelledby="c-title">
+      <h2 id="c-title">Diskrete Mengenentwicklung</h2>
+      <p class="subtitle">Jeder Schritt ändert die Bestände sprunghaft – deshalb Stufenlinien.</p>
+      <div class="chart-view" aria-label="Diagrammansicht wählen">
+        <span class="chart-view-label">Zeitausschnitt</span>
+        <div class="chart-modes" role="group" aria-label="Diagrammansicht">
+          <button type="button" id="chart-recent" aria-pressed="true">Letzte 40 Schritte</button>
+          <button type="button" id="chart-full" aria-pressed="false">Volle Laufzeit</button>
+        </div>
+      </div>
+      <div class="chart-wrap"><svg id="chart" viewBox="0 0 640 300" role="img" aria-label="Stufendiagramm für die Bestände A und B"></svg></div>
+      <div class="chart-foot"><div class="legend"><span><i class="dot a"></i> Bestand A</span><span><i class="dot b"></i> Bestand B</span></div><span id="chart-range">Schritte 0–10</span></div>
+    </section>
+  </div>
+  <div class="status-panel" aria-label="Aktuelle Modellwerte">
+    <div class="metric with-rate"><div><span>Hintransport A → B</span><strong id="value-forward">3,00</strong><span>ME im nächsten Schritt</span></div><div class="rate-track" aria-hidden="true"><div id="bar-forward" class="rate-fill a"></div></div><span class="rate-scale" id="scale-forward">Balkenskala: max. 3,00 ME/Schritt</span></div>
+    <div class="metric with-rate"><div><span>Rücktransport B → A</span><strong id="value-backward">0,00</strong><span>ME im nächsten Schritt</span></div><div class="rate-track" aria-hidden="true"><div id="bar-backward" class="rate-fill b"></div></div><span class="rate-scale">Gleiche Balkenskala für beide Richtungen</span></div>
+    <div class="metric"><span>Gesamtbestand A + B</span><strong id="value-total">50,00</strong><span>ME (konstant)</span></div>
+    <div class="metric"><span>Voraussichtliche Verteilung</span><strong id="value-target">A 20 / B 30</strong><span>stationärer Modellwert</span></div>
+    <div id="status" class="status-text" role="status" aria-live="polite">Bereit: Starte die Simulation oder führe einen Einzelschritt aus.</div>
+  </div>
+  <section class="panel controls" aria-labelledby="controls-title">
+    <h2 id="controls-title">Startwerte und Transportparameter</h2>
+    <p class="subtitle">Änderungen sind nur während der Pause möglich und starten einen neuen Versuch bei Schritt 0.</p>
+    <div class="controls-grid">
+      <div class="control"><label for="total"><span>Gesamtbestand A + B</span><output id="total-out">50 ME</output></label><input id="total" type="range" min="10" max="200" step="10" value="50"><p class="help">10–200 ME, in Zehnerschritten</p></div>
+      <div class="control"><label for="initial-a"><span>Anfangsmenge A</span><output id="initial-out">50 ME</output></label><input id="initial-a" type="range" min="0" max="50" step="1" value="50"><p class="help" id="initial-b-note">Daraus folgt B = 0 ME</p></div>
+      <div class="control"><label for="forward-rate"><span>Hin-Anteil pro Schritt</span><output id="forward-out">0,06</output></label><input id="forward-rate" type="range" min="0" max="0.20" step="0.01" value="0.06"><p class="help">Anteil von A, der nach B wechselt</p></div>
+      <div class="control"><label for="backward-rate"><span>Rück-Anteil pro Schritt</span><output id="backward-out">0,04</output></label><input id="backward-rate" type="range" min="0" max="0.20" step="0.01" value="0.04"><p class="help">Anteil von B, der nach A wechselt</p></div>
+    </div>
+  </section>
+  <details class="info"><summary>Modell verstehen: Was ist hier ein „Teilchen“ – und was bedeutet Gleichgewicht?</summary>
+    <p>Die Größe A + B ist im gesamten Modell konstant. In jedem Schritt werden gleichzeitig die Anteile <strong>p<sub>hin</sub> · A</strong> und <strong>p<sub>rück</sub> · B</strong> übertragen. Die Berechnung verwendet nichtnegative <strong>kontinuierliche Modelleinheiten (ME)</strong>: Nach einem Schritt sind daher auch Bruchteile möglich. Obwohl wir den Gesamtbestand anschaulich als Teilchenzahl auffassen können, zählen die animierten Kugeln <strong>nicht</strong> einzelne reale Teilchen.</p>
+    <p>Ein <strong>dynamisches Gleichgewicht</strong> des Modells liegt vor, wenn gleich viel hin- wie zurücktransportiert wird, obwohl beide Transporte weiterhin stattfinden. Die Kugelgrößen und beiden Transportbalken veranschaulichen die <strong>für den nächsten Schritt berechneten Mengen</strong>; ihre gemeinsame Bezugsskala beträgt max(p<sub>hin</sub>, p<sub>rück</sub>) · M. Kugelflächen und Balkenhöhen sind ungefähr proportional zur Transportmenge, stellen aber keine exakte Teilchenzahl dar. „Praktisch stationär“ bedeutet hier: drei aufeinanderfolgende Schritte mit einer Differenz der Transporte von höchstens 0,1 % des Start-Gesamtbestands. Dies ist eine <strong>Anzeige-Konvention</strong>, kein Naturgesetz. Der tatsächliche Stechheberversuch und eine chemische Gleichgewichtsreaktion besitzen zusätzliche Bedingungen und Modellgrenzen.</p>
+  </details>
+  <footer>GLEICHGEWICHTS-LAB · Prototyp V0.2 · Für den KI-Entwicklungsworkshop · Lokal und ohne Anmeldung nutzbar</footer>
+</main>
+<script>
+"use strict";
+// ===================== MODELL: unabhängig von der Oberfläche =====================
+const DEFAULTS = Object.freeze({ total:50, initialA:50, pForward:0.06, pBackward:0.04, intervalMs:950 });
+let settings = {...DEFAULTS};
+function makeInitialState(s) {
+  return { step:0, a:s.initialA, b:s.total-s.initialA, forward:0, backward:0,
+    stationaryConsecutive:0, history:[{step:0,a:s.initialA,b:s.total-s.initialA}] };
+}
+function calculateTransfers(state,s) {
+  return {forward:s.pForward*state.a, backward:s.pBackward*state.b};
+}
+function advanceOneStep(state,s) {
+  const {forward,backward}=calculateTransfers(state,s);
+  const nextA=state.a-forward+backward;
+  // Avoid independently accumulating rounding in B: the model preserves the total.
+  const nextB=s.total-nextA;
+  const stationaryConsecutive=(s.pForward>0 && s.pBackward>0 && Math.abs(forward-backward)<=0.001*s.total)
+    ?state.stationaryConsecutive+1:0;
+  const step=state.step+1;
+  return {step,a:nextA,b:nextB,forward,backward,stationaryConsecutive,
+    history:[...state.history,{step,a:nextA,b:nextB}]};
+}
+let state=makeInitialState(settings);
+let timer=null;
+let running=false;
+let chartMode="recent"; // "recent" = letzte 40 Schritte, "full" = ab Schritt 0
+
+// ===================== DARSTELLUNG =====================
+const $=id=>document.getElementById(id);
+const fmt=(n,d=2)=>n.toLocaleString("de-AT",{minimumFractionDigits:d,maximumFractionDigits:d});
+function stationaryTarget(s){
+  const p=s.pForward+s.pBackward;
+  if(p===0) return "kein Transport";
+  if(s.pForward===0||s.pBackward===0) return "einseitig";
+  const a=s.total*s.pBackward/p, b=s.total-a;
+  return `A ${fmt(a,1)} / B ${fmt(b,1)}`;
+}
+function statusText(){
+  if(settings.pForward===0 && settings.pBackward===0) return "Kein Transport – kein dynamisches Gleichgewicht.";
+  if(settings.pForward===0 || settings.pBackward===0) return "Einseitiger Transfer – kein dynamisches Gleichgewicht mit zwei aktiven Strömen.";
+  if(state.stationaryConsecutive>=3) return "Praktisch stationär: Beide Gegenströme bleiben aktiv!";
+  if(state.step===0) return "Bereit: Starte die Simulation oder führe einen Einzelschritt aus.";
+  return "Annäherung an den stationären Zustand: Vergleiche Hin- und Rücktransport.";
+}
+function renderStepChart(){
+  const svg=$("chart");
+  const NS="http://www.w3.org/2000/svg";
+  svg.replaceChildren();
+  const el=(tag,attrs={},str)=>{const node=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))node.setAttribute(k,String(v));if(str!==undefined)node.textContent=str;svg.appendChild(node);return node;};
+  const {total}=settings, x0=61,x1=618,y0=14,y1=260;
+  // Die gesamte Historie bleibt verfügbar: Ansicht umschalten ohne Datenverlust.
+  const maxStep=Math.max(10,state.step);
+  const minStep=chartMode==="full"?0:Math.max(0,maxStep-40);
+  const width=Math.max(1,maxStep-minStep);
+  const px=n=>x0+(n-minStep)/width*(x1-x0);
+  const py=q=>y1-q/total*(y1-y0);
+  for(const f of [0,.25,.5,.75,1]){
+    const yy=py(total*f);
+    el("line",{x1:x0,y1:yy,x2:x1,y2:yy,stroke:"#e2eaf0","stroke-width":1});
+    el("text",{x:x0-8,y:yy+4,"text-anchor":"end","font-size":11,fill:"#5f7481"},fmt(total*f,0));
+  }
+  el("line",{x1:x0,y1:y0,x2:x0,y2:y1,stroke:"#839ca9"});
+  el("line",{x1:x0,y1:y1,x2:x1,y2:y1,stroke:"#839ca9"});
+  const xs=[minStep,Math.round((minStep+maxStep)/2),maxStep];
+  [...new Set(xs)].forEach(n=>el("text",{x:px(n),y:277,"text-anchor":"middle","font-size":11,fill:"#587080"},n));
+  el("text",{x:x0,y:10,"font-size":11,fill:"#587080"},"Menge (ME)");
+  el("text",{x:x1,y:296,"text-anchor":"end","font-size":11,fill:"#587080"},"Simulationsschritt n");
+  const rows=state.history.filter(row=>row.step>=minStep);
+  function makeStepPath(key){
+    if(!rows.length) return "";
+    let d=`M ${px(rows[0].step)} ${py(rows[0][key])}`;
+    for(let i=1;i<rows.length;i++){
+      const r=rows[i], prev=rows[i-1];
+      d+=` L ${px(r.step)} ${py(prev[key])} L ${px(r.step)} ${py(r[key])}`;
+    }
+    return d;
+  }
+  for(const [key,color] of [["a","#1474a3"],["b","#b87023"]]){
+    el("path",{d:makeStepPath(key),stroke:color,"stroke-width":3,fill:"none","stroke-linecap":"round","stroke-linejoin":"round"});
+    const last=rows.at(-1);
+    if(last)el("circle",{cx:px(last.step),cy:py(last[key]),r:4,fill:color,stroke:"white","stroke-width":1.4});
+  }
+  $("chart-range").textContent=chartMode==="full"
+    ?`Gesamter Verlauf: Schritte 0–${state.step}`
+    :`Ausschnitt: Schritte ${minStep}–${maxStep}`;
+}
+function render(){
+  $("step-label").textContent=`Schritt ${state.step}`;
+  $("value-a").textContent=fmt(state.a);
+  $("value-b").textContent=fmt(state.b);
+  $("fill-a").style.height=`${100*Math.max(0,Math.min(1,state.a/settings.total))}%`;
+  $("fill-b").style.height=`${100*Math.max(0,Math.min(1,state.b/settings.total))}%`;
+  $("vessel-scale").textContent=`Skala je Zylinder: 0–${settings.total} ME`;
+  const t=calculateTransfers(state,settings);
+  // Display *current* outgoing streams: both are positive at steady state.
+  $("value-forward").textContent=fmt(t.forward);
+  $("value-backward").textContent=fmt(t.backward);
+  $("forward").classList.toggle("active",t.forward>1e-10);
+  $("backward").classList.toggle("active",t.backward>1e-10);
+  // Gemeinsame, für beide Richtungen identische Skala (ME/Schritt):
+  // maximale bei aktuellen Parametern mögliche Einzel-Transferrate.
+  const rateMax=Math.max(settings.pForward,settings.pBackward)*settings.total;
+  const normalized=(amount)=>rateMax>0?Math.max(0,Math.min(1,amount/rateMax)):0;
+  const fw=normalized(t.forward),bw=normalized(t.backward);
+  $("bar-forward").style.height=`${100*fw}%`;
+  $("bar-backward").style.height=`${100*bw}%`;
+  $("scale-forward").textContent=`Balkenskala: 0–${fmt(rateMax)} ME/Schritt`;
+  // Kugelfläche ungefähr proportional zum normierten Transportvolumen;
+  // Durchmesser ∝ √(Rate), bewusst mit Mindest- und Maximalgröße.
+  const diameter=(fraction)=>fraction<=0?0:6+27*Math.sqrt(fraction);
+  $("forward").style.setProperty("--particle-size",`${diameter(fw)}px`);
+  $("backward").style.setProperty("--particle-size",`${diameter(bw)}px`);
+  $("visual").classList.toggle("is-running",running);
+  $("value-total").textContent=fmt(state.a+state.b);
+  $("value-target").textContent=stationaryTarget(settings);
+  $("status").textContent=statusText();
+  $("run").textContent=running?"Ⅱ Pause":"▶ Start";
+  $("step").disabled=running;
+  $("defaults").disabled=running;
+  $("reset").disabled=running;
+  for(const id of ["total","initial-a","forward-rate","backward-rate"])$(id).disabled=running;
+  $("total-out").textContent=`${settings.total} ME`;
+  $("initial-out").textContent=`${settings.initialA} ME`;
+  $("initial-b-note").textContent=`Daraus folgt B = ${settings.total-settings.initialA} ME`;
+  $("forward-out").textContent=fmt(settings.pForward);
+  $("backward-out").textContent=fmt(settings.pBackward);
+  $("chart-recent").setAttribute("aria-pressed",String(chartMode==="recent"));
+  $("chart-full").setAttribute("aria-pressed",String(chartMode==="full"));
+  renderStepChart();
+}
+
+// ===================== BEDIENUNG: alle Parameteränderungen starten neu =====================
+function pause(){if(timer!==null){clearInterval(timer);timer=null;}running=false;render();}
+function oneStep(){state=advanceOneStep(state,settings);render();}
+function reset(){state=makeInitialState(settings);render();}
+function start(){if(running)return;running=true;render();timer=setInterval(oneStep,settings.intervalMs);}
+$("run").addEventListener("click",()=>running?pause():start());
+$("chart-recent").addEventListener("click",()=>{chartMode="recent";renderStepChart();$("chart-recent").setAttribute("aria-pressed","true");$("chart-full").setAttribute("aria-pressed","false");});
+$("chart-full").addEventListener("click",()=>{chartMode="full";renderStepChart();$("chart-full").setAttribute("aria-pressed","true");$("chart-recent").setAttribute("aria-pressed","false");});
+$("step").addEventListener("click",oneStep);
+$("reset").addEventListener("click",reset);
+$("defaults").addEventListener("click",()=>{settings={...DEFAULTS};syncInputs();reset();});
+function syncInputs(){
+  $("total").value=settings.total;
+  $("initial-a").max=settings.total;
+  $("initial-a").value=settings.initialA;
+  $("forward-rate").value=settings.pForward;
+  $("backward-rate").value=settings.pBackward;
+}
+$("total").addEventListener("input",event=>{
+  const oldTotal=settings.total;
+  const nextTotal=Number(event.target.value);
+  settings.total=nextTotal;
+  // When total changes, retain the *fraction* initially in A.
+  settings.initialA=Math.round(settings.initialA/oldTotal*nextTotal);
+  syncInputs();reset();
+});
+$("initial-a").addEventListener("input",event=>{settings.initialA=Number(event.target.value);reset();});
+$("forward-rate").addEventListener("input",event=>{settings.pForward=Number(event.target.value);reset();});
+$("backward-rate").addEventListener("input",event=>{settings.pBackward=Number(event.target.value);reset();});
+window.addEventListener("pagehide",()=>{if(timer!==null)clearInterval(timer);});
+syncInputs();render();
+</script>
+</body>
+</html>
