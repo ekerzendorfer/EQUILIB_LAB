@@ -39,6 +39,12 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - [**Bildserie Fallobst – Freigabestand I–V**](docs/BILDSERIE_ABNAHME_19_10_2026.md) – alle fünf Bildentwürfe gestalterisch freigegeben; Zuordnung, Modellgrenzen und nächste Implementierungsschritte.
 - [**Bildserie Phase I – frühere Prüfung und Korrektur-Prompt**](docs/BILDSERIE_PHASE_I.md) – dokumentiert den früheren, noch fehlerhaften Erstentwurf und die nötige Korrektur.
 
+## Erste integrierte Story-Ansicht V0.1
+
+- [**Story V0.1 – selbstständige HTML-Datei**](prototyp/story-v0.1/index.html): fünf Phasen, einheitliche Seiten-/Vogelperspektiven, drei Reiter **Geschichte / Modell / Vergleich**; offline und ohne zusätzliche Dateien ausführbar. **Noch keine mathematische Modellkopplung**.
+- [**Prompt für Story V0.1**](docs/PROMPTS/STORY_V0_1.md) und [Entwicklungsjournal](docs/ENTWICKLUNG.md) dokumentieren den Übergang von der Bildergalerie zur ersten integrierten Ansicht.
+- **V0.2 bleibt unverändert** als funktionsfähige mathematische Rückfallebene.
+
 ## Einsatz in Fortbildungen
 
 - **Februar 2027:** 180-minütiger Schulworkshop zur KI-gestützten App-Entwicklung.
