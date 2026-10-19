@@ -19,6 +19,7 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - [Entwicklungsjournal und Konzeptstand](docs/ENTWICKLUNG.md) – Ausgangsidee, Mathematik, Darstellungsformen, didaktische Entscheidungen, Rückfallkonzept und offene Punkte.
 - [**Funktionsspezifikation V1**](docs/FUNKTIONSSPEZIFIKATION_V1.md) – verbindlicher Umfang für den workshopfähigen Kern, Rechenmodell, synchrone Visualisierungen, Offlinebetrieb und 16 Abnahmetests.
 - [**Reproduktions-Prompt V0.1**](docs/PROMPTS/V0_1.md) – vollständiger Prompt, Prüfbeispiele und kleinere KI-Entwicklungsschritte.
+- [**Workshop-Aufgaben auf Basis V0.2**](docs/WORKSHOP_AUFGABEN_V0_2.md) – Abspieltempo, Diagramm-Großansicht, CSV-/SVG-Export und didaktisch saubere Unterscheidung von Messrauschen und Teilchenfluktuationen.
 
 ## Prototyp V0.1
 
@@ -31,7 +32,7 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 
 - [**Aktuelle V0.2 als `index.html`**](prototyp/v0.2/index.html) – Kugelgröße proportional zur Transportmenge (symbolisch), Diagrammschalter **„Letzte 40 Schritte“ / „Volle Laufzeit“**, zwei vertikale Transportbalken auf gemeinsamer Skala.
 - [**Änderungs-Prompt V0.2**](docs/PROMPTS/V0_2.md) – reproduzierbare Änderungsbeschreibung, Testfälle und getrennte Aufgaben für schwächere KI-Modelle.
-- V0.1 bleibt unverändert für den Vorher-Nachher-Vergleich. V0.2 ist **getesteter Prototyp**, noch nicht die abschließend abgenommene V1.
+- V0.1 bleibt unverändert für den Vorher-Nachher-Vergleich. V0.2 ist **getesteter Prototyp und erste gesicherte Workshop-Rückfallversion**; noch nicht die abschließend abgenommene V1. Workshop-Änderungen erfolgen nur in eigenen Kopien.
 
 ## Einsatz in Fortbildungen
 
