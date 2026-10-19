@@ -35,6 +35,9 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - [**Änderungs-Prompt V0.2**](docs/PROMPTS/V0_2.md) – reproduzierbare Änderungsbeschreibung, Testfälle und getrennte Aufgaben für schwächere KI-Modelle.
 - V0.1 bleibt unverändert für den Vorher-Nachher-Vergleich. V0.2 ist **getesteter Prototyp und erste gesicherte Workshop-Rückfallversion**; noch nicht die abschließend abgenommene V1. Workshop-Änderungen erfolgen nur in eigenen Kopien.
 
+
+- [**Bildserie Phase I – Sichtprüfung und Korrektur-Prompt**](docs/BILDSERIE_PHASE_I.md) – aktueller Bildentwurf und präzise fachliche Abnahmekriterien (noch nicht freigegeben).
+
 ## Einsatz in Fortbildungen
 
 - **Februar 2027:** 180-minütiger Schulworkshop zur KI-gestützten App-Entwicklung.
