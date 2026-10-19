@@ -309,3 +309,16 @@ Heute wurde die bisherige Konzeptidee in ein überprüfbares V1-Pflichtenheft ü
 Ein erster **offlinefähiger Prototyp** liegt unter [`prototyp/v0.1/index.html`](../prototyp/v0.1/index.html); der zugehörige [Reproduktions-Prompt](PROMPTS/V0_1.md) ist dokumentiert. In V0.1 zeigen die Kennzahlen **den aus dem aktuellen Zustand für den nächsten Schritt möglichen Transport** an (beispielsweise nach Schritt 2: A=44,30, B=5,70; nächster Hintransport=2,658 ME, Rücktransport=0,228 ME). Die Transferwerte des **gerade abgeschlossenen** Schritts, auf die T02 Bezug nimmt, sind davon zu unterscheiden (Schritt 2: 2,82 und 0,12 ME). Eine eindeutige Beschriftung dieser beiden Konzepte ist Pflicht, bevor V1 als abgeschlossen gilt.
 
 T15 und T16 erweitern die ursprünglich 14 Abnahmetests auf **16**. V0.1 ist ausdrücklich **noch nicht** die fertig abgenommene V1.
+
+
+### Zusatz zur Funktionsspezifikation – umgesetzt in V0.2 am 19.10.2026
+
+Für die geplante Referenz-V1 werden nach Begutachtung des Prototyps folgende Präzisierungen empfohlen:
+- **Ein Ball je Richtung**, als schematisches Transportvolumensymbol statt Darstellung ganzer Einzelteilchen. Die Kugel**fläche** soll ungefähr proportional zur jeweiligen Transfermenge sein; Basisgröße aus Lesbarkeitsgründen zulässig.
+- Gemeinsame Rate-Skala für Kugeln und Balken: \`max(p_hin,p_rueck) * M\` Modelleinheiten/Schritt; beide gegenläufigen Mengen aus dem **aktuellen Zustand für den nächsten Schritt**.
+- In den beiden Transport-Kennzahlkästen zusätzlich je ein **vertikaler Balken** mit farblich zugeordneter Höhe.
+- Umschalter zwischen **letzten 40 Schritten** und **voller Historie** (seit Schritt 0, auch >120 Schritte); Stufenform bleibt erhalten; Ansichtswechsel ohne Neustart des Modells.
+- Das anfängliche Diagramm-Chart-Limit von 120 gespeicherten Zeilen wird aufgehoben; für sehr lange Läufe kann später eine Speicheroptimierung ergänzt werden.
+- Zu prüfen bleibt, ob die optische Kugelgröße und der Balkenhöhenmaßstab bei allen zugelassenen Parametern gut lesbar sind.
+
+Siehe [V0.2](../prototyp/v0.2/index.html) und den [zugehörigen Änderungs-Prompt](PROMPTS/V0_2.md). Die V0.2 ist noch keine vollständige Abnahme von V1.
