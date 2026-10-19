@@ -20,7 +20,7 @@ Erstellt am 19.10.2026 in der Chat-Arbeitsumgebung:
 - **GLEICHGEWICHTS_LAB_Story_V0_1_OFFLINE.zip**: obige HTML-Datei als Archiv.
 - Wartbare Quellstruktur **GLEICHGEWICHTS_LAB_Story_V0_1/index.html** und zehn WebP-Bilder in einem Unterordner assets (je fünf Seiten- und Vogelansichten).
 
-**Repository-Status:** Der erzeugte Binärcode/Bildsatz liegt zunächst als Chat-Artefakt vor; **noch nicht auf GitHub gespeichert**. Diese Datei dokumentiert die Entwicklung. Keine kaputten Repository-Links auf den noch ausstehenden Upload.
+**Repository-Status (aktualisiert):** Die vollständige standalone HTML einschließlich sämtlicher Bilder wurde als [prototyp/story-v0.1/index.html](../../prototyp/story-v0.1/index.html) auf GitHub gespeichert und der Blob erfolgreich nochmals abgerufen. Die modularen WebP-Quellbilder und der Build-Scriptstand sind weiterhin nur in der lokalen Arbeitsumgebung; sie sind für die Nutzung der vollständigen HTML-Datei **nicht** erforderlich.
 
 ## Tests und offene Punkte
 
