@@ -202,3 +202,14 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 **Aktualisierte Zeitidee für den 180-minütigen Workshop:** 12 Minuten KI-Einführung, 18 Minuten Apfelkonflikt/Stechheber und mathematisches Modell, 15 Minuten Starter-App zeigen, 15 Minuten gemeinsamen Änderungsauftrag formulieren, 40 Minuten erste Entwicklungsrunde, 10 Minuten Pause, 40 Minuten zweite Entwicklungsrunde, 20 Minuten Beispiele/Fehlerdiskussion, 10 Minuten Ergebnissicherung und Weiterarbeit. Summe 180 Minuten.
 
 **GitHub Free / Pro:** Der vorhandene kostenlose Plan ist für ein öffentliches Repository und GitHub Pages ausreichend. Pro bringt hauptsächlich zusätzliche Limits und Funktionen, insbesondere für private Repositories, ist aber weder für dieses Projekt noch für die Workshopteilnahme erforderlich. Ein spezieller GitHub-Pages-Minikurs soll bei Interesse **getrennt** angeboten werden; GitHub im Workshop ist kein Muss.
+
+
+### 19. Oktober 2026 – Funktionsspezifikation V1 verabschiedungsreif
+
+- [Funktionsspezifikation V1](FUNKTIONSSPEZIFIKATION_V1.md) erstellt und mit 14 fachlichen/technischen Abnahmetests im Repository abgelegt.
+- Excel-Formeln der tatsächlichen Arbeitsmappe \`EQUILIB.xlsm\` auf den Blättern **Eingabe** und **Zahlenwerte** erneut geprüft (u. a. Schritt 1: 47/3, Schritt 2: 44,30/5,70).
+- Für V1: Zylinder, diskrete Mengen-Stufenlinien, beidseitiger symbolischer Transport **synchron aus einem Rechenkern**.
+- Genau unterschieden zwischen **Modellmengen/Transferanteilen**, **realen Volumina** und **chemischen Konzentrationen/Geschwindigkeitskonstanten**.
+- Keine vollständig ausgearbeitete Apfel- und Stechheber-Szenerie oder stochastische Einzelteilchen-Simulation in V1; erweiterbare Architektur vorgesehen.
+- Referenz-App (alle Muss-Funktionen) und deutlich reduzierter Starter für heterogene TeilnehmerInnen werden getrennt vorbereitet.
+- **Nächster Schritt:** UI-Skizze/Festlegung und Umsetzung einer reinen, getesteten \`index.html\` als Referenz; anschließend Teilversionen/Workshop-Prompts.
