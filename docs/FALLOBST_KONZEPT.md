@@ -206,3 +206,10 @@ Bis zur späteren stochastischen Version werden rote Äpfel oder Apfelgruppen in
 **KI-Entwicklungserfahrung:** Bei zwei Bildversuchen wurden die Kisten trotz ausdrücklich gegenteiliger inhaltlicher Anweisung wieder erzeugt; hinzu kamen fest eingebrannte Beschriftungen und teils geänderte Figurengestaltung. Diese Versionen **sind nicht als korrigierte Mastergrafiken freigegeben**. Der Fehler wird als anschauliches Beispiel für die Notwendigkeit von menschlicher Sichtkontrolle dokumentiert.
 
 **Freigabekriterien der nächsten wirklich nutzbaren Illustration:** keine Apfelkisten, keine neuen von außen hinzugefügten Äpfel, gleiche Figuren/Perspektiven, keine fest eingebackenen Formeln oder Modellzahlen, Flächendichten visuell unterscheidbar, dynamische Apfel-Overlay-Schicht möglich.
+
+
+## 11. Status der Bildserie: Phase I am 19.10.2026
+
+Die erste Phase-I-Illustration wurde generiert und auf ihre fachliche Übereinstimmung mit \`A₀=50, B₀=0\` geprüft. Wegen einzelner Äpfel auf der Nachbarseite ist sie **noch ein Entwurf und nicht freigegeben**. Einzelheiten, Checkliste und **gezielter Bildkorrektur-Prompt**: [BILDSERIE_PHASE_I.md](BILDSERIE_PHASE_I.md).
+
+Die bereits angenommene **Phase III** bleibt der gestalterische Stilanker; abweichende Ausgaben werden nicht unbesehen in die Serie übernommen.
