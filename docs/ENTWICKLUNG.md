@@ -264,3 +264,17 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - [Workshop-Aufgaben V0.2](WORKSHOP_AUFGABEN_V0_2.md) dokumentiert Aufgaben, Schwierigkeitsgrade, Prüfkriterien, Modellgrenzen, differenzierte Zuordnung für heterogene KI-Zugänge und Versionsstrategie.
 - Nach diesen Aufgaben: zuerst die gestaltete Apfelkrieg-Welt und ggf. das stochastische Modell; später realer Stechheber und synchrone abstrakte Ebene.
 - Bei tatsächlicher neuer Implementierung einen **eigenen Versions-Prompt** dokumentieren; Aufgabenbeschreibungen sind noch keine implementierten Features.
+
+
+### 19. Oktober 2026 – Die Fallobstschlacht wird als Bildergeschichte konzipiert
+
+- [**Ausführliches Fallobst-Konzept mit fünf Szenen**](FALLOBST_KONZEPT.md) dokumentiert; noch keine Bilder oder Code produziert.
+- Zentrale didaktische Gegenüberstellung: **Phase IV** ähnliche Bestände, unterschiedliche Raten – **Phase V** unterschiedliche Bestände, gleiche positive Raten.
+- Eindeutige Zuordnung für den Story-Modus: **A = Junge (links, schneller)**, **B = älterer Nachbar (rechts, langsamer)**; pForward gehört zu A→B, pBackward zu B→A. So liegen im Gleichgewicht mehr Äpfel beim älteren Nachbarn.
+- **Separates Story-Preset vorgeschlagen:** M=50, A₀=50, B₀=0, pForward=0,08, pBackward=0,04; bestehender V0.2-Default wird **nicht verändert**.
+- Darstellungsmodi geplant: Geschichte / Modell / Vergleich (später realer Stechheber), alle aus **demselben Zustand**.
+- Keine neuen Äpfel fallen während des abgeschlossenen Modells vom Baum; Äpfel in der deterministischen Version **symbolisch**, da die Mengen reelle Zahlen einschließlich Bruchteilen sein können.
+- Für frei gewählte Parameter ist eine universelle automatische Einordnung in die fünf Phasen fachlich falsch; der Fünf-Phasen-Storymodus nutzt ein definiertes Preset.
+- KI-Medienprozess soll mit einem **eigenständigen Style-/Charakterblatt** beginnen und dann die fünf konsistenten Szenen liefern; keine direkte Nachzeichnung von Buchillustrationen.
+- Im Konzept ein **Gestaltungs-Prompt** hinterlegt; ein Appversions-Prompt entsteht erst bei tatsächlicher neuer, geprüfter Implementierung.
+- **V0.2 bleibt eingefrorene erste Rückfallversion**; nächster Schritt: Stilrichtung und Bildkomposition gemeinsam wählen.
