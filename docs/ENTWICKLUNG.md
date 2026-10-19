@@ -297,3 +297,14 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Bei genauer Prüfung: **Phase I noch nicht freigegeben**. Trotz sehr guter Gartengestaltung befinden sich einzelne Äpfel auf der rechten Seite und der Nachbar trägt einen Apfel – das widerspricht unserem expliziten Story-Start \`A₀=50\`, \`B₀=0\`.
 - Konkretes Prüfschema und ein **enger Bildedit-Prompt** stehen in [BILDSERIE_PHASE_I.md](BILDSERIE_PHASE_I.md).
 - Die generierte Datei befindet sich weiterhin in den Gesprächsartefakten, **noch nicht als Bilddatei in GitHub**. Der nächste Schritt ist eine begrenzte Bildkorrektur und Abnahme mit dem Nutzer, danach Phase II.
+
+
+### 19. Oktober 2026 – Alle fünf Fallobst-Bildentwürfe gestalterisch freigegeben
+
+- Neue Phase-I-Fassung mit leerem Nachbargarten wurde vom Nutzer akzeptiert.
+- Darauf aufbauend wurden drei weitere Entwürfe erstellt und **alle** akzeptiert: Phase II (Junge beginnt), Phase IV (ähnliche Bestände, ungleiche Raten), Phase V (ungleiche Bestände, gleich große mittlere Raten). Die bereits angenommene Phase III ergänzt die Serie.
+- **Stil-/Storyboardfreigabe für Phasen I–V**, nicht die Behauptung einer exakten quantitativen Synchronisierung der in Standbildern gezeichneten Apfelzahlen und Flugobjekte.
+- [Bildserien-Abnahmeprotokoll](BILDSERIE_ABNAHME_19_10_2026.md) enthält Phase-zu-Dateiname-Zuordnung, fachliche Grenzen und nächsten Arbeitsschritt.
+- Phase-I-Erstentwurf war mangelhaft; die neue Phase-I-Fassung ist akzeptiert. Vorherige Fehlerprotokolle bleiben aus Gründen der Entwicklungshistorie erhalten.
+- Die PNGs liegen im Gesprächs-Artefaktbereich; **Bilddateien selbst wurden noch nicht ins GitHub-Repo übernommen**. Eine strukturierte Asset-Ablage ist vor einer statischen Galerie erforderlich.
+- Nächster kleiner Schritt: Bilder als Assets sichern und daraus eine **statische offlinefähige Phasengalerie** entwickeln; erst anschließend quantitative Kopplung/Bewegung.
