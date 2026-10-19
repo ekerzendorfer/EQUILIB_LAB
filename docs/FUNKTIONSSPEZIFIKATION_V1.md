@@ -93,8 +93,10 @@ Ein exakter stationärer Grenzwert wird im iterativen Modell im Allgemeinen erst
 | `p_hin` | 0,06 | Anteil von A nach B pro Schritt |
 | `p_rueck` | 0,04 | Anteil von B nach A pro Schritt |
 
-**Pflichteingaben der vollständigen V1:**
-- Regler `Anfangsmenge A` von 0 bis 50 ME in ganzen Schritten, dazu abgeleitet `B = 50 − A`.
+**Pflichteingaben der vollständigen V1 (ergänzt am 19.10.):**
+- Regler `Gesamtbestand M = A + B` von **10 bis 200 ME** in Schritten zu **10 ME** (Standard 50).
+- Regler `Anfangsmenge A` von **0 bis M ME** in ganzen Schritten, dazu abgeleitet `B = M − A`.
+- Eine Änderung von M erhält näherungsweise das bisherige Anfangsverhältnis A/M (A wird auf ganze ME gerundet), führt also zu einem neuen Versuch bei Schritt 0.
 - Regler `Hin-Anteil` und `Rück-Anteil`, jeweils 0,00–0,20 in Schritten von 0,01.
 - Werkseitiger Standardzustand mit einem Klick wiederherstellbar.
 
@@ -143,7 +145,7 @@ Auf schmaleren Bildschirmen dürfen die Bereiche untereinander angeordnet werden
 ### 6.2 Zylinder
 
 - Transparentes, schematisches Gefäßpaar gleicher virtueller Querschnittsfläche.
-- Höhe proportional zum jeweiligen Bestand; Skala 0–50 ME.
+- Höhe proportional zum jeweiligen Bestand bezogen auf **den gewählten M-Wert**; Skala dynamisch **0–M ME**.
 - Standänderung **sprunghaft pro abgeschlossenem Schritt**; keine geglättete Dauerbewegung als fälschliche kontinuierliche Messung.
 - Das **reale** Volumen und der Übertrag durch reale Stechheber sind noch nicht geometrisch kalibriert. In V1 sind die Zylinder explizit **Modellzylinder**.
 
@@ -237,6 +239,8 @@ const state = {
 | T12 | Diagramm nach jedem Schritt | Änderungen erscheinen als **Stufen**, nicht als glatt interpolierte Kurven |
 | T13 | Kleine Fließkommareste | Gesamtmenge bleibt bis auf Rechengenauigkeit 50; nie negative Mengen anzeigen |
 | T14 | Werte beider Mengen fast stationär | Beide beschrifteten Gegenströme weiterhin sichtbar, kein Stopp bei Statuswechsel |
+| T15 | M=100, A₀=100, B₀=0, Default-p | Nach Schritt 1: A=94, B=6; Gesamtmenge stets 100 ME; Zylinderskala passt sich an |
+| T16 | M=20, A₀=10, B₀=10, p_hin=p_rück=0,05 | Stationäre Verteilung A=B=10; Gegenströme je 0,5 ME/Schritt, ohne Mengenänderung |
 
 **Numerischer Prüfmaßstab:** Rechenwerte mit Toleranz z. B. `1e−9 ME`; für die sichtbare Anzeige zwei Nachkommastellen. Vor einer realitätsnahen Stechheberbezeichnung ist die physikalische Geometrie separat zu validieren.
 
@@ -299,3 +303,9 @@ V1 gilt erst als **fertig**, wenn:
 ### Entwicklungsnotiz – 19.10.2026
 
 Heute wurde die bisherige Konzeptidee in ein überprüfbares V1-Pflichtenheft übersetzt. Der Mathematikkern wurde nochmals direkt mit den Formeln aus `EQUILIB.xlsm` abgeglichen. Bewusst wurde der Unterschied **Modelleinheiten ↔ reale Volumina ↔ chemische Konzentrationen** betont. Die volle synchrone Überblendung von Apfelkonflikt, realem Stechheber und abstrakter Simulation wird als Leitvision erhalten, aber **nicht** in die erste Workshop-Minimalversion gezwungen.
+
+### Implementierungsnotiz 19.10.2026 – Prototyp V0.1
+
+Ein erster **offlinefähiger Prototyp** liegt unter [`prototyp/v0.1/index.html`](../prototyp/v0.1/index.html); der zugehörige [Reproduktions-Prompt](PROMPTS/V0_1.md) ist dokumentiert. In V0.1 zeigen die Kennzahlen **den aus dem aktuellen Zustand für den nächsten Schritt möglichen Transport** an (beispielsweise nach Schritt 2: A=44,30, B=5,70; nächster Hintransport=2,658 ME, Rücktransport=0,228 ME). Die Transferwerte des **gerade abgeschlossenen** Schritts, auf die T02 Bezug nimmt, sind davon zu unterscheiden (Schritt 2: 2,82 und 0,12 ME). Eine eindeutige Beschriftung dieser beiden Konzepte ist Pflicht, bevor V1 als abgeschlossen gilt.
+
+T15 und T16 erweitern die ursprünglich 14 Abnahmetests auf **16**. V0.1 ist ausdrücklich **noch nicht** die fertig abgenommene V1.
