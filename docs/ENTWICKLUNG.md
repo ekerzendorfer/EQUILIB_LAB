@@ -278,3 +278,13 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - KI-Medienprozess soll mit einem **eigenständigen Style-/Charakterblatt** beginnen und dann die fünf konsistenten Szenen liefern; keine direkte Nachzeichnung von Buchillustrationen.
 - Im Konzept ein **Gestaltungs-Prompt** hinterlegt; ein Appversions-Prompt entsteht erst bei tatsächlicher neuer, geprüfter Implementierung.
 - **V0.2 bleibt eingefrorene erste Rückfallversion**; nächster Schritt: Stilrichtung und Bildkomposition gemeinsam wählen.
+
+
+### 19. Oktober 2026 – Feedback zur ersten Phase-III-Bildwelt
+
+- Erste KI-generierte Szene mit **Seitenansicht plus Vogelperspektive** wurde gestalterisch und didaktisch positiv bewertet; dieser Doppelblick soll Grundlage für weitere Entwicklung sein.
+- Die von der Bild-KI hinzugefügten **Vorratskisten** sind fachlich unpassend und müssen entfallen: Im Modell ist der Gesamtbestand geschlossen, keine zusätzlichen Apfelvorräte oder neu herabfallenden Äpfel.
+- Die **räumliche Apfeldichte** in der Draufsicht ist ausdrücklich gewünscht und soll später mit dem simulierten Bestand synchronisiert werden.
+- Für echte Animationen sollen Bildhintergrund und separat berechnete Äpfel/Transportsymbole **getrennte Ebenen** sein; fest eingebrannte Apfelzahlen im Hintergrund würden sonst eine dynamische Mengenänderung falsch darstellen.
+- Zwei weitere Bildversuche enthielten trotz Korrekturanweisung weiterhin Kisten und zusätzliche Beschriftungen. Noch **keine korrigierte Masterillustration freigegeben**. Diese KI-Fehlleistung ist ein authentisches Beispiel für die Bedeutung fachlicher menschlicher Gegenprüfung.
+- Fachliche Freigabekriterien ergänzt in [FALLOBST_KONZEPT.md](FALLOBST_KONZEPT.md).
