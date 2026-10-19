@@ -10,7 +10,7 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Erster Prototyp V0.1 implementiert, lokal ausführbar; noch keine veröffentlichte oder vollständig abgenommene V1.**
+**Prototypen V0.1 und V0.2 implementiert, lokal ausführbar; noch keine veröffentlichte oder vollständig abgenommene V1.**
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
@@ -26,6 +26,12 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - Frei wählbare Gesamtmenge **M = 10–200 ME (Zehnerschritte)**, anfängliche Verteilung **A₀ 0–M**, B₀=M−A₀, Hin-/Rückanteile und Reset.
 - Zwei Modellzylinder, diskrete Stufenlinien, symbolische Gegenströme, Start/Pause/Einzelschritt.
 - Der Prompt ist **eine Anleitung zur funktionalen Reproduktion**, kein Anspruch auf bitidentischen KI-Code und kein Protokoll eines Ein-Prompt-Erfolgs.
+
+## Prototyp V0.2 – Änderungen vom 19.10.2026
+
+- [**Aktuelle V0.2 als `index.html`**](prototyp/v0.2/index.html) – Kugelgröße proportional zur Transportmenge (symbolisch), Diagrammschalter **„Letzte 40 Schritte“ / „Volle Laufzeit“**, zwei vertikale Transportbalken auf gemeinsamer Skala.
+- [**Änderungs-Prompt V0.2**](docs/PROMPTS/V0_2.md) – reproduzierbare Änderungsbeschreibung, Testfälle und getrennte Aufgaben für schwächere KI-Modelle.
+- V0.1 bleibt unverändert für den Vorher-Nachher-Vergleich. V0.2 ist **getesteter Prototyp**, noch nicht die abschließend abgenommene V1.
 
 ## Einsatz in Fortbildungen
 
