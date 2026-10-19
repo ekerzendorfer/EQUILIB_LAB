@@ -20,6 +20,7 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - [**Funktionsspezifikation V1**](docs/FUNKTIONSSPEZIFIKATION_V1.md) – verbindlicher Umfang für den workshopfähigen Kern, Rechenmodell, synchrone Visualisierungen, Offlinebetrieb und 16 Abnahmetests.
 - [**Reproduktions-Prompt V0.1**](docs/PROMPTS/V0_1.md) – vollständiger Prompt, Prüfbeispiele und kleinere KI-Entwicklungsschritte.
 - [**Workshop-Aufgaben auf Basis V0.2**](docs/WORKSHOP_AUFGABEN_V0_2.md) – Abspieltempo, Diagramm-Großansicht, CSV-/SVG-Export und didaktisch saubere Unterscheidung von Messrauschen und Teilchenfluktuationen.
+- [**Fallobstschlacht – Konzept und Storyboard**](docs/FALLOBST_KONZEPT.md) – fünf Phasen, Bildsprache, Zuordnung der Figuren zum Modell, Story-Preset und spätere Integration. Enthält auch einen Konzept-Prompt für die Gestaltung.
 
 ## Prototyp V0.1
 
