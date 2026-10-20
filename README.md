@@ -10,9 +10,9 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Prototypen V0.1 und V0.2 implementiert, lokal ausführbar; noch keine veröffentlichte oder vollständig abgenommene V1.**
+**Prototypen V0.1, V0.2, Story V0.1 und die integrierte Version V0.1 sind implementiert. Die vollständige V1-Abnahme steht noch aus.**
 
-Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
+Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
 ## Dokumentation
 
@@ -45,6 +45,19 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 - [**Prompt für Story V0.1**](docs/PROMPTS/STORY_V0_1.md) und [Entwicklungsjournal](docs/ENTWICKLUNG.md) dokumentieren den Übergang von der Bildergalerie zur ersten integrierten Ansicht.
 - **V0.2 bleibt unverändert** als funktionsfähige mathematische Rückfallebene.
 
+## Integrierter Prototyp V0.1 – 20. Oktober 2026
+
+Die erste **funktionierende Brücke zwischen Bildergeschichte und Rechenkern V0.2** ist verfügbar:
+
+- [**Integrierte Offline-App**](prototyp/integriert-v0.1/index.html): **eine selbstständige HTML-Datei** mit allen zehn eingebetteten Bildausschnitten und dem gemeinsamen Rechenkern.
+- [**Entwicklungs-Prompt und Tests**](docs/PROMPTS/INTEGRIERT_V0_1.md): Ausgangsanforderungen, fachliche Grenzen, durchgeführte Browserprüfungen und dokumentierte Korrekturen.
+- **Geschichte / Modell / Vergleich**: ein gemeinsamer Rechenschritt, gemeinsame Parameter und Live-Zahlen bei jedem Wechsel.
+- **Apfelkrieg-Vorgabe:** M=50 ME, A₀=50, p_hin=0,08, p_rück=0,04; zusätzlich ursprüngliches V0.2-Preset verfügbar.
+- **Didaktische Grenze:** Die fünf Bilder bleiben **statische narrative Szenen**. Die gezeichneten Einzeläpfel und die Auswahl einer Bildphase werden **noch nicht automatisch** vom Modellzustand gesteuert. Die daneben gezeigten Werte stammen tatsächlich aus dem gemeinsamen Rechenkern.
+- Die ursprüngliche [V0.2](prototyp/v0.2/index.html) bleibt **unverändert** als erste Rückfallversion.
+
+Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie in Chromium isoliert geladen und interaktiv getestet. Ein lokaler Doppelklick-Test auf einem Nutzer-PC bleibt sinnvoll.
+
 ## Einsatz in Fortbildungen
 
 - **Februar 2027:** 180-minütiger Schulworkshop zur KI-gestützten App-Entwicklung.
@@ -59,4 +72,4 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 2. **V2:** Synchrone Visualisierung von Äpfeln, Stechheber und Modell, Aufgaben und Ergebnissicherung.
 3. **V3:** Stochastisches Modell, komplexere Gleichgewichte und Le Chatelier.
 
-**Hinweis:** Die bisherige \`EQUILIB.xlsm\`-Ausgangsdatei und Bilder/Videos sind noch **nicht** in diesem Repository abgelegt. Nutzungsrechte an externen Abbildungen sind vor einer eventuellen Veröffentlichung zu klären.
+**Hinweis:** Die bisherige \`EQUILIB.xlsm\`-Ausgangsdatei und externe Videos sind noch **nicht** im Repository abgelegt. Die akzeptierten KI-generierten Story-Bilder liegen eingebettet in den Story- und Integrations-HTML-Dateien; externe Buchabbildungen werden nicht übernommen. Nutzungsrechte an externen Abbildungen sind vor einer eventuellen Veröffentlichung zu klären.
