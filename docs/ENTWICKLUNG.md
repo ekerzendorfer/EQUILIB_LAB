@@ -1,7 +1,7 @@
 # GLEICHGEWICHTS-LAB – Entwicklungsjournal und Konzeptstand
 
-**Stand:** 18. Oktober 2026  
-**Status:** Konzept-/Workshopplanung, noch kein implementiertes App-Release  
+**Stand:** 20. Oktober 2026  
+**Status:** Prototypen V0.1/V0.2, Story V0.1 und integrierter Story-Modell-Prototyp V0.1 vorhanden; noch keine abschließend abgenommene Gesamtversion  
 **Projekt:** CHEMIE mit KI · GitHub-Repository: [EQUILIB_LAB](https://github.com/ekerzendorfer/EQUILIB_LAB)
 
 > Diese Datei dokumentiert die wesentlichen Entscheidungen, Ideen, offenen Fragen und fachlichen Prüfungen aus unserer gemeinsamen Entwicklung. Sie ist ausdrücklich **kein** vollständiges Prompt-Protokoll. Fortschreibungen erfolgen bei unseren nächsten aktiven Arbeitsschritten, nicht automatisch im Hintergrund.
