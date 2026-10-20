@@ -220,3 +220,10 @@ Die bereits angenommene **Phase III** bleibt der gestalterische Stilanker; abwei
 Der Nutzer hat den neu erzeugten Phase-I-Entwurf und anschließend die weiteren Phasenentwürfe angenommen. Somit **sind die fünf Bildentwürfe als visuelle Grundlage freigegeben**. Der in Abschnitt 11 dokumentierte Fehler betrifft den **alten Erstentwurf**, nicht die akzeptierte neue Phase-I-Fassung. Die Serie gilt noch nicht als numerisch modellgetreue Animation.
 
 Verbindliches Zuordnungs- und Abnahmeprotokoll: [BILDSERIE_ABNAHME_19_10_2026.md](BILDSERIE_ABNAHME_19_10_2026.md). Als nächste kleine Arbeitsstufe folgt **keine** Änderung am funktionierenden V0.2, sondern zunächst die Ablage der Bilddateien und eine statische Phase-I–V-Galerie.
+
+
+## 13. Update 20.10.2026 – Verbindung mit V0.2-Rechenkern hergestellt
+
+Die [integrierte V0.1](../prototyp/integriert-v0.1/index.html) bietet die erste echte, numerische Verbindung: **Geschichte**, **Modell** und **Vergleich** teilen sich Simulationsschritt, A/B-Bestände und Hin-/Rücktransportwerte. Die Bilder selbst bleiben absichtlich statisch und dürfen nicht als maßstabsgetreue Bestandsanzeige gelesen werden. Die fünf Bildphasen sind weiterhin narrative Stationen und werden nicht automatisch aufgrund beliebiger Parameter als Zustände zugeordnet.
+
+Für die nächste Ausbaustufe ist zuerst ein eigenes, *modellgesteuertes Apfel-Overlay* in Seiten- und Vogelperspektive zu planen; die bereits vorhandenen fest eingezeichneten Apfelmengen in den hübschen Szenen machen das fachlich und gestalterisch anspruchsvoll. [Entwicklungsauftrag und Tests](PROMPTS/INTEGRIERT_V0_1.md).
