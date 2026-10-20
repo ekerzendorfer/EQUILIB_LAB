@@ -58,6 +58,10 @@ Die erste **funktionierende Brücke zwischen Bildergeschichte und Rechenkern V0.
 
 Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie in Chromium isoliert geladen und interaktiv getestet. Ein lokaler Doppelklick-Test auf einem Nutzer-PC bleibt sinnvoll.
 
+## Übergabe in einen neuen Chat (20.10.2026)
+
+- [**Vollständige Projektübergabe mit Fortsetzungsprompt**](docs/UEBERGABE_NEUER_CHAT_2026-10-20.md) – geprüfter GitHub-main-Stand, Versionen, Mathematik, Bildserie, Workshop-Rückfallstufen und nächster Entwicklungsschritt.
+
 ## Einsatz in Fortbildungen
 
 - **Februar 2027:** 180-minütiger Schulworkshop zur KI-gestützten App-Entwicklung.
