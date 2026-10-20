@@ -322,3 +322,22 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Nächster Schritt ist die Sichtprüfung der neuen Reiter-/Vergleichsstruktur; erst danach tatsächliche Kopplung mit dem weiterhin unveränderten V0.2-Rechenkern.
 
 - **Nachtrag zur Ablage:** Die vollständig selbstständige Story-HTML wurde anschließend in [prototyp/story-v0.1/index.html](../prototyp/story-v0.1/index.html) eingecheckt und deren gespeicherter GitHub-Blob überprüft. Die separat optimierten WebP-Quellbilder sind nicht einzeln eingecheckt, aber in der Ein-Datei-Version bereits eingebettet.
+
+
+### 20. Oktober 2026 – Erste quantitative Anbindung der Bildergeschichte (Integriert V0.1)
+
+**Ausgang:** Der Nutzer hat Story V0.1 akzeptiert und die Anbindung an den bewährten mathematischen Kern aus V0.2 freigegeben.
+
+**Umgesetzt und getestet:**
+- [**Integrierte Ein-Datei-App**](../prototyp/integriert-v0.1/index.html) mit drei Tabs **Geschichte / Modell / Vergleich**, ausschließlich einem Modellzustand \`state\` und einer gemeinsamen Steuerung.
+- Der vorhandene deterministische Rechenkern und die bewährten Modellzylinder/-diagramme aus V0.2 wurden übernommen, die ursprüngliche V0.2-Datei **nicht geändert**.
+- Im Geschichten- und Vergleichsmodus: Live-Kennzahlen für Bestand A (Junge), Bestand B (Nachbar) sowie die **im nächsten Schritt zu erwartenden** gegenläufigen Transporte; die numerische Anzeige bezieht sich auf denselben Modellzustand wie die Zylinder und das Stufendiagramm.
+- **Story-Preset** (50/0, p_hin=0,08, p_rück=0,04) und gesonderter Button für den früheren V0.2-Ausgangsfall (50/0, 0,06/0,04).
+- Bildphasenwahl und Simulationsschritt bewusst **unabhängig**; die Bildäpfel selbst sind weiterhin **statische, nicht zahlengetreu simulierte Objekte**. Diese Grenze ist in der App deutlich beschriftet.
+- Wiedergabe/Pause und die grafische Historie bleiben über Reiterwechsel erhalten.
+- [**Reproduktions-Prompt**](PROMPTS/INTEGRIERT_V0_1.md) beschreibt den Ausgangsauftrag, Korrekturentscheidungen und Testfälle.
+- Browser-Tests: Storypreset 50/0 und H=4, R=0; nach einem Schritt 46/4; Tabwechsel ohne Verlust der Schrittzahl; 2 Bildperspektiven; Chartpfade; Start/Pause; zwei Presets; keine JavaScript-Fehler; 390-px-Mobildarstellung ohne Horizontaloverflow.
+- Zwei im Browser erkannte UI-Probleme korrigiert: zu schwacher Kontrast beim Hover auf dem aktiven Reiter und ein mit Sternen ausgegebener Markdown-Textrest.
+- Die Software wurde in Chromium mit isoliert eingespeister, in sich vollständiger HTML-Datei getestet. Der direkte file://-Aufruf ist innerhalb der Testumgebung administratorseitig gesperrt; ein Doppelklick-Test auf dem Nutzer-PC bleibt offen.
+
+**Nächster Dialog:** Oberfläche und Aussagekraft der parallelen Live-Werte gemeinsam beurteilen. Erst danach die schwierigere Synchronisierung **der am Boden liegenden Äpfel in beiden Perspektiven** entwerfen, ohne den getesteten Kern zu destabilisieren.
