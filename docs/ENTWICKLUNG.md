@@ -341,3 +341,26 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 - Die Software wurde in Chromium mit isoliert eingespeister, in sich vollständiger HTML-Datei getestet. Der direkte file://-Aufruf ist innerhalb der Testumgebung administratorseitig gesperrt; ein Doppelklick-Test auf dem Nutzer-PC bleibt offen.
 
 **Nächster Dialog:** Oberfläche und Aussagekraft der parallelen Live-Werte gemeinsam beurteilen. Erst danach die schwierigere Synchronisierung **der am Boden liegenden Äpfel in beiden Perspektiven** entwerfen, ohne den getesteten Kern zu destabilisieren.
+
+
+### 31. Oktober 2026 – Integriert V0.2: modellgesteuerte symbolische Vogelperspektive
+
+**Anlass und Entscheidung:** Die fünf gestalterisch akzeptierten Bilder bleiben **statische narrative Szenen**. Eine exakte Veränderung der fest eingezeichneten Apfelzahlen wäre technisch aufwändig und modelltheoretisch irreführend. Stattdessen wurde als kleine isolierte Erweiterung eine eigene, mathematisch gekoppelte Vogelperspektive vereinbart.
+
+**Neue Implementierung:**
+- [Integriert V0.2](../prototyp/integriert-v0.2/index.html): neue selbstständige HTML-Datei mit weiterhin eingebetteten, unveränderten Story-Bildern. Die Root-`index.html` und alle historischen Prototypen wurden nicht geändert.
+- Unterhalb der vorhandenen Modellansicht: zwei quadratische Grundstücke A (Junge) und B (Nachbar) als Inline-SVG, mit fixen Kreispositionen, visueller Grundstücksgrenze, aktuellen ME-Beständen und erklärendem Modellhinweis.
+- Es gibt **insgesamt 60 sichtbare** Symbolkreise. Je Seite sind 60 Plätze vorbereitet, die Belegung ist `round(60*A/M)` links und der Rest rechts; sie ist keine exakte Einzelzählung.
+- Einmalige deterministische SVG-Initialisierung; die zentrale `render()`-Funktion aktualisiert nur Sichtbarkeit und Beschriftung. Keine separat fortgeschriebenen Mengen, keine Einzelapfel-Animation.
+- **Fachlich:** Der unveränderte simultane Rechenkern aus der bisherigen integrierten V0.1 steuert sämtliche Zahlen, Zylinder, Grafik und Bildsymbole. Symbolrundung wird niemals an die Rechnung zurückgegeben.
+
+**Tatsächliche Prüfungen:**
+- Vollständiges JavaScript syntaktisch geprüft; ursprüngliche drei Rechenkernfunktionen zeichenidentisch verglichen.
+- Referenzfälle: 50/0 → 60/0; Apfelkrieg nach Schritt 1: 46/4 → 55/5; V0.2-Preset nach Schritt 1: 47/3 → 56/4; 25/25 → 30/30; 16,67/33,33 → 20/40; 0/50 → 0/60; M=200, A=200 → 60/0.
+- 500 mathematische Schritte mit konstanter Gesamtmenge und insgesamt immer 60 Bildsymbolen.
+- **Simulierter DOM-Test (kein echter Browser):** Vollständiges Skript gegen DOM-Ersatzobjekte mit Einzelschritt, Start/Pause, Timer, Reset, Presets, M-Änderung, Tab-/Phasenwechsel, Chartumschaltung und SVG-Sichtbarkeit geprüft; keine Ausnahme.
+- GitHub-Datei nach dem Upload erneut gelesen (Blob-SHA: `293518c23f76b491b2d7ee8a590a3a9d1efb4b9d`).
+
+**Noch offen:** Echter visueller Browser-/390-px-Test, lokaler Doppelklick-Test und didaktische Sichtabnahme durch den Nutzer. Keine abschließende Freigabe behaupten. Nächster Schritt: V0.2 lokal ansehen und über Grafikgröße, Kontrast, Symbolverteilung sowie gegebenenfalls eine spätere ausschließlich symbolische Gegenstromanimation entscheiden.
+
+[Rekonstruierter Entwicklungs-Prompt, Implementierung und Prüfprotokoll](PROMPTS/INTEGRIERT_V0_2.md); [früherer reiner Spezifikationsentwurf](PROMPTS/INTEGRIERT_V0_2_ENTWURF.md).
