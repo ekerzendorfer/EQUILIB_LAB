@@ -10,12 +10,13 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Prototypen V0.1/V0.2 (mathematisch), Story V0.1 sowie Integriert V0.1, V0.2, V0.3 und V0.3a sind implementiert. Integriert V0.3a bietet die dynamische symbolische Vogelperspektive. Die vollständige V1-Abnahme und die visuelle Browser-/Offline-Sichtabnahme stehen noch aus.**
+**Aktueller integrierter Zwischenstand: V0.3e (31.10.2026).** Die freigegebene Phasensteuerung synchronisiert Geschichte und Vergleich mit den Modellmengen. Ältere Prototypen bleiben erhalten; vollständige V1- sowie Browser-/Offline-Abnahme sind noch ausständig.
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
 ## Dokumentation
 
+- [**Kompakter Entwicklungsstand V0.3e für den Februar-Workshop**](docs/ENTWICKLUNGSSTAND_V0_3E_2026-10-31.md) – Versionsweg, Modellformeln, Bildphasenregeln, Modellgrenzen und Workshop-Prüffragen.
 - [Entwicklungsjournal und Konzeptstand](docs/ENTWICKLUNG.md) – Ausgangsidee, Mathematik, Darstellungsformen, didaktische Entscheidungen, Rückfallkonzept und offene Punkte.
 - [**Funktionsspezifikation V1**](docs/FUNKTIONSSPEZIFIKATION_V1.md) – verbindlicher Umfang für den workshopfähigen Kern, Rechenmodell, synchrone Visualisierungen, Offlinebetrieb und 16 Abnahmetests.
 - [**Reproduktions-Prompt V0.1**](docs/PROMPTS/V0_1.md) – vollständiger Prompt, Prüfbeispiele und kleinere KI-Entwicklungsschritte.
@@ -65,14 +66,14 @@ Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie i
 - [**Vollständiger Änderungs-Prompt und tatsächliches Prüfprotokoll**](docs/PROMPTS/INTEGRIERT_V0_2.md); [Entwurfs-Prompt](docs/PROMPTS/INTEGRIERT_V0_2_ENTWURF.md) und [Entwicklungsjournal](docs/ENTWICKLUNG.md).
 - **Getestet:** JS-Syntax, ursprünglicher Rechenkern unverändert, sieben Referenzwerte, 500 mathematische Schritte, Bedien-/DOM-Simulation (Schritte, Reset, Presets, Reiter, Timer, SVG-Sichtbarkeit).
 - **Noch ausständig:** echter visueller Browser-/390-px-Test, Offline-Doppelklick-Test und didaktische Freigabe. Ein simulierter DOM-Test ist kein Ersatz für den Browser.
-- Die Root-`index.html` bleibt bis zur gesonderten Freigabe auf dem integrierten Stand V0.1; die unabhängige mathematische V0.2 und alle älteren Varianten sind erhalten.
+- Historischer Hinweis: Bei Einführung von V0.2 blieb die Root-`index.html` zunächst auf V0.1; seit dem 31.10.2026 dient **v0.3e** als Root-Startversion. Die älteren Varianten sind weiterhin erhalten.
 
 ## Integrierter Prototyp V0.3a – 31. Oktober 2026
 
 - [**Eigenständige Offline-App V0.3a**](prototyp/integriert-v0.3a/index.html): Die symbolische Vogelperspektive im Reiter **Modell** wechselt bei aktivem Hin-/Rücktransport belegte Kreispositionen – auch nahe dem dynamischen Gleichgewicht. Neu belegte Positionen leuchten nur kurz auf.
 - Die insgesamt 60 Bildsymbole zeigen proportional gerundete Bestände; in der stationären Phase werden für die Anschaulichkeit zeitweise **±1 Bildsymbol** verschoben. **Dies ist ausschließlich eine Darstellungskonvention**, keine stochastische Änderung des deterministischen Rechenkerns.
 - [**Änderungen, Grenzen und Prüfungen V0.3a**](docs/PROMPTS/INTEGRIERT_V0_3A.md): JavaScript-Syntax, Modellerhalt, 160-Schritte-Symboltest und Invarianten geprüft; echte Browser-/Offline-Sichtabnahme ausständig.
-- **V0.3b geplant:** ausdrückliche didaktische Synchronisierung des Vergleichsbereichs und automatische Auswahl passender Story-Bildphasen. V0.3 und ältere Prototypen bleiben unverändert.
+- **V0.3b–v0.3e inzwischen umgesetzt:** Synchronisierter Vergleich mit zweitem Diagramm und Bildphasensteuerung nach dem aktuellen Mengenanteil. Details im [Workshop-Zwischenstand](docs/ENTWICKLUNGSSTAND_V0_3E_2026-10-31.md); ältere Prototypen bleiben unverändert.
 
 ## Übergabe in einen neuen Chat (20.10.2026)
 
