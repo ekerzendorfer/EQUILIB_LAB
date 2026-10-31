@@ -10,7 +10,7 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Prototypen V0.1, V0.2 (mathematisch), Story V0.1 sowie Integriert V0.1 und V0.2 (symbolische Vogelperspektive) sind implementiert. Die vollständige V1-Abnahme und die visuelle Sichtabnahme von Integriert V0.2 stehen noch aus.**
+**Prototypen V0.1/V0.2 (mathematisch), Story V0.1 sowie Integriert V0.1, V0.2, V0.3 und V0.3a sind implementiert. Integriert V0.3a bietet die dynamische symbolische Vogelperspektive. Die vollständige V1-Abnahme und die visuelle Browser-/Offline-Sichtabnahme stehen noch aus.**
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
