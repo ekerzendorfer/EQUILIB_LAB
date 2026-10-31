@@ -67,6 +67,13 @@ Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie i
 - **Noch ausständig:** echter visueller Browser-/390-px-Test, Offline-Doppelklick-Test und didaktische Freigabe. Ein simulierter DOM-Test ist kein Ersatz für den Browser.
 - Die Root-`index.html` bleibt bis zur gesonderten Freigabe auf dem integrierten Stand V0.1; die unabhängige mathematische V0.2 und alle älteren Varianten sind erhalten.
 
+## Integrierter Prototyp V0.3a – 31. Oktober 2026
+
+- [**Eigenständige Offline-App V0.3a**](prototyp/integriert-v0.3a/index.html): Die symbolische Vogelperspektive im Reiter **Modell** wechselt bei aktivem Hin-/Rücktransport belegte Kreispositionen – auch nahe dem dynamischen Gleichgewicht. Neu belegte Positionen leuchten nur kurz auf.
+- Die insgesamt 60 Bildsymbole zeigen proportional gerundete Bestände; in der stationären Phase werden für die Anschaulichkeit zeitweise **±1 Bildsymbol** verschoben. **Dies ist ausschließlich eine Darstellungskonvention**, keine stochastische Änderung des deterministischen Rechenkerns.
+- [**Änderungen, Grenzen und Prüfungen V0.3a**](docs/PROMPTS/INTEGRIERT_V0_3A.md): JavaScript-Syntax, Modellerhalt, 160-Schritte-Symboltest und Invarianten geprüft; echte Browser-/Offline-Sichtabnahme ausständig.
+- **V0.3b geplant:** ausdrückliche didaktische Synchronisierung des Vergleichsbereichs und automatische Auswahl passender Story-Bildphasen. V0.3 und ältere Prototypen bleiben unverändert.
+
 ## Übergabe in einen neuen Chat (20.10.2026)
 
 - [**Vollständige Projektübergabe mit Fortsetzungsprompt**](docs/UEBERGABE_NEUER_CHAT_2026-10-20.md) – geprüfter GitHub-main-Stand, Versionen, Mathematik, Bildserie, Workshop-Rückfallstufen und nächster Entwicklungsschritt.
