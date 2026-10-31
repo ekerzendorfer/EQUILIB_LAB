@@ -10,7 +10,7 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Prototypen V0.1, V0.2, Story V0.1 und die integrierte Version V0.1 sind implementiert. Die vollständige V1-Abnahme steht noch aus.**
+**Prototypen V0.1, V0.2 (mathematisch), Story V0.1 sowie Integriert V0.1 und V0.2 (symbolische Vogelperspektive) sind implementiert. Die vollständige V1-Abnahme und die visuelle Sichtabnahme von Integriert V0.2 stehen noch aus.**
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
@@ -57,6 +57,15 @@ Die erste **funktionierende Brücke zwischen Bildergeschichte und Rechenkern V0.
 - Die ursprüngliche [V0.2](prototyp/v0.2/index.html) bleibt **unverändert** als erste Rückfallversion.
 
 Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie in Chromium isoliert geladen und interaktiv getestet. Ein lokaler Doppelklick-Test auf einem Nutzer-PC bleibt sinnvoll.
+
+## Integrierter Prototyp V0.2 – 31. Oktober 2026
+
+- [**Neue eigenständige Offline-App**](prototyp/integriert-v0.2/index.html): unveränderte Bildergeschichte und unveränderter Rechenkern; im Reiter **Modell** neu eine **symbolische Vogelperspektive** mit zwei quadratischen Grundstücken und insgesamt 60 proportional zu A/B verteilten Symbolkreisen.
+- Feste Kreispositionen, keine Einzelapfel-Animation; die App rundet nur die **Anzeige**, niemals die kontinuierlichen Modelleinheiten.
+- [**Vollständiger Änderungs-Prompt und tatsächliches Prüfprotokoll**](docs/PROMPTS/INTEGRIERT_V0_2.md); [Entwurfs-Prompt](docs/PROMPTS/INTEGRIERT_V0_2_ENTWURF.md) und [Entwicklungsjournal](docs/ENTWICKLUNG.md).
+- **Getestet:** JS-Syntax, ursprünglicher Rechenkern unverändert, sieben Referenzwerte, 500 mathematische Schritte, Bedien-/DOM-Simulation (Schritte, Reset, Presets, Reiter, Timer, SVG-Sichtbarkeit).
+- **Noch ausständig:** echter visueller Browser-/390-px-Test, Offline-Doppelklick-Test und didaktische Freigabe. Ein simulierter DOM-Test ist kein Ersatz für den Browser.
+- Die Root-`index.html` bleibt bis zur gesonderten Freigabe auf dem integrierten Stand V0.1; die unabhängige mathematische V0.2 und alle älteren Varianten sind erhalten.
 
 ## Übergabe in einen neuen Chat (20.10.2026)
 
