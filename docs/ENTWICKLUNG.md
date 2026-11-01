@@ -364,3 +364,10 @@ Originalabbildungen aus Büchern sind didaktische Referenzen; für die öffentli
 **Noch offen:** Echter visueller Browser-/390-px-Test, lokaler Doppelklick-Test und didaktische Sichtabnahme durch den Nutzer. Keine abschließende Freigabe behaupten. Nächster Schritt: V0.2 lokal ansehen und über Grafikgröße, Kontrast, Symbolverteilung sowie gegebenenfalls eine spätere ausschließlich symbolische Gegenstromanimation entscheiden.
 
 [Rekonstruierter Entwicklungs-Prompt, Implementierung und Prüfprotokoll](PROMPTS/INTEGRIERT_V0_2.md); [früherer reiner Spezifikationsentwurf](PROMPTS/INTEGRIERT_V0_2_ENTWURF.md).
+
+
+## 01.11.2026 – Integrierter Prototyp v0.4e: UI-Vereinfachung
+
+Auf Basis der unveränderten v0.4d wurde eine eigenständige Offline-HTML unter `prototyp/integriert-v0.4e/index.html` erstellt. Der Chemie-Reiter blendet die außerhalb der Tab-Panels angeordneten Apfel-/Stechheberwerte, Parameter-Regler und Erklärtexte nun gezielt aus; in den drei Apfelansichten sind sie unverändert. Die überholten Presets „Apfelkrieg-Vorgabe“ und „V0.2-Werte“ und die zugehörigen Handler wurden entfernt; der Startstandard bleibt M=50, A0=50, pHin=0,08, pRueck=0,04. Reset setzt den Zustand bei unveränderten Parametern zurück.
+
+Der chemische Reaktionsraum startet als Hauptvisualisierung und wird durch einen bis 1480 px breiten Hauptbereich und eine linkslastige Chemie-Aufteilung samt größeren Stoff- und Wassersammelbalken visuell aufgewertet. Die getrennten Stoffkacheln sind umschaltbar. Die dynamischen A-/D-Hinweise bleiben sichtbar, lange Modellhinweise sind aufklappbar. Keine Änderungen der chemischen oder analogen Rechenkerne; zehn eingebettete Bildquellen, JS-Syntax, IDs und ID-Zugriffe wurden geprüft. Browser- und Offline-Abnahme ausständig. Details: [Prüfprotokoll](PRUEFPROTOKOLL_V0_4E_2026-11-01.md), [Prompt](PROMPTS/INTEGRIERT_V0_4E.md), [Übergabe](UEBERGABE_v0.4e.md). Root v0.3e bleibt unverändert.
