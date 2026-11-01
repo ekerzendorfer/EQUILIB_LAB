@@ -2,8 +2,8 @@
 
 **Stand:** 01.11.2026 · **Projekt:** CHEMIE mit KI – GLEICHGEWICHTS-LAB  
 **Repository:** https://github.com/ekerzendorfer/EQUILIB_LAB  
-**Aktuelle Testversion:** **v0.4d** unter `prototyp/integriert-v0.4d/index.html`  
-**Live-Test:** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4d/  
+**Aktuelle Testversion:** **v0.4e** unter `prototyp/integriert-v0.4e/index.html`  
+**Live-Test:** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4e/  
 **Freigegebene Root-Startfassung:** `main/index.html` weiterhin v0.3e.
 
 ## Versionsübersicht
@@ -14,9 +14,10 @@
 | v0.4a | `prototyp/integriert-v0.4a/index.html` | Erstes Chemie-Modell A+B⇌C+D |
 | v0.4b | `prototyp/integriert-v0.4b/index.html` | Variable k-Werte, K/Q, gemeinsamer Reaktionsraum |
 | v0.4c | `prototyp/integriert-v0.4c/index.html` | Einmalzugabe A +0,20 mol/L und Q/K-/Zielwertneuberechnung; vom Nutzer als gut funktionierend bestätigt |
-| **v0.4d** | `prototyp/integriert-v0.4d/index.html` | **Neu:** laufender D-(Wasser-)Entzug, externes Sammelgefäß, vier Live-Balken, vor Start getrennte Teilchen, bidirektionale Reglerkopplung und Schnelllauf ×10; automatischer Rechentest bestanden, Sichtabnahme offen |
+| v0.4d | `prototyp/integriert-v0.4d/index.html` | Laufender D-(Wasser-)Entzug, Sammelgefäß, Live-Balken, getrennte Startteilchen, Reglerkopplung und Schnelllauf ×10; mathematisch geprüft |
+| **v0.4e** | `prototyp/integriert-v0.4e/index.html` | **Neu:** Apfelsteuerung im Chemie-Reiter ausgeblendet, historische Presets entfernt, Reaktionsraum standardmäßig geöffnet und vergrößert, Stoffbalken höher, Hilfetexte kompakter; JS/HTML-Quelltextprüfung bestanden, Browserabnahme offen |
 
-**Neu erstelltes Prüfprotokoll:** [PRUEFPROTOKOLL_V0_4D_2026-11-01.md](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
+**Aktuelles Prüfprotokoll:** [PRUEFPROTOKOLL_V0_4E_2026-11-01.md](PRUEFPROTOKOLL_V0_4E_2026-11-01.md). **Übergabe:** [UEBERGABE_v0.4e.md](UEBERGABE_v0.4e.md). Rechenkern-Referenzen: [v0.4d-Prüfprotokoll](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
 
 ## Leitplanken
 
@@ -26,7 +27,7 @@
 - Versionierte Prototypverzeichnisse beibehalten; Root nur nach expliziter Freigabe anheben.
 - Nach jedem Entwicklungsschritt diesen Stand und die Übergabe im Repository aktualisieren.
 
-## v0.4d – Funktionsumfang und Regeln
+## v0.4d – unveränderter Funktionsumfang und Regeln
 
 **1. Wasserauskreiser:** Button schaltet kontinuierliche Entfernung von D ein/aus. Pro tatsächlichem Rechenschritt wird nach der Reaktion `0,25 × D_vor_Entzug` abgeführt; ausgekreiste Menge wird gesammelt. Es wird **keine größere Portion D schlagartig entnommen**. Wasserentzug ist bei laufendem Modell zuschaltbar, ebenso abschaltbar. Konstante **K=kHin/kRueck bleibt gleich**; Q sinkt mit entzogenem D. Während des Entzugs offen, **keine behauptete stationäre Gleichgewichtslage**. Bei fortgesetztem Entzug geht C im Startfall gegen 1, A/B/D gegen 0.
 
@@ -66,7 +67,7 @@ Rechen- und Quellcodeprüfungen:
 
 - Kontinuierlicher Entzug ist ein idealisiertes Modell mit vorgegebener Entnahmerate 25 %, kein realer Wasserabscheider (z.B. Dean-Stark) und kein genauer Estermechanismus.
 - Bei Koppelung der Apfel- und Chemie-Regler werden nur Reglerzahlen gleichgesetzt, nicht Ratenkonstanten physikalisch identifiziert; fachlich in Unterrichtsbegleitung klarstellen.
-- **Nächste Aufgabe:** v0.4d im Browser testen: getrennte Ausgangsteilchen, Freigabe nach Start, vier Balken und Sammelgefäß, Wasser EIN/AUS, Schnelllauf, A-Zugabe, K/Q, Apfel- und Chemie-Regler, Reset und Altmodule. Doppelklick offline prüfen. Falls nötig, Korrekturversion v0.4e; **main/index.html bleibt unverändert**.
+- **Nächste Aufgabe:** v0.4e im Browser prüfen: Reiterwechsel mit Apfelsteuerung, entfernte Presets, gemeinsamer Chemie-Reaktionsraum als Startbild, vergrößertes Canvas und Live-Balken, Wasser EIN/AUS, Schnelllauf, A-Zugabe, K/Q, Reset und Altmodule. Doppelklick offline prüfen. **main/index.html bleibt unverändert**.
 
 ## GitHub-Technik-Hinweis
 
@@ -80,4 +81,16 @@ HTML ist ca. 2,6 MB groß. `mcp__GitHub__fetch_file` kann für solche großen Da
 
 Nach Nutzerfeedback zur bewährten v0.4d wurde der Quelltext geprüft: `Gesamtbestand A+B` und `Anfangsmenge A` wirken nur auf die ursprüngliche Apfel-/Stechheberrechnung; im Chemie-Reiter wird diese globale Bedienfläche unnötig angezeigt. Auch die historischen Buttons „Apfelkrieg-Vorgabe“ und „V0.2-Werte“ sollen aus der sichtbaren Oberfläche verschwinden. Der chemische Rechenkern bleibt mit den festen Anfangskonzentrationen A=B=1,000 mol/L und den 24 Symbolen pro mol/L unverändert.
 
-**Entwurf, noch keine implementierte/freigegebene HTML-Version:** [KONZEPT_V0_4E_BEDIENUNG_TEMPERATUR_KATALYSATOR.md](KONZEPT_V0_4E_BEDIENUNG_TEMPERATUR_KATALYSATOR.md). Vorgeschlagene Reihenfolge: v0.4e UI-Vereinfachung und vereinheitlichte Startwerte, v0.4f optionaler Säurekatalysator (beschleunigt **beide** Teilreaktionen ohne K-Verschiebung), v0.4g Temperatur (Arrhenius + van ’t Hoff; 20–60 °C als noch unverbindlicher Modellbereich, illustrative ΔrH° ausdrücklich deklarieren). Für erhöhte effektive k-Werte interne Substeps prüfen. Die Zahl der berechneten Teilchen bleibt symbolisch; die beiden Rechenkerne werden nicht zusammengelegt. **Keine Änderung an root oder v0.4d in dieser Dokumentationsstufe.**
+**UI-Stufe v0.4e ist umgesetzt, aber noch nicht im Browser freigegeben.** [KONZEPT_V0_4E_BEDIENUNG_TEMPERATUR_KATALYSATOR.md](KONZEPT_V0_4E_BEDIENUNG_TEMPERATUR_KATALYSATOR.md). Vorgeschlagene Reihenfolge: v0.4e UI-Vereinfachung und vereinheitlichte Startwerte, v0.4f optionaler Säurekatalysator (beschleunigt **beide** Teilreaktionen ohne K-Verschiebung), v0.4g Temperatur (Arrhenius + van ’t Hoff; 20–60 °C als noch unverbindlicher Modellbereich, illustrative ΔrH° ausdrücklich deklarieren). Für erhöhte effektive k-Werte interne Substeps prüfen. Die Zahl der berechneten Teilchen bleibt symbolisch; die beiden Rechenkerne werden nicht zusammengelegt. **Root v0.3e und v0.4d sind unverändert; neu ist der separate v0.4e-Prototyp.**
+
+
+## v0.4e – Oberfläche vereinfacht und Chemieansicht vergrößert (01.11.2026)
+
+- **Gezielt nur in Chemie ausgeblendet:** Apfel-/Stechheber-`.status-panel`, `.controls` und originales `details.info` über die `chem-active`-Klasse am `body`; beim Wechsel zurück bleiben alle Apfel-Steuerungen sichtbar.
+- **Entfernt:** zwei historische Preset-Buttons mit zugehörigen Handlern und das nicht mehr erreichbare `DEFAULTS`-Objekt. Einheitliche Apfel-Startvorgabe `STORY_PRESET` (M=50, A0=50, pHin=0,08, pRueck=0,04). **Reset hält die jeweils eingestellten Parameter**, setzt nur den Zustand auf Schritt 0.
+- **Chemie standardmäßig als gemeinsamer Reaktionsraum**, weiterhin wahlweise die vier getrennten Partikelbestände. Chemie-Hauptbereich bis 1480 px, Spaltenverhältnis 1,75:0,75; Canvas nutzt die linke Spaltenbreite. Stoffbalken, Wassersammelbalken größer, responsive Anpassungen für kleinere Bildschirme.
+- **Dynamische Rückmeldungen** zu A-Zugabe und Wasserabfluss sichtbar; detaillierte Modellhinweise und die Kollisions-Erklärung ausklappbar.
+- **Keine Formel-Änderung** gegenüber v0.4d. Automatisch geprüft: 10 eingebettete Bilder, 131 eindeutige IDs, 123 JS-`$(id)`-Referenzen gültig, JS-Syntax bestanden. **Sicht-, Browserklick- und Offline-Abnahme offen**.
+- [Live-Test v0.4e](https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4e/) · [Prüfprotokoll](PRUEFPROTOKOLL_V0_4E_2026-11-01.md) · [Übergabe](UEBERGABE_v0.4e.md) · [Änderungs-Prompt](PROMPTS/INTEGRIERT_V0_4E.md).
+
+**Fachlich folgende Schritte:** Nach Sichtfreigabe v0.4f Katalysator (beschleunigt beide Reaktionen, K unverändert); danach v0.4g Temperatureffekt (eigene thermodynamische Modellannahmen und numerisch stabile Zeitintegration). **Root bleibt v0.3e bis zur ausdrücklichen Freigabe.**
