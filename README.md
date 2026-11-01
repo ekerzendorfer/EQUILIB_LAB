@@ -10,13 +10,14 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Aktueller integrierter Zwischenstand: V0.3e (31.10.2026).** Die freigegebene Phasensteuerung synchronisiert Geschichte und Vergleich mit den Modellmengen. Ältere Prototypen bleiben erhalten; vollständige V1- sowie Browser-/Offline-Abnahme sind noch ausständig.
+**Freigegebener Root-Startstand: V0.3e (31.10.2026); aktuelle, noch nicht browserabgenommene Testversion: v0.4e (01.11.2026).** Die freigegebene Phasensteuerung synchronisiert Geschichte und Vergleich mit den Modellmengen. Ältere Prototypen bleiben erhalten; vollständige V1- sowie Browser-/Offline-Abnahme sind noch ausständig.
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
 ## Dokumentation
 
-- [**Aktuelle Testversion v0.4d: kontinuierlicher Wasserentzug**](prototyp/integriert-v0.4d/index.html) – Wasser D laufend auskreisen (25 %/Schritt), Sammelbehälter, mitlaufende A/B/C/D-Balken, getrennte Startaufstellung, gekoppelte Regler und Schnelllauf ×10; **Browser- und Offline-Abnahme noch ausständig**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4D_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4d.md).
+- [**Neue Testversion v0.4e: vereinfachte Oberfläche**](prototyp/integriert-v0.4e/index.html) – globale Apfel-Steuerung im Chemie-Reiter verborgen, historische Presets entfernt, gemeinsamer Reaktionsraum standardmäßig aktiv und räumlich vergrößert, höhere Live-Stoffbalken, kompakte Hilfetexte. **Browser-/Offline-Abnahme noch ausständig**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4E_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4e.md) · [Änderungs-Prompt](docs/PROMPTS/INTEGRIERT_V0_4E.md).
+- [**Vorversion v0.4d: kontinuierlicher Wasserentzug**](prototyp/integriert-v0.4d/index.html) – Wasser D laufend auskreisen (25 %/Schritt), Sammelbehälter, mitlaufende A/B/C/D-Balken, getrennte Startaufstellung, gekoppelte Regler und Schnelllauf ×10; **Browser- und Offline-Abnahme noch ausständig**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4D_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4d.md).
 - [**Vorversion v0.4c: Störung durch A-Zugabe**](prototyp/integriert-v0.4c/index.html) – Einmalzugabe +0,20 mol/L A, Q/K-Vergleich, dynamisch neu berechnetes Gleichgewicht und markierter Konzentrationssprung; **Browser- und Offline-Abnahme ausständig**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4C_2026-11-01.md).
 - [**Vorversion v0.4b: Chemie-Regler und gemeinsamer Reaktionsraum**](prototyp/integriert-v0.4b/index.html) – eigene kHin-/kRueck-Regler, Kc-Anzeige, vier Stoffbestände und symbolisch animierter Reaktionsraum. [Übergabe v0.4b](docs/Uebergabe_v0.4b.md).
 - [**Laufender Entwicklungsstand und Übergabe**](docs/ENTWICKLUNGSSTAND.md) – aktueller Arbeitsstand, geprüfte Rechenfälle, offene Sichtabnahme und kompakter Fortsetzungsprompt.
