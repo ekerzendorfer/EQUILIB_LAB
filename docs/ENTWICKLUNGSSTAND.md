@@ -107,3 +107,8 @@ Nach Nutzerfeedback zur bewährten v0.4d wurde der Quelltext geprüft: `Gesamtbe
 - [Aktuelles Prüfprotokoll](PRUEFPROTOKOLL_V0_4F_2026-11-01.md) · [Übergabe](UEBERGABE_v0.4f.md). Die historischen v0.4d/v0.4e-Zahlenbeispiele gelten nur für die damaligen Rechenparameter.
 
 **Folgestufe v0.4g:** 20–80 °C im 10-°C-Raster als Nutzerwunsch. Konstante k-Referenz und ΔrH° noch entscheiden und fachlich begründen; Arrhenius/van ’t Hoff konsistent umsetzen, kein unveränderter K-Wert für Temperaturänderungen behaupten. Root bis zur Freigabe v0.3e.
+
+
+## 01.11.2026 – v0.4g Temperaturmodell / Mini-Verlauf
+
+Ausgehend von der vom Nutzer im Browser freigegebenen v0.4f wurde v0.4g als separate Offline-HTML-Version mit isothermer Temperatureinstellung (20–80 °C, 10-°C-Schritte) entwickelt. Mit Referenz 60 °C und temperaturabhängigen Arrhenius-Konstanten (Ea,hin=60 kJ/mol, Ea,rück=63,6 kJ/mol) ist die geringe exotherme Gleichgewichtsverschiebung (ΔrH≈−3,6 kJ/mol) konsistent integriert. Die Temperatur ist während des Laufs schaltbar; rosa Diagrammmarker und sofortige k-/K-Anzeige bei unveränderten Momentankonzentrationen. Ein platzsparendes SVG-Mini-Diagramm wird aus denselben Kurven wie das große Diagramm abgeleitet. Regression über 56 Kombinationen sowie offenen Wasserentzug: Bilanz, Positivität, Temperatureffekt und Katalysatorinvarianz bestanden. Browserabnahme noch offen.

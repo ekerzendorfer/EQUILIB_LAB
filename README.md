@@ -104,3 +104,12 @@ Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie i
 3. **V3:** Stochastisches Modell, komplexere Gleichgewichte und Le Chatelier.
 
 **Hinweis:** Die bisherige \`EQUILIB.xlsm\`-Ausgangsdatei und externe Videos sind noch **nicht** im Repository abgelegt. Die akzeptierten KI-generierten Story-Bilder liegen eingebettet in den Story- und Integrations-HTML-Dateien; externe Buchabbildungen werden nicht übernommen. Nutzungsrechte an externen Abbildungen sind vor einer eventuellen Veröffentlichung zu klären.
+
+
+## 01.11.2026 – v0.4g: Temperatur und Mini-Diagramm
+
+- **Test:** [prototyp/integriert-v0.4g/](https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4g/) – entwickelt nach erfolgreicher Browserabnahme v0.4f; v0.4g zunächst noch nicht browserabgenommen.
+- Chemische Simulation: 20–80 °C in 10er-Stufen, 60 °C Referenz; Arrhenius (Ea hin 60 / rück 63,6 kJ/mol) und ΔrH −3,6 kJ/mol, dadurch temperaturabhängiges K. Säurekatalysator weiterhin ×3 ohne K-Änderung bei fixer T.
+- Temperaturwechsel während des Laufs ohne Sprung der Konzentrationen; rosa Ereignislinien. Kompakter Konzentrationsverlauf direkt unter Raten/Gleichgewicht rechts, synchron zum unverändert vorhandenen großen Graphen.
+- Numerik der v0.4f sowie die Apfel-/Stechhebermodule, ältere Prototypen und Root-index unverändert.
+- [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4G_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4g.md).

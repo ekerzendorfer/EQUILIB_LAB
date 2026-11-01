@@ -380,3 +380,8 @@ Nach der positiven Browserprüfung der vereinfachten v0.4e-Oberfläche wurde v0.
 Numerisch geprüft: identisches geschlossenes K-Gleichgewicht mit und ohne Katalysator, offene Wasserbilanz, 18 Parameter-/Katalysator-Kombinationen einschließlich A-Zugabe (K=0,1–10), JS-Syntax und unveränderte Bildquellen. **Browserabnahme v0.4f steht noch aus.** Root v0.3e unverändert. [Prüfprotokoll](PRUEFPROTOKOLL_V0_4F_2026-11-01.md) · [Entwicklungs-Prompt](PROMPTS/INTEGRIERT_V0_4F.md) · [Übergabe](UEBERGABE_v0.4f.md).
 
 **Vorausschau auf v0.4g:** Temperaturregelung 20–80 °C im Raster 10 °C ist als Wunsch dokumentiert, die fachliche Parametrisierung (K(T), Arrhenius und Reaktionsenthalpie) aber noch nicht beschlossen oder implementiert.
+
+
+## 01.11.2026 – v0.4g Temperaturmodell / Mini-Verlauf
+
+Ausgehend von der vom Nutzer im Browser freigegebenen v0.4f wurde v0.4g als separate Offline-HTML-Version mit isothermer Temperatureinstellung (20–80 °C, 10-°C-Schritte) entwickelt. Mit Referenz 60 °C und temperaturabhängigen Arrhenius-Konstanten (Ea,hin=60 kJ/mol, Ea,rück=63,6 kJ/mol) ist die geringe exotherme Gleichgewichtsverschiebung (ΔrH≈−3,6 kJ/mol) konsistent integriert. Die Temperatur ist während des Laufs schaltbar; rosa Diagrammmarker und sofortige k-/K-Anzeige bei unveränderten Momentankonzentrationen. Ein platzsparendes SVG-Mini-Diagramm wird aus denselben Kurven wie das große Diagramm abgeleitet. Regression über 56 Kombinationen sowie offenen Wasserentzug: Bilanz, Positivität, Temperatureffekt und Katalysatorinvarianz bestanden. Browserabnahme noch offen.
