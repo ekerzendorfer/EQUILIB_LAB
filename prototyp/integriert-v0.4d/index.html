@@ -231,6 +231,13 @@
 .chem-perturb-panel p{margin:5px 0;line-height:1.45}
 
 /* V0.4d – mehr Platz für Reaktionsraum, kompakte Stoffbalken */
+.chem-collected{border-top:1px solid #d5e3eb;padding-top:9px;margin-top:12px}
+.chem-collected-head{display:flex;justify-content:space-between;align-items:baseline;gap:9px;color:#247369;font-size:.8rem;font-weight:650}
+.chem-collected-head output{white-space:nowrap;font-size:.83rem;font-variant-numeric:tabular-nums}
+.chem-collected-track{height:15px;overflow:hidden;border:1px solid #c9dcd9;border-radius:7px;background:#e8f3f1;margin:6px 0}
+.chem-collected-track i{display:block;width:0%;height:100%;background:#36a49c;transition:width .15s linear}
+.chem-collected.is-active .chem-collected-track i{background:repeating-linear-gradient(110deg,#2f968f,#2f968f 12px,#4db6ae 12px,#4db6ae 23px)}
+
 .chem-layout{grid-template-columns:minmax(0,1.32fr) minmax(0,.88fr)}
 .chem-live-bars{border:1px solid #d5e4e9;background:#f7fafc;border-radius:11px;padding:10px 12px;margin:14px 0 9px}
 .chem-live-bars h3{font-size:.91rem;margin:0 0 9px;color:#25495a}
@@ -465,6 +472,10 @@
         <div class="chem-live-row"><span>B</span><div class="chem-live-track"><i id="chem-stock-b"></i></div><output id="chem-stock-b-label">1,000 · 24</output></div>
         <div class="chem-live-row"><span>C</span><div class="chem-live-track"><i id="chem-stock-c"></i></div><output id="chem-stock-c-label">0,000 · 0</output></div>
         <div class="chem-live-row"><span>D · H₂O</span><div class="chem-live-track"><i id="chem-stock-d"></i></div><output id="chem-stock-d-label">0,000 · 0</output></div>
+        <div class="chem-collected" id="chem-collected">
+          <div class="chem-collected-head"><span>Wasser im Sammelbehälter (außerhalb des Reaktionsraums)</span><output id="chem-collected-output">0,000 mol/L</output></div>
+          <div class="chem-collected-track"><i id="chem-collected-fill"></i></div>
+        </div>
         <p class="chem-small">Zahlen: mol/L · gerundete Symbole (24 pro mol/L). Gemeinsame Balkenskala, mindestens 1,000 mol/L.</p>
       </div>
       <p class="chem-footnote" id="chem-balance">Bilanz: A + C = 1,000 mol/L und B + D = 1,000 mol/L. Beide Ansichten nutzen denselben Rechenkern.</p>
@@ -1285,6 +1296,9 @@ function chemRender(){
     $("chem-perturb-note").textContent="Tipp: Erst das Gleichgewicht annähern lassen, dann A (+0,20 mol/L) zugeben. Das funktioniert auch während des Laufs. Eine Zugabe pro Versuch; Reset macht sie rückgängig.";
   }
   const stockScale=Math.max(1,...CHEM_KEYS.map(key=>chemState[key]));
+  $("chem-collected-output").textContent=chemNumber(chemState.collected,3)+" mol/L";
+  $("chem-collected-fill").style.width=(100*Math.min(1,chemState.collected/Math.max(1,chemState.b+chemState.c)))+"%";
+  $("chem-collected").classList.toggle("is-active",chemWaterActive);
   for(const key of CHEM_KEYS){
     $("chem-"+key).textContent=chemNumber(chemState[key]);
     const visible=Math.max(0,Math.round(24*chemState[key]));
