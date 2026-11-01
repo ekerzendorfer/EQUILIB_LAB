@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="de">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GLEICHGEWICHTS-LAB – Integriert V0.3e</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>GLEICHGEWICHTS-LAB – V0.5</title>
 <style>
     :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#193344;background:#f3f7fa;--a:#1474a3;--b:#b87023;--muted:#576e7e;--border:#d8e3ea;--paper:white}
     *{box-sizing:border-box}
     body{margin:0;line-height:1.45}
+    header .version-line{font-size:.79rem;opacity:.85;margin:3px 0 0;letter-spacing:.03em}
     header{color:#fff;background:linear-gradient(115deg,#12384c,#1b6674);padding:22px clamp(14px,3vw,48px)}
     .shell{max-width:1200px;margin:0 auto}
     .eyebrow{font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;opacity:.85;font-weight:700}
@@ -167,14 +168,154 @@
     @media(prefers-reduced-motion:reduce){
       .apple-plot circle.recent-change,.v03-apple-pair circle.recent-change{animation:none;stroke:#754e16;stroke-width:1.3}
     }
+
+    /* V0.4b – eigenes Chemie-Modul, keine Änderungen am Apfelmodell. */
+    .toolbar[hidden],#link-notice[hidden],#panel-chem[hidden]{display:none!important}
+    .chem-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:14px 0}
+    .chem-toolbar .chem-step-label{margin-left:auto;color:var(--muted);font-weight:700}
+    .chem-intro{margin-bottom:16px}
+    .chem-intro .reaction{font-size:clamp(1.28rem,2.3vw,1.8rem);font-weight:750;text-align:center;margin:12px 0;color:#174963;letter-spacing:.015em}
+    .chem-layout{display:grid;grid-template-columns:1.04fr 1fr;gap:16px}
+    .chem-species-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .chem-species{border:1px solid #d6e4eb;border-radius:12px;padding:12px;background:#f9fbfc;min-width:0}
+    .chem-species-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+    .chem-species-head b{font-size:1.12rem}
+    .chem-species-head strong{font-size:1.05rem;font-variant-numeric:tabular-nums}
+    .chem-particles{display:grid;grid-template-columns:repeat(6,13px);gap:7px;justify-content:center;margin:12px auto 5px;min-height:74px}
+    .chem-particles i{width:13px;height:13px;border-radius:50%;border:1px solid #71849133;background:var(--chem-color);opacity:.10}
+    .chem-particles i.filled{opacity:1;box-shadow:inset 0 -1px 2px #1111}
+    .chem-unit,.chem-small{font-size:.76rem;color:var(--muted)}
+    .chem-species.a{--chem-color:#197ba6}.chem-species.b{--chem-color:#8861b2}
+    .chem-species.c{--chem-color:#cd8240}.chem-species.d{--chem-color:#3e9c74}
+    .chem-rate{margin:12px 0}
+    .chem-rate-header{display:flex;justify-content:space-between;gap:9px;font-size:.85rem}
+    .chem-rate-header strong{font-variant-numeric:tabular-nums}
+    .chem-track{height:13px;background:#ecf2f5;border-radius:6px;overflow:hidden;border:1px solid #d4e1e7;margin-top:5px}
+    .chem-bar{height:100%;width:0%;background:#197ba6}
+    .chem-bar.reverse{background:#cd8240}
+    .chem-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+    .chem-kpis .metric strong{font-size:1.04rem}
+    .chem-equilibrium{padding:11px 13px;background:#edf5f6;border-left:4px solid #2e8492;border-radius:8px;font-size:.9rem}
+    .chem-chart{display:block;width:100%;height:auto;min-height:225px}
+    .chem-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:.81rem}
+    .chem-legend span{display:inline-flex;align-items:center;gap:5px}
+    .chem-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+    .chem-footnote{margin:10px 0 0;color:#587183;font-size:.78rem}
+    @media(max-width:780px){.chem-layout{grid-template-columns:1fr}}
+    @media(max-width:420px){.chem-species-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.chem-particles{grid-template-columns:repeat(6,9px);gap:4px}.chem-particles i{width:9px;height:9px}.chem-kpis{grid-template-columns:1fr}}
+
+
+/* v0.4b: variable Reaktionsraten und alternative Stoffansicht */
+.chem-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.chem-control{display:block;padding:12px;border:1px solid #d5e3ec;border-radius:11px;background:#f8fbfc}
+.chem-control-head{display:flex;justify-content:space-between;gap:8px;font-size:.86rem;font-weight:650}
+.chem-control input{width:100%;accent-color:#247e9d;margin:10px 0 1px}
+.chem-control output{font-variant-numeric:tabular-nums}
+.chem-parameter-note{margin:7px 0;color:#547084;font-size:.79rem}
+.chem-k-panel{display:flex;align-items:center;flex-wrap:wrap;gap:12px 22px;background:#edf5f8;border-radius:9px;padding:10px 13px;margin:10px 0;font-size:.86rem}
+.chem-k-panel strong{font-variant-numeric:tabular-nums;font-size:1.16rem;color:#145b76}
+.chem-view-toggle{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 12px}
+.chem-view-toggle button{font-size:.78rem;padding:7px 11px;border:1px solid #acc6d6;background:#f1f6f9;color:#24506a;border-radius:8px;cursor:pointer}
+.chem-view-toggle button[aria-pressed="true"]{background:#185f81;color:#fff;border-color:#185f81}
+.chem-grid-view[hidden],.chem-room-view[hidden]{display:none!important}
+.chem-room-view{max-width:100%;position:relative}
+#chem-room-canvas{display:block;width:100%;height:auto;max-width:720px;margin:0 auto;border-radius:11px;border:1px solid #cedfe8;background:linear-gradient(180deg,#f4f9fc,#eaf3f7)}
+.chem-room-legend{display:flex;flex-wrap:wrap;gap:8px 13px;font-size:.76rem;margin:8px 0}
+.chem-room-legend span{display:inline-flex;align-items:center;gap:5px}
+.chem-room-legend i{display:inline-block;width:11px;height:11px;border-radius:50%}
+@media(max-width:540px){.chem-controls{grid-template-columns:1fr}.chem-k-panel{display:block}.chem-k-panel span{display:block;margin:3px 0}}
+.chem-dose-button{border-color:#a86f37;background:#fff3e8;color:#78420e}
+.chem-dose-button:hover:not(:disabled){background:#ffe6d0}
+.chem-dose-button:disabled{opacity:.55;cursor:not-allowed}
+.chem-perturb-panel{margin:10px 0 2px;padding:10px 13px;border:1px solid #e9d5bc;border-left:4px solid #bb813b;border-radius:9px;background:#fff9f1;font-size:.86rem}
+.chem-perturb-panel strong{color:#754b20}
+.chem-perturb-panel p{margin:5px 0;line-height:1.45}
+
+/* V0.4d – mehr Platz für Reaktionsraum, kompakte Stoffbalken */
+.chem-collected{border-top:1px solid #d5e3eb;padding-top:9px;margin-top:12px}
+.chem-collected-head{display:flex;justify-content:space-between;align-items:baseline;gap:9px;color:#247369;font-size:.8rem;font-weight:650}
+.chem-collected-head output{white-space:nowrap;font-size:.83rem;font-variant-numeric:tabular-nums}
+.chem-collected-track{height:15px;overflow:hidden;border:1px solid #c9dcd9;border-radius:7px;background:#e8f3f1;margin:6px 0}
+.chem-collected-track i{display:block;width:0%;height:100%;background:#36a49c;transition:width .15s linear}
+.chem-collected.is-active .chem-collected-track i{background:repeating-linear-gradient(110deg,#2f968f,#2f968f 12px,#4db6ae 12px,#4db6ae 23px)}
+
+.chem-layout{grid-template-columns:minmax(0,1.32fr) minmax(0,.88fr)}
+.chem-live-bars{border:1px solid #d5e4e9;background:#f7fafc;border-radius:11px;padding:10px 12px;margin:14px 0 9px}
+.chem-live-bars h3{font-size:.91rem;margin:0 0 9px;color:#25495a}
+.chem-live-row{display:grid;grid-template-columns:65px minmax(0,1fr) 105px;gap:9px;align-items:center;margin:7px 0;font-size:.82rem}
+.chem-live-row>span{font-weight:700}
+.chem-live-row output{text-align:right;font-size:.77rem;font-variant-numeric:tabular-nums;white-space:nowrap;color:#354e5f}
+.chem-live-track{height:14px;background:#e2ebf0;border:1px solid #d0dfe7;border-radius:6px;overflow:hidden}
+.chem-live-track i{display:block;height:100%;width:0%;transition:width .15s linear}
+#chem-stock-a{background:#197ba6}#chem-stock-b{background:#8861b2}
+#chem-stock-c{background:#cd8240}#chem-stock-d{background:#3e9c74}
+.chem-live-bars .chem-small{margin:8px 0 0}
+.chem-water-button{border-color:#398b8b;background:#eaf8f5;color:#11625e}
+.chem-water-button[aria-pressed="true"]{background:#176f68;border-color:#176f68;color:white}
+.chem-water-title{display:block;color:#1b7169!important;margin-top:12px}
+.chem-fast-button[aria-pressed="true"]{background:#254e70;border-color:#254e70;color:white}
+@media(max-width:780px){.chem-layout{grid-template-columns:1fr}}
+@media(max-width:460px){.chem-live-row{grid-template-columns:49px minmax(0,1fr) 97px;gap:5px}}
+
+/* V0.4e – kontextsensitive Bedienfläche und großzügige Chemie-Darstellung */
+body.chem-active main{max-width:1480px}
+body.chem-active main>.status-panel,
+body.chem-active main>.controls,
+body.chem-active main>details.info{display:none!important}
+body.chem-active .chem-layout{grid-template-columns:minmax(0,1.75fr) minmax(310px,.75fr);gap:14px}
+body.chem-active #chem-room-canvas{max-width:none;width:100%;image-rendering:auto}
+body.chem-active .chem-live-bars{padding:14px 16px;margin:15px 0 10px}
+body.chem-active .chem-live-row{grid-template-columns:80px minmax(0,1fr) 120px;gap:12px;margin:10px 0;font-size:.92rem}
+body.chem-active .chem-live-row output{font-size:.84rem}
+body.chem-active .chem-live-track{height:20px}
+body.chem-active .chem-collected-track{height:20px}
+body.chem-active .chem-intro{padding:14px 20px 16px;margin-bottom:14px}
+body.chem-active .chem-intro .reaction{margin:6px 0 8px}
+body.chem-active .chem-toolbar{margin:9px 0}
+body.chem-active .chem-controls{margin:9px 0}
+body.chem-active .chem-perturb-panel{margin:8px 0 0;padding:9px 12px}
+body.chem-active .chem-perturb-panel p{margin:4px 0;font-size:.8rem}
+.chem-status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.chem-status-grid>div+div{border-left:1px solid #e4d5c5;padding-left:12px}
+.chem-status-grid strong{font-size:.83rem}
+.chem-info-details,.chem-room-notes{margin-top:7px;color:#516f80;font-size:.78rem}
+.chem-info-details summary,.chem-room-notes summary{cursor:pointer;font-weight:650}
+.chem-info-details p,.chem-room-notes p{margin:7px 0}
+@media(max-width:1020px){body.chem-active .chem-layout{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .chem-status-grid{grid-template-columns:1fr;gap:7px}
+  .chem-status-grid>div+div{border-left:0;border-top:1px solid #e4d5c5;padding:7px 0 0}
+}
+@media(max-width:460px){
+  body.chem-active .chem-live-row{grid-template-columns:58px minmax(0,1fr) 99px;gap:5px;font-size:.8rem}
+  body.chem-active .chem-live-row output{font-size:.74rem}
+  body.chem-active .chem-live-bars{padding:10px}
+}
+.chem-catalyst-button{border-color:#9473b3;background:#f4ecfa;color:#603d83}
+.chem-catalyst-button[aria-pressed="true"]{background:#754a9b;border-color:#754a9b;color:white}
+.chem-effective{font-size:.82rem;color:#355969}
+.chem-status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.chem-status-grid>div{min-width:0}
+@media(max-width:900px){.chem-status-grid{grid-template-columns:1fr}}
+
+/* v0.4g: Temperatursteuerung und synchroner Mini-Konzentrationsverlauf */
+body.chem-active .chem-controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+.chem-temp-ticks{display:flex;justify-content:space-between;gap:3px;font-size:.68rem;color:#526b7c}
+.chem-mini-frame{margin:15px 0 0;padding:12px;border:1px solid #cddde7;border-radius:10px;background:#f7fafc}
+.chem-mini-frame h3{font-size:.91rem;margin:0 0 3px;color:#25495a}
+.chem-mini-frame .chem-small{margin:0 0 6px}
+#chem-mini-chart{display:block;width:100%;height:auto;max-height:220px}
+.chem-mini-legend{display:flex;gap:9px;flex-wrap:wrap;margin:6px 0 0;font-size:.74rem;color:#496273}
+.chem-mini-legend span{display:inline-flex;align-items:center;gap:4px}
+.chem-mini-legend i{display:inline-block;width:9px;height:9px;border-radius:2px}
+@media(max-width:860px){body.chem-active .chem-controls{grid-template-columns:1fr}}
 </style></head><body>
-<header><div class="shell"><div class="eyebrow">CHEMIE mit KI · Gleichgewichts-Lab</div><h1>GLEICHGEWICHTS-LAB</h1><p>Integriert V0.3e · Apfelkrieg, Modell und dynamische Vogelperspektive</p></div></header>
+<header><div class="shell"><div class="eyebrow">CHEMIE mit KI · Gleichgewichts-Lab</div><h1>GLEICHGEWICHTS-LAB</h1><p>Fallobstschlacht, Modell und chemisches Gleichgewicht</p><p class="version-line">Version V0.5</p></div></header>
 <main>
   <div class="toolbar" aria-label="Simulationssteuerung">
     <button class="primary" id="run" type="button">▶ Start</button>
     <button id="step" type="button">Einzelschritt</button>
     <button id="reset" type="button">↺ Reset</button>
-    <button id="story-preset" type="button" title="50 Einheiten und Wurfanteile 0,08 / 0,04">Apfelkrieg-Vorgabe</button><button id="defaults" type="button" title="Ursprüngliche Werte von V0.2">V0.2-Werte</button>
     <span class="phase" id="step-label">Schritt 0</span>
   </div>
   
@@ -182,6 +323,7 @@
  <button class="lab-tab" type="button" role="tab" id="tab-story" data-tab="story" aria-controls="panel-story" aria-selected="true">Geschichte</button>
  <button class="lab-tab" type="button" role="tab" id="tab-model" data-tab="model" aria-controls="panel-model" aria-selected="false" tabindex="-1">Modell</button>
  <button class="lab-tab" type="button" role="tab" id="tab-compare" data-tab="compare" aria-controls="panel-compare" aria-selected="false" tabindex="-1">Vergleich</button>
+ <button class="lab-tab" type="button" role="tab" id="tab-chem" data-tab="chem" aria-controls="panel-chem" aria-selected="false" tabindex="-1">Chemisches Gleichgewicht</button>
 </nav>
 <p id="link-notice" class="link-notice"><strong>Ein Rechenkern für alle drei Ansichten.</strong> Nach jedem Modellschritt folgen die Bildphasen in „Geschichte“ und „Vergleich“ dem aktuellen Mengenverhältnis. In „Geschichte“ kann man dazwischen weiterhin manuell blättern. Die gezeichneten Äpfel sind keine exakten Zählwerte.</p>
 <section id="panel-story" role="tabpanel" aria-labelledby="tab-story">
@@ -327,11 +469,126 @@
     <p>Die Größe A + B ist im gesamten Modell konstant. In jedem Schritt werden gleichzeitig die Anteile <strong>p<sub>hin</sub> · A</strong> und <strong>p<sub>rück</sub> · B</strong> übertragen. Die Berechnung verwendet nichtnegative <strong>kontinuierliche Modelleinheiten (ME)</strong>: Nach einem Schritt sind daher auch Bruchteile möglich. Obwohl wir den Gesamtbestand anschaulich als Teilchenzahl auffassen können, zählen die animierten Kugeln <strong>nicht</strong> einzelne reale Teilchen.</p>
     <p>Ein <strong>dynamisches Gleichgewicht</strong> des Modells liegt vor, wenn gleich viel hin- wie zurücktransportiert wird, obwohl beide Transporte weiterhin stattfinden. Die Kugelgrößen und beiden Transportbalken veranschaulichen die <strong>für den nächsten Schritt berechneten Mengen</strong>; ihre gemeinsame Bezugsskala beträgt max(p<sub>hin</sub>, p<sub>rück</sub>) · M. Kugelflächen und Balkenhöhen sind ungefähr proportional zur Transportmenge, stellen aber keine exakte Teilchenzahl dar. „Praktisch stationär“ bedeutet hier: drei aufeinanderfolgende Schritte mit einer Differenz der Transporte von höchstens 0,1 % des Start-Gesamtbestands. Dies ist eine <strong>Anzeige-Konvention</strong>, kein Naturgesetz. Der tatsächliche Stechheberversuch und eine chemische Gleichgewichtsreaktion besitzen zusätzliche Bedingungen und Modellgrenzen.</p>
   </details>
-  <footer>GLEICHGEWICHTS-LAB · Integriert V0.3e · Automatische Bildphasen und synchrones Diagramm · offlinefähig · unveränderter Rechenkern</footer></main>
+
+<section id="panel-chem" role="tabpanel" aria-labelledby="tab-chem" hidden>
+  <article class="panel chem-intro">
+    <h2>Chemisches Gleichgewicht · Modellreaktion</h2>
+    <p class="subtitle">Vom Apfeltransport unabhängiges Reaktionsmodell (V0.5). Die Reglerwerte von Apfelanalogie und chemischem Modell werden gekoppelt; die Rechenmodelle bleiben unabhängig.</p>
+    <div class="reaction" aria-label="A plus B im Gleichgewicht mit C plus D">A + B ⇌ C + D (Wasser)</div>
+    <div class="chem-toolbar" aria-label="Steuerung der chemischen Modellrechnung">
+      <button class="primary" type="button" id="chem-run">▶ Start</button>
+      <button type="button" id="chem-step">Einzelschritt</button>
+      <button type="button" id="chem-reset">↺ Reset</button>
+      <button type="button" id="chem-add-a" class="chem-dose-button">A zugeben (+0,20 mol/L)</button>
+      <button type="button" id="chem-water" class="chem-water-button" aria-pressed="false">Wasser (D) auskreisen: AUS</button>
+      <button type="button" id="chem-catalyst" class="chem-catalyst-button" aria-pressed="false" aria-controls="chem-catalyst-note">Säurekatalysator: AUS</button>
+      <button type="button" id="chem-fast" class="chem-fast-button" aria-pressed="false">Schnelllauf ×10: AUS</button>
+      <span class="chem-step-label" id="chem-step-label">Schritt 0</span>
+    </div>
+    <p class="chem-small">Start: c(A) = c(B) = 1,000 mol/L, c(C) = c(D) = 0; konstantes Volumen. Die Regler geben die Basis-k-Werte an (L·mol⁻¹·Schritt⁻¹). Bei 60 °C nutzt die chemische Modelluhr 60 % der Basiswerte. Mit Katalysator laufen beide Richtungen ×3 schneller. Die Temperatur verändert beide Raten und K(T).</p>
+    <div class="chem-controls">
+      <label class="chem-control" for="chem-k-hin"><span class="chem-control-head"><span>k<sub>hin</sub> · A + B → C + D</span><output id="chem-k-hin-out">0,08</output></span><input type="range" min="0.02" max="0.20" step="0.01" value="0.08" id="chem-k-hin"></label>
+      <label class="chem-control" for="chem-k-rueck"><span class="chem-control-head"><span>k<sub>rück</sub> · C + D → A + B</span><output id="chem-k-rueck-out">0,08</output></span><input type="range" min="0.02" max="0.20" step="0.01" value="0.08" id="chem-k-rueck"></label>
+      <label class="chem-control chem-temp-control" for="chem-temperature"><span class="chem-control-head"><span>Temperatur · isotherm</span><output id="chem-temperature-out">60 °C</output></span><input type="range" min="20" max="80" step="10" value="60" id="chem-temperature" aria-describedby="chem-temperature-note"><span class="chem-temp-ticks" aria-hidden="true"><span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80 °C</span></span></label>
+    </div>
+    <p class="chem-parameter-note" id="chem-temperature-note">Temperatur zwischen 20 und 80 °C in 10-°C-Schritten, auch während der Reaktion veränderbar. Bei 60 °C entspricht das Tempo der v0.4f, bei 20 °C ohne Katalysator läuft das Modell sehr langsam. Die k-Regler sind Basiswerte bei 60 °C. Bereich je 0,02–0,20. Die Regler sind während des Laufs gesperrt; eine Änderung in der Pause beginnt einen neuen Versuch bei Schritt 0. Die Hin- und Rückregler von „Startwerte und Transportparameter“ sowie diese k-Regler sind gegenseitig gekoppelt; eine Änderung in der Pause startet einen neuen Versuch. Im gemeinsamen Wertebereich 0,02–0,20 stimmen die Zahlen überein. Für Apfelwerte 0 und 0,01 bleibt der chemische Mindestwert 0,02. Die Einheiten und Modelle sind unterschiedlich.</p>
+    <div class="chem-k-panel" aria-live="polite"><span>Modell-Gleichgewichtskonstante K<sub>c</sub>(T) = k<sub>hin,eff</sub> / k<sub>rück,eff</sub>: <strong id="chem-k">1,00</strong></span><span id="chem-target">Erwartetes GG: A/B 0,500 · C/D 0,500 mol/L</span><span id="chem-effective" class="chem-effective">Effektiv: k hin 0,048 · k rück 0,048</span></div>
+    <div class="chem-perturb-panel">
+      <div class="chem-status-grid">
+        <div><strong>Eduktzugabe A</strong><p id="chem-perturb-note" aria-live="polite">Einmalige Zugabe +0,20 mol/L, auch während des Laufs.</p></div>
+        <div><strong>Wasserauskreiser D</strong><p id="chem-water-note" aria-live="polite">Auskreiser AUS: kein Wasserentzug.</p></div>
+        <div><strong>Säurekatalysator (H₂SO₄, Modell)</strong><p id="chem-catalyst-note" aria-live="polite">AUS: normale Reaktionsgeschwindigkeit. K bleibt gleich.</p></div>
+      </div>
+      <details class="chem-info-details">
+        <summary>Modellannahmen zu Eingriffen, Katalyse und Esterbildung</summary>
+        <p>Bei konstantem Modellvolumen wird nur c(A) sofort erhöht; B, C und D folgen erst in Reaktionsschritten. K bleibt konstant. Pro Versuch ist eine Zugabe möglich; Reset nimmt sie zurück.</p>
+        <p>Beim Auskreisen werden nach jedem Reaktionsschritt 10 % des dann vorhandenen D in einen externen Sammelbehälter abgeführt. Das ist ein idealisiertes offenes System, keine Simulation eines realen Wasserabscheiders.</p>
+        <p>Die Modellreaktion ist qualitativ an die säurekatalysierte Synthese von Ethylacetat aus Essigsäure und Ethanol angelehnt (D = Wasser). Ein Schalter modelliert den Katalysator H₂SO₄ als <strong>dreifachen Zeitfaktor für beide Teilreaktionen</strong>; er verändert bei konstanter Temperatur weder K noch die Gleichgewichtslage im geschlossenen System. Reale Mechanismen und die Wasserbindung konzentrierter Schwefelsäure bleiben unberücksichtigt.</p>
+        <p><strong>Temperaturmodell:</strong> modellhaft Eₐ,hin = 60 kJ/mol und Eₐ,rück = 63,6 kJ/mol (Arrhenius), mit ΔᵣH ≈ −3,6 kJ/mol nach kalorimetrischen Untersuchungen der flüssigen Ethylacetatbildung (Golikova et al., 2020). Der 60-°C-Bezugspunkt übernimmt die didaktische Modellgeschwindigkeit von v0.4f; absolute Reaktionszeiten sind nicht kalibriert. Mit zunehmender Temperatur sinkt bei dieser schwach exothermen Reaktion K(T) leicht, während beide Raten deutlich steigen. Das Modell verwendet van ’t Hoff und ideale Konzentrationen anstelle realer Aktivitäten; Verdampfung und Wärmebilanz werden nicht simuliert.</p>
+      </details>
+    </div>
+  </article>
+  <div class="chem-layout">
+    <article class="panel">
+      <h2>Vier Stoffbestände</h2>
+      <p class="subtitle">24 Symbolteilchen entsprechen 1,000 mol/L. Sie sind gerundet, keine einzelnen Moleküle.</p>
+      <div class="chem-view-toggle" role="group" aria-label="Darstellung der Stoffbestände">
+        <button type="button" id="chem-view-grid" aria-pressed="false">Vier getrennte Bestände</button>
+        <button type="button" id="chem-view-room" aria-pressed="true">Gemeinsamer Reaktionsraum</button>
+      </div>
+      <div class="chem-grid-view" id="chem-grid-view" hidden>
+      <div class="chem-species-grid">
+        <div class="chem-species a"><div class="chem-species-head"><b>A</b><strong id="chem-a">1,000</strong></div><div class="chem-particles" id="chem-dots-a" aria-hidden="true"></div><div class="chem-unit">Edukt · mol/L</div></div>
+        <div class="chem-species b"><div class="chem-species-head"><b>B</b><strong id="chem-b">1,000</strong></div><div class="chem-particles" id="chem-dots-b" aria-hidden="true"></div><div class="chem-unit">Edukt · mol/L</div></div>
+        <div class="chem-species c"><div class="chem-species-head"><b>C</b><strong id="chem-c">0,000</strong></div><div class="chem-particles" id="chem-dots-c" aria-hidden="true"></div><div class="chem-unit">Produkt · mol/L</div></div>
+        <div class="chem-species d"><div class="chem-species-head"><b>D · H₂O</b><strong id="chem-d">0,000</strong></div><div class="chem-particles" id="chem-dots-d" aria-hidden="true"></div><div class="chem-unit">Produkt · mol/L</div></div>
+      </div>
+      </div>
+      <div class="chem-room-view" id="chem-room-view">
+        <canvas id="chem-room-canvas" width="720" height="320" role="img" aria-label="Gemeinsamer Reaktionsraum mit symbolischen Teilchen A, B, C und D. Orange Ringe für ausgewählte Hinumsetzungen, rote Ringe für Rückumsetzungen. Bei Pause steht die Animation still."></canvas>
+        <div class="chem-room-legend"><span><i style="background:#197ba6"></i>A</span><span><i style="background:#8861b2"></i>B</span><span><i style="background:#cd8240"></i>C</span><span><i style="background:#3e9c74"></i>D</span></div>
+        <details class="chem-room-notes"><summary>Symbolmodell: Was bedeuten die Ringe?</summary><p>Alle vier Spezies bewegen sich im selben Reaktionsraum. <strong>Nicht jeder Zusammenstoß führt zu einer Reaktion.</strong> Orangefarbene Ringe symbolisieren ausgewählte Hinumsetzungen (A + B → C + D), rote Ringe Rückumsetzungen (C + D → A + B). Die Ringhäufigkeit ist durch die berechneten <strong>Brutto-Reaktionsraten</strong> begrenzt. Die sichtbaren Stöße verursachen keine Berechnung der Konzentrationen. Auch im dynamischen Gleichgewicht können beide Richtungen ablaufen. Bei Pause finden weder Rechenschritte noch Ringereignisse statt. Die Bewegung ist schematisch und keine molekulardynamische oder temperaturkalibrierte Simulation.</p></details>
+      </div>
+      <div class="chem-live-bars" aria-label="Mitlaufende Balken der vier Stoffbestände">
+        <h3>Stoffbestände – Konzentration und Symbolzahl</h3>
+        <div class="chem-live-row"><span>A</span><div class="chem-live-track"><i id="chem-stock-a"></i></div><output id="chem-stock-a-label">1,000 · 24</output></div>
+        <div class="chem-live-row"><span>B</span><div class="chem-live-track"><i id="chem-stock-b"></i></div><output id="chem-stock-b-label">1,000 · 24</output></div>
+        <div class="chem-live-row"><span>C</span><div class="chem-live-track"><i id="chem-stock-c"></i></div><output id="chem-stock-c-label">0,000 · 0</output></div>
+        <div class="chem-live-row"><span>D · H₂O</span><div class="chem-live-track"><i id="chem-stock-d"></i></div><output id="chem-stock-d-label">0,000 · 0</output></div>
+        <div class="chem-collected" id="chem-collected">
+          <div class="chem-collected-head"><span>Wasser im Sammelbehälter (außerhalb des Reaktionsraums)</span><output id="chem-collected-output">0,000 mol/L</output></div>
+          <div class="chem-collected-track"><i id="chem-collected-fill"></i></div>
+        </div>
+        <p class="chem-small">Zahlen: mol/L · gerundete Symbole (24 pro mol/L). Gemeinsame Balkenskala, mindestens 1,000 mol/L.</p>
+      </div>
+      <p class="chem-footnote" id="chem-balance">Bilanz: A + C = 1,000 mol/L und B + D = 1,000 mol/L. Beide Ansichten nutzen denselben Rechenkern.</p>
+    </article>
+    <article class="panel">
+      <h2>Reaktionsraten und Gleichgewicht</h2>
+      <p class="subtitle">Beide Raten werden aus denselben Konzentrationen des aktuellen Schritts berechnet.</p>
+      <div class="chem-rate">
+        <div class="chem-rate-header"><span>Hinreaktion A + B → C + D</span><strong id="chem-vf">0,0800</strong></div>
+        <div class="chem-track"><div class="chem-bar" id="chem-bar-vf"></div></div>
+      </div>
+      <div class="chem-rate">
+        <div class="chem-rate-header"><span>Rückreaktion C + D → A + B</span><strong id="chem-vr">0,0000</strong></div>
+        <div class="chem-track"><div class="chem-bar reverse" id="chem-bar-vr"></div></div>
+      </div>
+      <p class="chem-small">Raten in mol·L⁻¹·Schritt⁻¹. Die Temperatur verändert Raten und K(T), der Katalysator bei gleicher Temperatur nur die Geschwindigkeit. Gemeinsame Balkenskala.</p>
+      <div class="chem-kpis">
+        <div class="metric"><span>Reaktionsquotient Q<sub>c</sub></span><strong id="chem-q">0,000</strong></div>
+        <div class="metric"><span>Momentane Nettorate v<sub>hin</sub> − v<sub>rück</sub></span><strong id="chem-net">+0,0800</strong></div>
+      </div>
+      <div id="chem-status" class="chem-equilibrium" role="status" aria-live="polite">Die Hinreaktion dominiert; erste Produkte entstehen.</div>
+      <section class="chem-mini-frame" aria-label="Kompakter Konzentrationsverlauf">
+        <h3>Konzentrationsverlauf · kompakt</h3>
+        <p class="chem-small">Gleiche Werte wie im großen Diagramm · Eingriffe farbig markiert.</p>
+        <svg id="chem-mini-chart" viewBox="48 10 582 257" role="img" aria-label="Mini-Diagramm der berechneten Konzentrationen A, B, C und D"></svg>
+        <p id="chem-mini-scale" class="chem-small">Skala: 0–1,000 mol/L · Simulationsschritte</p>
+        <div class="chem-mini-legend"><span><i style="background:#197ba6"></i>A</span><span><i style="background:#8861b2"></i>B</span><span><i style="background:#cd8240"></i>C</span><span><i style="background:#3e9c74"></i>D</span></div>
+      </section>
+      <details class="info">
+        <summary>Was bedeutet „dynamisches Gleichgewicht“?</summary>
+        <p>Nur bei K<sub>c</sub> = 1 erreicht dieses Modell mit den gewählten Anfangswerten 0,500 mol/L für alle Stoffe. Bei K<sub>c</sub> &gt; 1 werden Produkte bevorzugt, bei K<sub>c</sub> &lt; 1 Edukte. Im Gleichgewicht sind beide <strong>positiven</strong> Reaktionsraten gleich groß – das bedeutet keinen Stillstand.</p>
+        <p>Modellgleichungen: v<sub>hin</sub> = k<sub>hin</sub>·c(A)·c(B); v<sub>rück</sub> = k<sub>rück</sub>·c(C)·c(D). Daher ist im Gleichgewicht K<sub>c</sub> = k<sub>hin</sub>/k<sub>rück</sub> = Q<sub>c</sub>. Die Einstellungen ergeben 0,1 ≤ K<sub>c</sub> ≤ 10.</p>
+        <p>Bei ständigem Wasserentzug verlässt D das Reaktionsgemisch. Q liegt dadurch meist unter K, die Reaktion bildet weiter Produkt C. Während des Entzugs liegt <strong>kein Gleichgewicht des geschlossenen Systems</strong> vor.</p>
+        <p>Die gewählte Gleichung A + B ⇌ C + D ist ein <strong>formal vereinfachtes kinetisches Modell</strong>. Sie beschreibt keinen nachgewiesenen Mechanismus einer konkreten Esterbildung. Konzentrationen und Reaktionsquotient sind hier eine idealisierte Näherung; thermodynamisch werden Aktivitäten betrachtet.</p>
+      </details>
+    </article>
+  </div>
+  <article class="panel" style="margin-top:16px">
+    <h2>Konzentrationsverlauf</h2>
+    <p class="subtitle">Vier synchronisierte Stufenlinien. Die Kurven zeigen die <em>berechneten</em> Konzentrationen, nicht die gerundeten Punktsymbole.</p>
+    <svg id="chem-chart" class="chem-chart" viewBox="0 0 650 305" role="img" aria-label="Konzentrationsverlauf A, B, C und D über Simulationsschritte"></svg>
+    <div class="chem-legend"><span><i style="background:#197ba6"></i>A</span><span><i style="background:#8861b2"></i>B</span><span><i style="background:#cd8240"></i>C</span><span><i style="background:#3e9c74"></i>D</span></div>
+    <p class="chem-footnote" id="chem-chart-note">Vor einer Zugabe verlaufen A/B sowie C/D deckungsgleich. Nach der Eduktzugabe können ihre Kurven auseinanderlaufen; alle Werte bleiben exakt gerechnet.</p>
+  </article>
+</section>
+
+  <footer>GLEICHGEWICHTS-LAB · V0.5 · vollständig offlinefähig</footer></main>
 <script>
 "use strict";
 // ===================== MODELL: unabhängig von der Oberfläche =====================
-const DEFAULTS = Object.freeze({ total:50, initialA:50, pForward:0.06, pBackward:0.04, intervalMs:950 });
 const STORY_PRESET = Object.freeze({total:50, initialA:50, pForward:0.08, pBackward:0.04, intervalMs:950});
 let settings = {...STORY_PRESET};
 function makeInitialState(s) {
@@ -597,8 +854,6 @@ function render(){
   $("status").textContent=statusText();
   $("run").textContent=running?"Ⅱ Pause":"▶ Start";
   $("step").disabled=running;
-  $("defaults").disabled=running;
-  $("story-preset").disabled=running;
   $("reset").disabled=running;
   for(const id of ["total","initial-a","forward-rate","backward-rate"])$(id).disabled=running;
   $("total-out").textContent=`${settings.total} ME`;
@@ -636,8 +891,6 @@ document.querySelectorAll("[data-chart-mode]").forEach(btn=>
   btn.addEventListener("click",()=>setChartMode(btn.dataset.chartMode)));
 $("step").addEventListener("click",oneStep);
 $("reset").addEventListener("click",reset);
-$("defaults").addEventListener("click",()=>{settings={...DEFAULTS};syncInputs();reset();});
-$("story-preset").addEventListener("click",()=>{settings={...STORY_PRESET};setStoryPhase(0);syncInputs();reset();});
 function syncInputs(){
   $("total").value=settings.total;
   $("initial-a").max=settings.total;
@@ -728,14 +981,20 @@ function renderComparePhase(){
     :"Nur sinngemäße Phasenzuordnung: Die Bilder zeigen den ursprünglichen Apfelkrieg und passen bei anderen Parametern nicht immer zum Modell.";
 }
 function setView(tab){
+  // Der Chemie-Modus hat bewusst einen eigenen Rechenkern und eigene Bedienung.
+  if(tab==='chem' && running)pause();
+  if(tab!=='chem' && chemRunning)chemPause();
   selectedView=tab;
+  document.body.classList.toggle('chem-active', tab==='chem');
+  document.querySelector('.toolbar').hidden=tab==='chem';
+  $('link-notice').hidden=tab==='chem';
   document.querySelectorAll('[data-tab]').forEach(btn=>{
     const active=btn.dataset.tab===selectedView;
     btn.setAttribute('aria-selected',String(active));btn.tabIndex=active?0:-1;
     $('panel-'+btn.dataset.tab).hidden=!active;
   });
-  // Aktualisierungs- und Chartdaten bleiben beim Wechsel erhalten.
   renderLinkedViews();
+  if(tab==='chem')chemRender();
 }
 let lastStorySyncStep=-1;
 function renderLinkedViews(){
@@ -775,6 +1034,504 @@ document.querySelectorAll('[data-tab]').forEach(btn=>{
 document.querySelectorAll('[data-phase-step]').forEach(btn=>btn.addEventListener('click',()=>setStoryPhase(selectedPhase+Number(btn.dataset.phaseStep))));
 document.querySelectorAll('[data-perspective]').forEach(btn=>btn.addEventListener('click',()=>{perspective=btn.dataset.perspective;renderStoryPhase();}));
 renderStoryPhase();
+
+
+// ===================== V0.4b: SEPARATES CHEMISCHES REAKTIONSMODELL =====================
+// Kein Zugriff auf settings/state/advanceOneStep der Apfelgeschichte.
+const CHEM_CFG=Object.freeze({deltaT:1,intervalMs:950,substeps:12});
+// Dimensionlose, didaktische Geschwindigkeitskalibrierung; kein Messwert der realen Veresterung.
+const CHEM_BASE_CLOCK=0.6,CHEM_CATALYST_FACTOR=3;
+// Bei 60 °C identisches Tempo wie v0.4f. Ea modellhaft; ΔrH aus Kalorimetrie der Ethylacetatbildung.
+// Ea,hin - Ea,rück = ΔrH: Arrhenius-Faktoren und van 't Hoff sind konsistent.
+const CHEM_REF_T=60,CHEM_R=8.314462618,CHEM_EA_HIN=60000,CHEM_DELTA_H=-3600;
+const CHEM_EA_RUECK=CHEM_EA_HIN-CHEM_DELTA_H;
+let chemTemperature=CHEM_REF_T;
+function chemTempFactor(Ea){
+  const T=chemTemperature+273.15,refT=CHEM_REF_T+273.15;
+  return Math.exp(-Ea/CHEM_R*(1/T-1/refT));
+}
+const CHEM_PARAMS={kHin:0.08,kRueck:0.08};
+const CHEM_KEYS=Object.freeze(["a","b","c","d"]);
+const CHEM_COLORS=Object.freeze({a:"#197ba6",b:"#8861b2",c:"#cd8240",d:"#3e9c74"});
+const CHEM_DOSE_A=0.20;
+const CHEM_WATER_FRACTION=0.10;
+// Chemische Gleichgewichtslage aus der aktuellen stöchiometrischen Reaktionsgeraden.
+// Nullstelle der Nettorate, Bisection; funktioniert auch bei ungleichen Eduktbeständen.
+function chemEquilibriumTarget(s){
+  const low0=-Math.min(s.c,s.d), high0=Math.min(s.a,s.b);
+  let low=low0,high=high0; 
+  const k=chemEffectiveKs();
+  for(let i=0;i<75;i++){
+    const x=(low+high)/2;
+    const net=k.hin*(s.a-x)*(s.b-x)-k.rueck*(s.c+x)*(s.d+x);
+    if(net>0)low=x; else high=x;
+  }
+  const x=(low+high)/2;
+  return {a:s.a-x,b:s.b-x,c:s.c+x,d:s.d+x};
+}
+function chemInitialState(){
+  return {step:0,a:1,b:1,c:0,d:0,collected:0,waterStep:0,history:[{step:0,a:1,b:1,c:0,d:0,collected:0}]};
+}
+function chemEffectiveKs(){
+  const factor=CHEM_BASE_CLOCK*(chemCatalystActive?CHEM_CATALYST_FACTOR:1);
+  return {hin:CHEM_PARAMS.kHin*factor*chemTempFactor(CHEM_EA_HIN),
+    rueck:CHEM_PARAMS.kRueck*factor*chemTempFactor(CHEM_EA_RUECK)};
+}
+function chemRates(s){
+  const k=chemEffectiveKs();
+  return {hin:k.hin*s.a*s.b,rueck:k.rueck*s.c*s.d};
+}
+function chemAdvance(s){
+  // Zwölf interne Euler-Teilschritte je angezeigtem Schritt stabilisieren auch die 3x-Katalyse.
+  // Reaktionsfortschritt mit stöchiometrischen Schranken; Wasser wird nur EINMAL danach entzogen.
+  const dt=CHEM_CFG.deltaT/CHEM_CFG.substeps;
+  const conc={a:s.a,b:s.b,c:s.c,d:s.d};
+  let extentHin=0,extentRueck=0;
+  for(let i=0;i<CHEM_CFG.substeps;i++){
+    const r=chemRates(conc);
+    extentHin+=Math.max(0,r.hin*dt);
+    extentRueck+=Math.max(0,r.rueck*dt);
+    const delta=Math.max(-Math.min(conc.c,conc.d),
+      Math.min(conc.a,conc.b,(r.hin-r.rueck)*dt));
+    conc.a-=delta;conc.b-=delta;conc.c+=delta;conc.d+=delta;
+  }
+  const outgoing=chemWaterActive?CHEM_WATER_FRACTION*conc.d:0;
+  const next={step:s.step+1,
+    a:Math.max(0,conc.a),b:Math.max(0,conc.b),
+    c:Math.max(0,conc.c),d:Math.max(0,conc.d-outgoing),
+    collected:(s.collected||0)+outgoing,waterStep:outgoing,
+    lastHin:extentHin,lastRueck:extentRueck};
+  next.history=[...s.history,{step:next.step,a:next.a,b:next.b,c:next.c,d:next.d,collected:next.collected}];
+  return next;
+}
+let chemState=chemInitialState(),chemTimer=null,chemRunning=false,chemFast=false;
+let chemAddedA=0,chemDoseStep=null,chemDoseInfo=null;
+let chemWaterActive=false,chemWaterEvents=[];
+let chemCatalystActive=false,chemCatalystEvents=[];
+ let chemTemperatureEvents=[];
+const chemDots={a:[],b:[],c:[],d:[]};
+function chemNumber(n,digits=3){return fmt(n,digits);}
+function chemInitParticles(){
+  for(const key of CHEM_KEYS){
+    const host=$("chem-dots-"+key);
+    for(let j=0;j<24;j++){
+      const dot=document.createElement("i");
+      dot.setAttribute("aria-hidden","true");
+      host.appendChild(dot);chemDots[key].push(dot);
+    }
+  }
+}
+
+let chemView="room",chemRoomParticles=[],chemRoomFlashes=[],chemRoomAnimation=null,chemRoomLastFrame=0;
+const CHEM_ROOM_W=720,CHEM_ROOM_H=320,CHEM_ROOM_RADIUS=8;
+// Darstellungsbudget aus berechneten Brutto-Umsätzen, kein Stoß-Rechenmodell.
+let chemRoomCredits={hin:0,rueck:0};
+function chemRoomWanted(){
+  const counts={};
+  for(const key of CHEM_KEYS)counts[key]=Math.max(0,Math.round(24*chemState[key]));
+  return counts;
+}
+function chemRoomNewParticle(key){
+  const angle=Math.random()*Math.PI*2;
+  const before=chemState.step===0&&!chemRunning;
+  const x=before?(key==="a"||key==="b"?20+Math.random()*320:380+Math.random()*320)
+                :20+Math.random()*680;
+  return {key,x,y:53+Math.random()*247,
+    vx:Math.cos(angle)*(0.65+Math.random()*0.8),vy:Math.sin(angle)*(0.65+Math.random()*0.8),
+    r:CHEM_ROOM_RADIUS,glow:0};
+}
+function chemRoomSync(){
+  const target=chemRoomWanted();
+  if(!chemRoomParticles.length){
+    for(const key of CHEM_KEYS)for(let i=0;i<target[key];i++)chemRoomParticles.push(chemRoomNewParticle(key));
+    return;
+  }
+  const current=Object.fromEntries(CHEM_KEYS.map(key=>[key,chemRoomParticles.filter(p=>p.key===key).length]));
+  for(const dest of CHEM_KEYS){
+    while(current[dest]<target[dest]){
+      const source=CHEM_KEYS.find(key=>current[key]>target[key]);
+      if(!source){chemRoomParticles.push(chemRoomNewParticle(dest));current[dest]++;continue;}
+      const sprite=chemRoomParticles.find(p=>p.key===source && p.glow===0)||chemRoomParticles.find(p=>p.key===source);
+      // Der Bestandsabgleich selbst ist kein einzelnes Reaktionsereignis.
+      sprite.key=dest;sprite.glow=0;current[source]--;current[dest]++;
+    }
+  }
+  for(const key of CHEM_KEYS)while(current[key]>target[key]){
+    const index=chemRoomParticles.findIndex(p=>p.key===key);
+    if(index<0)break;chemRoomParticles.splice(index,1);current[key]--;
+  }
+}
+function chemRoomDraw(){
+  if(chemView!=="room")return;
+  const canvas=$("chem-room-canvas"),ctx=canvas.getContext("2d");
+  if(!ctx)return;
+  ctx.clearRect(0,0,CHEM_ROOM_W,CHEM_ROOM_H);
+  ctx.textAlign="left";ctx.fillStyle="#55768a";ctx.font="600 13px system-ui,sans-serif";
+  ctx.fillText("Gemeinsamer Reaktionsraum (Symbolmodell)",17,25);
+  const counts=chemRoomWanted();
+  ctx.textAlign="right";ctx.font="12px system-ui,sans-serif";
+  ctx.fillText("A "+counts.a+"  ·  B "+counts.b+"  ·  C "+counts.c+"  ·  D "+counts.d,703,25);
+  ctx.textAlign="left";
+  if(chemState.step===0&&!chemRunning){
+    ctx.save();
+    ctx.setLineDash([6,6]);ctx.strokeStyle="#6d96a980";ctx.lineWidth=1.7;
+    ctx.beginPath();ctx.moveTo(CHEM_ROOM_W/2,47);ctx.lineTo(CHEM_ROOM_W/2,CHEM_ROOM_H-12);ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle="#627e91";ctx.font="600 11px system-ui,sans-serif";
+    ctx.fillText("Edukte A + B",20,48);
+    ctx.fillText("Produkte C + D (anfangs leer)",379,48);
+  }
+  for(const p of chemRoomParticles){
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=CHEM_COLORS[p.key];ctx.fill();
+    ctx.lineWidth=1;ctx.strokeStyle="#ffffffa8";ctx.stroke();
+    ctx.font="bold 10px system-ui,sans-serif";ctx.textAlign="center";
+    ctx.fillStyle="#fff";ctx.fillText(p.key.toUpperCase(),p.x,p.y+3.5);
+  }
+  for(const e of chemRoomFlashes){
+    const f=e.life/22;
+    ctx.beginPath();ctx.arc(e.x,e.y,12+(1-f)*16,0,Math.PI*2);
+    ctx.strokeStyle=e.direction==="hin"?"rgba(255,166,24,"+(0.85*f)+")":"rgba(219,62,66,"+(0.9*f)+")";
+    ctx.lineWidth=2.4;ctx.stroke();e.life--;
+  }
+  chemRoomFlashes=chemRoomFlashes.filter(e=>e.life>0);
+}
+function chemRoomMotion(){
+  const r=CHEM_ROOM_RADIUS;
+  const waiting=chemState.step===0&&!chemRunning;
+  for(const p of chemRoomParticles){
+    p.x+=p.vx;p.y+=p.vy;
+    const left=waiting&&(p.key==="a"||p.key==="b");
+    const right=waiting&&(p.key==="c"||p.key==="d");
+    const minX=right?CHEM_ROOM_W/2+r+5:r+5;
+    const maxX=left?CHEM_ROOM_W/2-r-5:CHEM_ROOM_W-r-5;
+    if(p.x<minX){p.x=minX;p.vx=Math.abs(p.vx);}
+    if(p.x>maxX){p.x=maxX;p.vx=-Math.abs(p.vx);}
+    if(p.y<r+38){p.y=r+38;p.vy=Math.abs(p.vy);}
+    if(p.y>CHEM_ROOM_H-r-5){p.y=CHEM_ROOM_H-r-5;p.vy=-Math.abs(p.vy);}
+  }
+  for(let i=0;i<chemRoomParticles.length;i++){
+    const p=chemRoomParticles[i];
+    for(let j=i+1;j<chemRoomParticles.length;j++){
+      const q=chemRoomParticles[j],dx=q.x-p.x,dy=q.y-p.y,d2=dx*dx+dy*dy;
+      const diameter=p.r+q.r;
+      if(d2>=diameter*diameter||d2<0.0001)continue;
+      const d=Math.sqrt(d2),nx=dx/d,ny=dy/d;
+      const approach=(p.vx-q.vx)*nx+(p.vy-q.vy)*ny;
+      const overlap=(diameter-d)/2;
+      p.x-=overlap*nx;p.y-=overlap*ny;q.x+=overlap*nx;q.y+=overlap*ny;
+      if(approach<=0)continue;
+      p.vx-=approach*nx;p.vy-=approach*ny;
+      q.vx+=approach*nx;q.vy+=approach*ny;
+      const pair=p.key+q.key;
+      const direction=pair==="ab"||pair==="ba"?"hin":pair==="cd"||pair==="dc"?"rueck":null;
+      // Nur durch den Brutto-Umsatz unterstützte Reaktionsringe, keine bloßen Stoßringe.
+      if(direction && chemRunning && chemRoomCredits[direction]>=1 && chemRoomFlashes.length<16){
+        chemRoomCredits[direction]-=1;
+        chemRoomFlashes.push({x:(p.x+q.x)/2,y:(p.y+q.y)/2,direction,life:22});
+      }
+    }
+  }
+}
+function chemRoomFrame(timestamp){
+  chemRoomAnimation=null;
+  if(!chemRunning||chemView!=="room"||$("panel-chem").hidden)return;
+  if(!chemRoomLastFrame||timestamp-chemRoomLastFrame>=15){
+    chemRoomMotion();chemRoomDraw();chemRoomLastFrame=timestamp;
+  }
+  chemRoomAnimation=requestAnimationFrame(chemRoomFrame);
+}
+function chemRoomEnsureAnimation(){
+  if(chemRunning&&chemView==="room"&&!$("panel-chem").hidden&&chemRoomAnimation===null)
+    chemRoomAnimation=requestAnimationFrame(chemRoomFrame);
+}
+function chemSetView(view){
+  chemView=view==="room"?"room":"grid";
+  $("chem-grid-view").hidden=chemView!=="grid";
+  $("chem-room-view").hidden=chemView!=="room";
+  $("chem-view-grid").setAttribute("aria-pressed",String(chemView==="grid"));
+  $("chem-view-room").setAttribute("aria-pressed",String(chemView==="room"));
+  if(chemView==="room"){chemRoomSync();chemRoomDraw();chemRoomEnsureAnimation();}
+  else if(chemRoomAnimation!==null){cancelAnimationFrame(chemRoomAnimation);chemRoomAnimation=null;chemRoomLastFrame=0;}
+}
+function chemSetRate(name,id){
+  if(chemRunning||running)return;
+  CHEM_PARAMS[name]=Number($(id).value);
+  settings[name==="kHin"?"pForward":"pBackward"]=CHEM_PARAMS[name];
+  syncInputs();reset();chemReset();
+}
+function chemSyncFromApple(){
+  if(chemRunning)return;
+  CHEM_PARAMS.kHin=Math.max(0.02,settings.pForward);
+  CHEM_PARAMS.kRueck=Math.max(0.02,settings.pBackward);
+  $("chem-k-hin").value=CHEM_PARAMS.kHin;
+  $("chem-k-rueck").value=CHEM_PARAMS.kRueck;
+  chemReset();
+}
+function chemToggleWater(){
+  chemWaterActive=!chemWaterActive;
+  chemWaterEvents.push({step:chemState.step,on:chemWaterActive});
+  chemRender();
+}
+function chemToggleCatalyst(){
+  chemCatalystActive=!chemCatalystActive;
+  chemCatalystEvents.push({step:chemState.step,on:chemCatalystActive});
+  // Der Schalter ändert keine Konzentration und erzeugt keinen zusätzlichen Rechenschritt.
+  chemRender();
+}
+function chemSetTemperature(){
+  const selected=Number($("chem-temperature").value);
+  if(!Number.isFinite(selected)||selected===chemTemperature)return;
+  const previous=chemTemperature;
+  chemTemperature=selected;
+  // Mehrere Sliderbewegungen innerhalb eines Schritts ergeben nur ein Ereignis.
+  const last=chemTemperatureEvents[chemTemperatureEvents.length-1];
+  if(last&&last.step===chemState.step){
+    last.to=selected;
+    if(last.from===selected)chemTemperatureEvents.pop();
+  }else chemTemperatureEvents.push({step:chemState.step,from:previous,to:selected});
+  // K(T) und beide k-Werte reagieren unmittelbar, Konzentrationen unverändert.
+  chemRender();
+}
+function chemToggleFast(){
+  chemFast=!chemFast;
+  if(chemRunning){
+    clearInterval(chemTimer);
+    chemTimer=setInterval(chemStep,CHEM_CFG.intervalMs/(chemFast?10:1));
+  }
+  chemRender();
+}
+function chemAddA(){
+  if(chemAddedA>0)return; // nur eine klar erkennbare Störung je Versuch
+  const beforeDen=chemState.a*chemState.b;
+  const beforeQ=beforeDen>1e-14?chemState.c*chemState.d/beforeDen:null;
+  const increased=chemState.a+CHEM_DOSE_A;
+  const sample={step:chemState.step,a:increased,b:chemState.b,c:chemState.c,d:chemState.d};
+  // Zwei Messpunkte mit derselben Schrittnummer erzeugen den senkrechten Sprung.
+  chemState={...chemState,a:increased,history:[...chemState.history,{...sample,collected:chemState.collected}]};
+  const afterDen=chemState.a*chemState.b;
+  const afterQ=afterDen>1e-14?chemState.c*chemState.d/afterDen:null;
+  chemAddedA=CHEM_DOSE_A;
+  chemDoseStep=chemState.step;
+  chemDoseInfo={beforeQ,afterQ};
+  chemRender();
+}
+
+function chemRenderChart(){
+  const svg=$("chem-chart"),ns="http://www.w3.org/2000/svg";
+  svg.replaceChildren();
+  const node=(tag,attrs={},value)=>{
+    const el=document.createElementNS(ns,tag);
+    for(const [key,val] of Object.entries(attrs))el.setAttribute(key,String(val));
+    if(value!==undefined)el.textContent=value;
+    svg.appendChild(el);return el;
+  };
+  const x0=56,x1=623,y0=13,y1=265,maxStep=Math.max(10,chemState.step);
+  const maxConc=Math.max(1,...chemState.history.flatMap(h=>CHEM_KEYS.map(key=>h[key])));
+  const yMax=Math.max(1,Math.ceil((maxConc-1e-12)*4)/4);
+  const px=n=>x0+n/maxStep*(x1-x0),py=n=>y1-n/yMax*(y1-y0);
+  for(let ti=0;ti<=Math.round(4*yMax);ti++){
+    const val=ti/4;
+    const y=py(val);
+    node("line",{x1:x0,x2:x1,y1:y,y2:y,stroke:"#e0eaf0"});
+    node("text",{x:x0-7,y:y+4,"text-anchor":"end","font-size":11,fill:"#5b7180"},chemNumber(val,2));
+  }
+  node("line",{x1:x0,x2:x0,y1:y0,y2:y1,stroke:"#829ca9"});
+  node("line",{x1:x0,x2:x1,y1:y1,y2:y1,stroke:"#829ca9"});
+  for(const tick of [...new Set([0,Math.round(maxStep/2),maxStep])]){
+    node("text",{x:px(tick),y:282,"text-anchor":"middle","font-size":11,fill:"#5b7180"},String(tick));
+  }
+  node("text",{x:x0,y:10,"font-size":11,fill:"#5b7180"},"c (mol/L)");
+  node("text",{x:x1,y:301,"text-anchor":"end","font-size":11,fill:"#5b7180"},"Simulationsschritt n");
+  for(const ev of chemWaterEvents){
+    const xx=px(ev.step);
+    node("line",{x1:xx,x2:xx,y1:y0,y2:y1,stroke:"#28978a","stroke-width":1.2,"stroke-dasharray":"2 6"});
+    node("text",{x:Math.min(x1-65,Math.max(x0+5,xx+5)),y:ev.on?42:56,
+      "font-size":10,fill:"#11685e"},ev.on?"D aus":"D Stopp");
+  }
+  // Katalysator-Eingriffe: violette Ereignislinie, ohne künstlichen Konzentrationssprung.
+  for(let i=0;i<chemCatalystEvents.length;i++){
+    const ev=chemCatalystEvents[i],xx=px(ev.step);
+    node("line",{x1:xx,x2:xx,y1:y0,y2:y1,stroke:"#834da9","stroke-width":1.5,"stroke-dasharray":"6 3"});
+    node("text",{x:Math.min(x1-72,Math.max(x0+6,xx+7)),y:76+(i%3)*13,
+      "font-size":10,fill:"#71368f"},ev.on?"Kat EIN":"Kat AUS");
+  }
+  // Temperatureingriffe: eigene rosarote Ereignislinie.
+  for(let i=0;i<chemTemperatureEvents.length;i++){
+    const ev=chemTemperatureEvents[i],xx=px(ev.step);
+    node("line",{x1:xx,x2:xx,y1:y0,y2:y1,stroke:"#c45461","stroke-width":1.5,"stroke-dasharray":"2 4"});
+    node("text",{x:Math.min(x1-96,Math.max(x0+7,xx+7)),y:114+(i%3)*13,
+      "font-size":10,fill:"#9b3441"},"T "+ev.from+"→"+ev.to+" °C");
+  }
+  if(chemDoseStep!==null){
+    const doseX=px(chemDoseStep);
+    node("line",{x1:doseX,x2:doseX,y1:y0,y2:y1,stroke:"#b57530","stroke-width":1.6,"stroke-dasharray":"4 4"});
+    node("text",{x:Math.min(x1-65,Math.max(x0+6,doseX+6)),y:27,
+      "font-size":11,fill:"#925519"},"A +0,20");
+  }
+  // Bei der vorliegenden Symmetrie verlaufen A/B sowie C/D deckungsgleich.
+  // Striche und Endpunkte werden bewusst beide dargestellt.
+  for(const key of CHEM_KEYS){
+    const history=chemState.history;
+    let path="M "+px(0)+" "+py(history[0][key]);
+    for(let i=1;i<history.length;i++){
+      path+=" L "+px(history[i].step)+" "+py(history[i-1][key]);
+      path+=" L "+px(history[i].step)+" "+py(history[i][key]);
+    }
+    node("path",{d:path,stroke:CHEM_COLORS[key],"stroke-width":key==="b"||key==="d"?1.6:3,
+      "stroke-dasharray":key==="b"||key==="d"?"5 4":"none",fill:"none","stroke-linecap":"round","stroke-linejoin":"round"});
+    const current=chemState[key];
+    // Endpunkte minimal seitlich versetzt, die Kurvenwerte bleiben unverschoben.
+    node("circle",{cx:px(chemState.step)+(key==="b"||key==="d"?4:-4),
+      cy:py(current),r:4,fill:CHEM_COLORS[key],stroke:"#fff","stroke-width":1.2});
+  }
+}
+// Der Mini-Graph übernimmt dieselben Daten/Elemente wie das große Diagramm.
+// Kleine Beschriftungen werden ausgelassen; das Mini-Frame bekommt eine explizite Skala.
+function chemRenderMiniChart(){
+  const big=$("chem-chart"),mini=$("chem-mini-chart");
+  mini.replaceChildren(...Array.from(big.children).filter(el=>el.tagName.toLowerCase()!=="text").map(el=>el.cloneNode(true)));
+  const maxConc=Math.max(1,...chemState.history.flatMap(h=>CHEM_KEYS.map(key=>h[key])));
+  const yMax=Math.max(1,Math.ceil((maxConc-1e-12)*4)/4);
+  $("chem-mini-scale").textContent="c: 0–"+chemNumber(yMax,2)+" mol/L · Schritt 0–"+Math.max(10,chemState.step)+
+    " · rosa T · violett Kat · türkis D · orange A";
+}
+function chemRender(){
+  $("chem-step-label").textContent="Schritt "+chemState.step;
+  $("chem-run").textContent=chemRunning?"Ⅱ Pause":"▶ Start";
+  $("chem-step").disabled=chemRunning;$("chem-reset").disabled=chemRunning;
+  $("chem-add-a").disabled=chemAddedA>0;
+  $("chem-water").setAttribute("aria-pressed",String(chemWaterActive));
+  $("chem-water").textContent=chemWaterActive?"Wasser (D) auskreisen: EIN":"Wasser (D) auskreisen: AUS";
+  $("chem-catalyst").setAttribute("aria-pressed",String(chemCatalystActive));
+  $("chem-catalyst").textContent="Säurekatalysator: "+(chemCatalystActive?"EIN (×3)":"AUS");
+  $("chem-fast").setAttribute("aria-pressed",String(chemFast));
+  $("chem-fast").textContent=chemFast?"Schnelllauf ×10: EIN":"Schnelllauf ×10: AUS";
+  $("chem-k-hin").disabled=chemRunning;$("chem-k-rueck").disabled=chemRunning;
+  $("chem-k-hin-out").textContent=chemNumber(CHEM_PARAMS.kHin,2);
+  $("chem-k-rueck-out").textContent=chemNumber(CHEM_PARAMS.kRueck,2);
+  const eff=chemEffectiveKs();
+  const K=eff.hin/eff.rueck;
+  $("chem-effective").textContent="Wirksam bei "+chemTemperature+" °C: k hin "+chemNumber(eff.hin,4)+" · k rück "+chemNumber(eff.rueck,4)+" · Katalysator "+(chemCatalystActive?"×3":"AUS");
+  $("chem-temperature-out").textContent=chemTemperature+" °C";
+  $("chem-catalyst-note").textContent=(chemCatalystActive?"EIN: Beide Teilreaktionen laufen 3× so schnell wie ohne Katalysator.":"AUS: Beide Teilreaktionen laufen mit reduzierter Modellgeschwindigkeit.")+" Bei "+chemTemperature+" °C bleibt K = "+chemNumber(K,3)+" durch den Katalysator unverändert.";
+  const target=chemEquilibriumTarget(chemState);
+  $("chem-k").textContent=chemNumber(K,2);
+  if(chemWaterActive){
+    const cLim=Math.min(chemState.a+chemState.c,chemState.b+chemState.c);
+    $("chem-target").textContent="Bei anhaltendem Entzug (Grenzfall): A "+
+      chemNumber(chemState.a+chemState.c-cLim,3)+" · B "+
+      chemNumber(chemState.b+chemState.c-cLim,3)+" · C "+
+      chemNumber(cLim,3)+" · D → 0 mol/L. Kein geschlossenes GG.";
+  }else{
+    $("chem-target").textContent="Erwartetes geschlossenes GG: A "+
+      chemNumber(target.a,3)+" · B "+chemNumber(target.b,3)+
+      " · C "+chemNumber(target.c,3)+" · D "+chemNumber(target.d,3)+" mol/L";
+  }
+  $("chem-balance").textContent="Bilanz: A + C = "+
+    chemNumber(chemState.a+chemState.c,3)+" mol/L; B + C = "+
+    chemNumber(chemState.b+chemState.c,3)+" mol/L; D + gesammeltes Wasser = "+
+    chemNumber(chemState.d+chemState.collected,3)+" mol/L (= C). "+
+    "A-Zugabe verändert A+C, Auskreisen verlagert D nach außen.";
+  $("chem-chart-note").textContent="Ereignislinien: rosa = Temperatur, violett = Katalysator, türkis = Wasserentzug, orange = A-Zugabe. Beim Ändern von Temperatur oder Katalysator springen die Konzentrationen nicht; nur nachfolgende Reaktionsschritte verändern sie.";
+  if(chemDoseInfo){
+    const q0=chemDoseInfo.beforeQ===null?"nicht definiert":chemNumber(chemDoseInfo.beforeQ,3);
+    const q1=chemDoseInfo.afterQ===null?"nicht definiert":chemNumber(chemDoseInfo.afterQ,3);
+    const relation=chemDoseInfo.afterQ===null?"Q ist nicht definiert."
+      :Math.abs(chemDoseInfo.afterQ-K)<1e-8?"Q liegt unmittelbar bei K."
+      :chemDoseInfo.afterQ<K?"Q < K: Unmittelbar nach Zugabe dominiert die Hinreaktion."
+      :"Q > K: Unmittelbar nach Zugabe dominiert die Rückreaktion.";
+    $("chem-perturb-note").textContent="Zugabe bei Schritt "+chemDoseStep+
+      ": c(A) sofort +0,20 mol/L. Q vorher "+q0+", direkt danach "+q1+
+      "; K bleibt "+chemNumber(K,2)+". "+relation;
+  }else{
+    $("chem-perturb-note").textContent="Tipp: Erst das Gleichgewicht annähern lassen, dann A (+0,20 mol/L) zugeben. Das funktioniert auch während des Laufs. Eine Zugabe pro Versuch; Reset macht sie rückgängig.";
+  }
+  const stockScale=Math.max(1,...CHEM_KEYS.map(key=>chemState[key]));
+  $("chem-collected-output").textContent=chemNumber(chemState.collected,3)+" mol/L";
+  $("chem-collected-fill").style.width=(100*Math.min(1,chemState.collected/Math.max(1,chemState.b+chemState.c)))+"%";
+  $("chem-collected").classList.toggle("is-active",chemWaterActive);
+  for(const key of CHEM_KEYS){
+    $("chem-"+key).textContent=chemNumber(chemState[key]);
+    const visible=Math.max(0,Math.round(24*chemState[key]));
+    $("chem-stock-"+key).style.width=(100*chemState[key]/stockScale)+"%";
+    $("chem-stock-"+key+"-label").textContent=chemNumber(chemState[key],3)+" · "+visible;
+    while(chemDots[key].length<visible){
+      const dot=document.createElement("i");dot.setAttribute("aria-hidden","true");
+      $("chem-dots-"+key).appendChild(dot);chemDots[key].push(dot);
+    }
+    chemDots[key].forEach((dot,i)=>dot.classList.toggle("filled",i<visible));
+  }
+  const rates=chemRates(chemState);
+  $("chem-vf").textContent=chemNumber(rates.hin,4);
+  $("chem-vr").textContent=chemNumber(rates.rueck,4);
+  const rateScale=Math.max(eff.hin,eff.rueck,rates.hin,rates.rueck)* (1+chemAddedA);
+  $("chem-bar-vf").style.width=(100*Math.min(1,rates.hin/rateScale))+"%";
+  $("chem-bar-vr").style.width=(100*Math.min(1,rates.rueck/rateScale))+"%";
+  const denominator=chemState.a*chemState.b;
+  $("chem-q").textContent=denominator>1e-14
+    ?chemNumber(chemState.c*chemState.d/denominator):"nicht definiert";
+  const net=rates.hin-rates.rueck;
+  $("chem-net").textContent=(net>=0?"+":"")+chemNumber(net,4);
+  $("chem-water-note").textContent=chemWaterActive
+    ?"Auskreiser EIN · je Schritt 10 % D · zuletzt abgeführt: "+
+      chemNumber(chemState.waterStep,4)+" mol/L · insgesamt gesammelt: "+
+      chemNumber(chemState.collected,4)+" mol/L. Der Wasserentzug selbst verändert K nicht."
+    :"Auskreiser AUS · bisher gesammelt: "+chemNumber(chemState.collected,4)+
+      " mol/L. Das verbliebene System kann wieder ein geschlossenes GG erreichen.";
+  $("chem-status").textContent=chemWaterActive
+    ?"Offenes System: D (Wasser) wird fortlaufend entfernt. Die Bildung von C wird begünstigt; es besteht während des Auskreisens kein geschlossenes Gleichgewicht."
+    :rates.hin>0&&rates.rueck>0&&Math.abs(net)<0.0001
+      ?"Praktisch stationär: Beide Reaktionsrichtungen laufen weiter, nahezu gleich schnell."
+      :chemState.step===0
+      ?"Zu Beginn läuft nur die Hinreaktion. Nach dem ersten Schritt entstehen Produkte."
+      :net>0
+      ?"Nettoreaktion nach rechts: Die Produkte nehmen noch zu; gleichzeitig läuft bereits die Rückreaktion."
+      :net<0
+      ?"Nettoreaktion nach links: Die Edukte nehmen zu, beide Teilreaktionen laufen."
+      :"Keine Nettoänderung im Modell.";
+  chemRenderChart();
+  chemRenderMiniChart();
+  if(chemView==="room"){chemRoomSync();chemRoomDraw();chemRoomEnsureAnimation();}
+}
+function chemPause(){
+  if(chemTimer!==null)clearInterval(chemTimer);
+  chemTimer=null;chemRunning=false;
+  if(chemRoomAnimation!==null)cancelAnimationFrame(chemRoomAnimation);
+  chemRoomAnimation=null;chemRoomLastFrame=0;
+  chemRoomFlashes=[];chemRoomCredits={hin:0,rueck:0};
+  chemRender();
+}
+function chemStep(){
+  chemState=chemAdvance(chemState);
+  // Die groben Symbolereignisse orientieren sich an beiden Brutto-Raten.
+  if(chemRunning&&chemView==="room"&&!$("panel-chem").hidden){
+    chemRoomCredits.hin=Math.min(8,chemRoomCredits.hin+24*chemState.lastHin);
+    chemRoomCredits.rueck=Math.min(8,chemRoomCredits.rueck+24*chemState.lastRueck);
+  }
+  chemRender();
+}
+function chemReset(){chemState=chemInitialState();chemAddedA=0;chemDoseStep=null;chemDoseInfo=null;chemWaterActive=false;chemWaterEvents=[];chemCatalystActive=false;chemCatalystEvents=[];chemTemperatureEvents=[];chemRoomParticles=[];chemRoomFlashes=[];chemRoomCredits={hin:0,rueck:0};chemRender();}
+function chemStart(){if(chemRunning)return;chemRunning=true;chemRender();chemTimer=setInterval(chemStep,CHEM_CFG.intervalMs/(chemFast?10:1));}
+$("chem-run").addEventListener("click",()=>chemRunning?chemPause():chemStart());
+$("chem-step").addEventListener("click",chemStep);
+$("chem-reset").addEventListener("click",chemReset);
+$("chem-add-a").addEventListener("click",chemAddA);
+$("chem-water").addEventListener("click",chemToggleWater);
+$("chem-catalyst").addEventListener("click",chemToggleCatalyst);
+ $("chem-temperature").addEventListener("input",chemSetTemperature);
+$("chem-fast").addEventListener("click",chemToggleFast);
+$("forward-rate").addEventListener("input",chemSyncFromApple);
+$("backward-rate").addEventListener("input",chemSyncFromApple);
+$("chem-k-hin").addEventListener("input",()=>chemSetRate("kHin","chem-k-hin"));
+$("chem-k-rueck").addEventListener("input",()=>chemSetRate("kRueck","chem-k-rueck"));
+$("chem-view-grid").addEventListener("click",()=>chemSetView("grid"));
+$("chem-view-room").addEventListener("click",()=>chemSetView("room"));
+window.addEventListener("pagehide",()=>{
+  if(chemTimer!==null)clearInterval(chemTimer);
+  if(chemRoomAnimation!==null)cancelAnimationFrame(chemRoomAnimation);
+});
+chemInitParticles();chemSyncFromApple();
 
 initApplePlots();
 initCompareApplePlots();
