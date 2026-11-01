@@ -55,3 +55,10 @@ Dieser Stand ist **nur ein fachlicher und UI-bezogener Vorschlag**; v0.4d bleibt
 **Fortsetzung:** zuerst v0.4e (UI und Presets) in einem **neuen** Prototypverzeichnis umsetzen und automatisch prüfen, Browserfreigabe abwarten; anschließend v0.4f (Katalysator) und v0.4g (Temperatur) mit getrennten Rechen- und Bedienabnahmen. Nach jeder implementierten Stufe `docs/ENTWICKLUNGSSTAND.md`, Prüfprotokoll, README und eine kompakte Übergabe im Repository aktualisieren.
 
 **Fachquelle:** OpenStax Chemistry 2e, Kap. 13.3 „Shifting Equilibria: Le Châtelier’s Principle“ (Temperatur ändert K, Katalysator ändert nicht K); IUPAC Gold Book „catalyst“.
+
+
+## Umsetzungsstand 01.11.2026
+
+Die **UI-Stufe v0.4e wurde inzwischen als separater Prototyp** `prototyp/integriert-v0.4e/index.html` implementiert (Konzeptabschnitt 2; Browserfreigabe offen): Apfelsteuerung bei Chemie ausgeblendet, historische Presets entfernt, gemeinsame Chemie-Partikelanimation als Standardansicht, breiteres responsives Layout und größere Live-Balken. Das Apfel-Ausgangsstandard bleibt M=50, A0=50, pHin=0,08, pRueck=0,04. Reset übernimmt die veränderten Parameter. Lange Erläuterungen sind einklappbar; aktuelle Störungsmeldungen bleiben sichtbar.
+
+Die Abschnitte **v0.4f Katalysator** und **v0.4g Temperatur** sind weiterhin ausschließlich fachliche Planungsentwürfe, **noch nicht implementiert**. Sie werden erst nach Abnahme der v0.4e-Oberfläche gesondert angegangen. [Aktuelle Übergabe](UEBERGABE_v0.4e.md) · [Prüfprotokoll](PRUEFPROTOKOLL_V0_4E_2026-11-01.md).
