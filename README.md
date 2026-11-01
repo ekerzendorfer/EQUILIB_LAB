@@ -10,11 +10,13 @@ Dieses Repository gehört zum Projekt **CHEMIE mit KI**. Ziel ist eine browserba
 
 ## Aktueller Stand
 
-**Freigegebener Root-Startstand: V0.3e (31.10.2026); aktuelle, automatisch geprüfte Testversion: v0.4f (01.11.2026).** v0.4e wurde vom Nutzer im Browser erfolgreich geprüft; für v0.4f steht diese Abnahme noch aus. Die freigegebene Phasensteuerung synchronisiert Geschichte und Vergleich mit den Modellmengen. Ältere Prototypen bleiben erhalten; vollständige V1- sowie Browser-/Offline-Abnahme sind noch ausständig.
+**Root-Startstand: V0.3e (unverändert); neuester Feinschliff: V0.5 im separaten Testordner (01.11.2026).** V0.4g wurde vom Nutzer im Browser erfolgreich geprüft; V0.5 hat Syntax- und numerische Tests bestanden, seine abschließende Browser-/Offlineabnahme steht noch aus. Keine Übernahme ins App-Portal. Die freigegebene Phasensteuerung synchronisiert Geschichte und Vergleich mit den Modellmengen. Ältere Prototypen bleiben erhalten; vollständige V1- sowie Browser-/Offline-Abnahme sind noch ausständig.
 
 Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne externe Abhängigkeiten, die lokal per Doppelklick im Browser ausgeführt werden kann. Die integrierte Fassung enthält die bereits freigegebenen Story-Bilder direkt in der HTML-Datei. Der Workshop soll an einem geprüften Starterprojekt zeigen, wie eine Lehrkraft zusammen mit KI eine eigene didaktische Verbesserung entwickelt.
 
 ## Dokumentation
+
+- [**V0.5 – abgeschlossene Entwicklung, separate Testfassung**](prototyp/integriert-v0.5/index.html): präzise Kopf-/Versionsbeschriftung, korrigierter Canvas-Titel, orange Hin-/rote Rückringe nur nach ratenbegründeter Freigabe und ohne Reaktionsanimation während Pause. **Numerisch und syntaktisch geprüft; Browser-/Offline-Endabnahme offen.** [Fach- und Abschlussdokumentation](docs/DOKUMENTATION_V0_5.md) · [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_5_2026-11-01.md) · [Auswertungsaufgaben](docs/AUSWERTUNGSAUFGABEN_V0_5.md) · [Lehrkraftlösungen](docs/LEHRKRAFT_LOESUNGEN_V0_5.md) · [Workshopkonzept Februar](docs/WORKSHOP_FEBRUAR_2027_V0_5.md).
 
 - [**Neue Testversion v0.4f: Säurekatalysator**](prototyp/integriert-v0.4f/index.html) – Ein/Aus-Schalter für didaktisches H₂SO₄-Modell, beidseitig ×3 Ratenwirkung, unverändertes K im geschlossenen System, violette Eingriffsmarkierungen, effektiv 0,6-fach langsamerer Basislauf, Wasserauskreiser auf 10 % je Schritt reduziert und zwölf interne Rechenteil-Schritte. **Automatisch geprüft; Browser-/Offline-Test offen.** [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4F_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4f.md) · [Entwicklungs-Prompt](docs/PROMPTS/INTEGRIERT_V0_4F.md).
 - [**Vorversion v0.4e: vereinfachte Oberfläche**](prototyp/integriert-v0.4e/index.html) – globale Apfel-Steuerung im Chemie-Reiter verborgen, historische Presets entfernt, gemeinsamer Reaktionsraum standardmäßig aktiv und räumlich vergrößert, höhere Live-Stoffbalken, kompakte Hilfetexte. **Vom Nutzer am 01.11.2026 im Browser als übersichtlicher und gut funktionierend bestätigt**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4E_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4e.md) · [Änderungs-Prompt](docs/PROMPTS/INTEGRIERT_V0_4E.md).
@@ -113,3 +115,11 @@ Die App läuft ohne externes Skript oder Server; zur ersten Prüfung wurde sie i
 - Temperaturwechsel während des Laufs ohne Sprung der Konzentrationen; rosa Ereignislinien. Kompakter Konzentrationsverlauf direkt unter Raten/Gleichgewicht rechts, synchron zum unverändert vorhandenen großen Graphen.
 - Numerik der v0.4f sowie die Apfel-/Stechhebermodule, ältere Prototypen und Root-index unverändert.
 - [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4G_2026-11-01.md) · [Übergabe](docs/UEBERGABE_v0.4g.md).
+
+
+## 01.11.2026 – V0.5: Feinschliff vor dem Workshop
+
+- Eigenständige V0.5 in `prototyp/integriert-v0.5/index.html`; ältere Prototypen und Root unberührt.
+- Die v0.4g wurde vom Nutzer im Browser als gut funktionierend bestätigt. V0.5 fokussiert ausschließlich die letzten Text-/Canvas-/Visualisierungskorrekturen; keine neuen Chemie-Funktionen.
+- Multiple-Choice-Szenarien als getrenntes Arbeitsblatt statt eines neuen App-Quizmoduls; Lehrerblatt und [180-Minuten-Seminarplan](docs/WORKSHOP_FEBRUAR_2027_V0_5.md) ergänzen das Projekt.
+- **Keine aktive Veröffentlichung/Portalaufnahme:** Ein öffentliches GitHub-Repository mit GitHub Pages stellt allerdings keinen Zugriffsschutz dar.
