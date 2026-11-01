@@ -252,6 +252,7 @@
 .chem-water-button{border-color:#398b8b;background:#eaf8f5;color:#11625e}
 .chem-water-button[aria-pressed="true"]{background:#176f68;border-color:#176f68;color:white}
 .chem-water-title{display:block;color:#1b7169!important;margin-top:12px}
+.chem-fast-button[aria-pressed="true"]{background:#254e70;border-color:#254e70;color:white}
 @media(max-width:780px){.chem-layout{grid-template-columns:1fr}}
 @media(max-width:460px){.chem-live-row{grid-template-columns:49px minmax(0,1fr) 97px;gap:5px}}
 </style></head><body>
@@ -427,6 +428,7 @@
       <button type="button" id="chem-reset">↺ Reset</button>
       <button type="button" id="chem-add-a" class="chem-dose-button">A zugeben (+0,20 mol/L)</button>
       <button type="button" id="chem-water" class="chem-water-button" aria-pressed="false">Wasser (D) auskreisen: AUS</button>
+      <button type="button" id="chem-fast" class="chem-fast-button" aria-pressed="false">Schnelllauf ×10: AUS</button>
       <span class="chem-step-label" id="chem-step-label">Schritt 0</span>
     </div>
     <p class="chem-small">Start: c(A) = c(B) = 1,000 mol/L, c(C) = c(D) = 0; konstantes Volumen. Die k-Werte gelten für die formalen Geschwindigkeitsgesetze zweiter Ordnung (Einheit L·mol⁻¹·Schritt⁻¹).</p>
@@ -1011,7 +1013,7 @@ function chemAdvance(s){
   next.history=[...s.history,{step:next.step,a:next.a,b:next.b,c:next.c,d:next.d,collected:next.collected}];
   return next;
 }
-let chemState=chemInitialState(),chemTimer=null,chemRunning=false;
+let chemState=chemInitialState(),chemTimer=null,chemRunning=false,chemFast=false;
 let chemAddedA=0,chemDoseStep=null,chemDoseInfo=null;
 let chemWaterActive=false,chemWaterEvents=[];
 const chemDots={a:[],b:[],c:[],d:[]};
@@ -1177,6 +1179,14 @@ function chemToggleWater(){
   chemWaterEvents.push({step:chemState.step,on:chemWaterActive});
   chemRender();
 }
+function chemToggleFast(){
+  chemFast=!chemFast;
+  if(chemRunning){
+    clearInterval(chemTimer);
+    chemTimer=setInterval(chemStep,CHEM_CFG.intervalMs/(chemFast?10:1));
+  }
+  chemRender();
+}
 function chemAddA(){
   if(chemAddedA>0)return; // nur eine klar erkennbare Störung je Versuch
   const beforeDen=chemState.a*chemState.b;
@@ -1255,6 +1265,8 @@ function chemRender(){
   $("chem-add-a").disabled=chemAddedA>0;
   $("chem-water").setAttribute("aria-pressed",String(chemWaterActive));
   $("chem-water").textContent=chemWaterActive?"Wasser (D) auskreisen: EIN":"Wasser (D) auskreisen: AUS";
+  $("chem-fast").setAttribute("aria-pressed",String(chemFast));
+  $("chem-fast").textContent=chemFast?"Schnelllauf ×10: EIN":"Schnelllauf ×10: AUS";
   $("chem-k-hin").disabled=chemRunning;$("chem-k-rueck").disabled=chemRunning;
   $("chem-k-hin-out").textContent=chemNumber(CHEM_PARAMS.kHin,2);
   $("chem-k-rueck-out").textContent=chemNumber(CHEM_PARAMS.kRueck,2);
@@ -1344,12 +1356,13 @@ function chemRender(){
 function chemPause(){if(chemTimer!==null)clearInterval(chemTimer);chemTimer=null;chemRunning=false;chemRender();}
 function chemStep(){chemState=chemAdvance(chemState);chemRender();}
 function chemReset(){chemState=chemInitialState();chemAddedA=0;chemDoseStep=null;chemDoseInfo=null;chemWaterActive=false;chemWaterEvents=[];chemRoomParticles=[];chemRoomFlashes=[];chemRender();}
-function chemStart(){if(chemRunning)return;chemRunning=true;chemRender();chemTimer=setInterval(chemStep,CHEM_CFG.intervalMs);}
+function chemStart(){if(chemRunning)return;chemRunning=true;chemRender();chemTimer=setInterval(chemStep,CHEM_CFG.intervalMs/(chemFast?10:1));}
 $("chem-run").addEventListener("click",()=>chemRunning?chemPause():chemStart());
 $("chem-step").addEventListener("click",chemStep);
 $("chem-reset").addEventListener("click",chemReset);
 $("chem-add-a").addEventListener("click",chemAddA);
 $("chem-water").addEventListener("click",chemToggleWater);
+$("chem-fast").addEventListener("click",chemToggleFast);
 $("forward-rate").addEventListener("input",chemSyncFromApple);
 $("backward-rate").addEventListener("input",chemSyncFromApple);
 $("defaults").addEventListener("click",chemSyncFromApple);
