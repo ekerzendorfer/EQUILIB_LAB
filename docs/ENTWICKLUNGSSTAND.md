@@ -2,8 +2,8 @@
 
 **Stand:** 01.11.2026 · **Projekt:** CHEMIE mit KI – GLEICHGEWICHTS-LAB  
 **Repository:** https://github.com/ekerzendorfer/EQUILIB_LAB  
-**Aktuelle Testversion:** **v0.4f** unter `prototyp/integriert-v0.4f/index.html`  
-**Live-Test:** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4f/  
+**Aktuelle Testversion:** **V0.5** unter `prototyp/integriert-v0.5/index.html`  
+**Live-Testpfad (öffentlich zugänglich, nicht im Portal beworben):** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.5/  
 **Freigegebene Root-Startfassung:** `main/index.html` weiterhin v0.3e.
 
 ## Versionsübersicht
@@ -16,9 +16,11 @@
 | v0.4c | `prototyp/integriert-v0.4c/index.html` | Einmalzugabe A +0,20 mol/L und Q/K-/Zielwertneuberechnung; vom Nutzer als gut funktionierend bestätigt |
 | v0.4d | `prototyp/integriert-v0.4d/index.html` | Laufender D-(Wasser-)Entzug, Sammelgefäß, Live-Balken, getrennte Startteilchen, Reglerkopplung und Schnelllauf ×10; mathematisch geprüft |
 | **v0.4e** | `prototyp/integriert-v0.4e/index.html` | **Neu:** Apfelsteuerung im Chemie-Reiter ausgeblendet, historische Presets entfernt, Reaktionsraum standardmäßig geöffnet und vergrößert, Stoffbalken höher, Hilfetexte kompakter; JS/HTML-Quelltextprüfung bestanden, Browserabnahme vom Nutzer erfolgreich bestätigt |
-| **v0.4f** | `prototyp/integriert-v0.4f/index.html` | **Neu:** Katalysator EIN/AUS (3× beide Raten, K gleich), Basisfaktor 0,6, D-Auskreiser 10 % statt 25 %, 12 interne Teilschritte und violette Eingriffsmarken; numerisch geprüft, Browserabnahme ausständig |
+| **v0.4f** | `prototyp/integriert-v0.4f/index.html` | Katalysator EIN/AUS (3× beide Raten, K gleich), Basisfaktor 0,6, D-Auskreiser 10 %, 12 interne Teilschritte und violette Eingriffsmarken; numerisch geprüft, danach vom Nutzer im Browser bestätigt |
+| **v0.4g** | `prototyp/integriert-v0.4g/index.html` | 20–80 °C, Arrhenius und K(T), synchronisierter Mini-Konzentrationsverlauf; am 01.11.2026 im Browser erfolgreich geprüft |
+| **V0.5** | `prototyp/integriert-v0.5/index.html` | Feinschliff Kopf/Version/Canvas-Titel, ratengekoppelte orange/rote Ringereignisse, Pause stoppt Animation; numerisch/syntaktisch geprüft, Browser-/Offlineabnahme offen |
 
-**Aktuelles Prüfprotokoll:** [PRUEFPROTOKOLL_V0_4F_2026-11-01.md](PRUEFPROTOKOLL_V0_4F_2026-11-01.md). **Übergabe:** [UEBERGABE_v0.4f.md](UEBERGABE_v0.4f.md). v0.4e wurde im Browser bestätigt. Die folgenden Abschnitte zu v0.4d sind historisch und beschreiben den vorigen 25%-Auskreiser, nicht v0.4f. Rechenkern-Referenzen: [v0.4d-Prüfprotokoll](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
+**Aktuelles Prüfprotokoll:** [V0.5](PRUEFPROTOKOLL_V0_5_2026-11-01.md). **Dokumentation:** [Abschlussstand V0.5](DOKUMENTATION_V0_5.md). Die Browserabnahme von v0.4g ist erfolgt; die von V0.5 noch offen. Die folgenden Abschnitte zu v0.4d sind historisch und beschreiben den vorigen 25%-Auskreiser, nicht v0.4f. Rechenkern-Referenzen: [v0.4d-Prüfprotokoll](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
 
 ## Leitplanken
 
@@ -112,3 +114,8 @@ Nach Nutzerfeedback zur bewährten v0.4d wurde der Quelltext geprüft: `Gesamtbe
 ## 01.11.2026 – v0.4g Temperaturmodell / Mini-Verlauf
 
 Ausgehend von der vom Nutzer im Browser freigegebenen v0.4f wurde v0.4g als separate Offline-HTML-Version mit isothermer Temperatureinstellung (20–80 °C, 10-°C-Schritte) entwickelt. Mit Referenz 60 °C und temperaturabhängigen Arrhenius-Konstanten (Ea,hin=60 kJ/mol, Ea,rück=63,6 kJ/mol) ist die geringe exotherme Gleichgewichtsverschiebung (ΔrH≈−3,6 kJ/mol) konsistent integriert. Die Temperatur ist während des Laufs schaltbar; rosa Diagrammmarker und sofortige k-/K-Anzeige bei unveränderten Momentankonzentrationen. Ein platzsparendes SVG-Mini-Diagramm wird aus denselben Kurven wie das große Diagramm abgeleitet. Regression über 56 Kombinationen sowie offenen Wasserentzug: Bilanz, Positivität, Temperatureffekt und Katalysatorinvarianz bestanden. Browserabnahme noch offen.
+
+
+## 01.11.2026 – V0.5 Abschluss der Funktionsentwicklung
+
+Der Nutzer hat v0.4g im Browser bestätigt. V0.5 als eigener Ordner, keine Änderung an Root/älteren Testständen: Kopfuntertitel und Version, Canvas-Textausrichtung, ratengekoppelte farblich unterschiedene Hin-/Rückreaktionsringe, eingefrorenes Pausenbild. Fachlich sind es symbolische Brutto-Ereignisse, keine echte Molekulardynamik. Zwei getrennte didaktische Materialien (MC und Lösungen), Abschlussdokumentation und 180-Minuten-Workshopkonzept liegen vor. Die vollständige Browser-/Offlineabnahme von V0.5 steht noch aus. [Materialübersicht](DOKUMENTATION_V0_5.md).
