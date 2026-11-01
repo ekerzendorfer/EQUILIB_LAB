@@ -28,6 +28,8 @@ Das GitHub-HTML wurde erneut als Blob eingelesen. Der enthaltene originale Chemi
 | Vollständiges eingebettetes JavaScript `new Function(script)` | syntaktisch bestanden |
 | HTML-ID-Referenzen und 10 eingebettete Bilder | 134 IDs eindeutig; alle direkten `$("id")`-Zugriffe auflösbar; alle 10 Bildquellen erhalten |
 
+**Erweiterte Regression:** Alle 18 Kombinationen aus `kHin,kRueck ∈ {0,02;0,08;0,20}` und Katalysator EIN/AUS wurden mit **A-Zugabe +0,20 mol/L** jeweils 1500 Schritte direkt mit dem aktuellen Rechenkern durchgerechnet. Maximale Abweichung `|Q−K|` am Ende: `2,11·10⁻13`; größte Bilanzabweichung: `3,38·10⁻14`; keine negativen Konzentrationen. Das umfasst K=0,1 bis 10 und den maximalen Katalysatoreffekt.
+
 **Achtung zum Vergleich:** Mit `kHin=kRueck` ist K=1; in der normalen App-Startvorgabe `0,08/0,04` beträgt K=2. Die Gleichgewichtslage hängt von diesem Verhältnis ab, **nicht** vom Katalysator.
 
 ## Noch manuell im Browser prüfen
