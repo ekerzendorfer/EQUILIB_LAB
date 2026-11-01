@@ -16,9 +16,12 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 
 ## Dokumentation
 
+- [**Aktuelle Testversion v0.4c: Störung durch A-Zugabe**](prototyp/integriert-v0.4c/index.html) – Einmalzugabe +0,20 mol/L A, Q/K-Vergleich, dynamisch neu berechnetes Gleichgewicht und markierter Konzentrationssprung; **Browser- und Offline-Abnahme ausständig**. [Prüfprotokoll](docs/PRUEFPROTOKOLL_V0_4C_2026-11-01.md).
+- [**Vorversion v0.4b: Chemie-Regler und gemeinsamer Reaktionsraum**](prototyp/integriert-v0.4b/index.html) – eigene kHin-/kRueck-Regler, Kc-Anzeige, vier Stoffbestände und symbolisch animierter Reaktionsraum. [Übergabe v0.4b](docs/Uebergabe_v0.4b.md).
+- [**Laufender Entwicklungsstand und Übergabe**](docs/ENTWICKLUNGSSTAND.md) – aktueller Arbeitsstand, geprüfte Rechenfälle, offene Sichtabnahme und kompakter Fortsetzungsprompt.
 - [**Neuer Prototyp v0.4a: Chemisches Gleichgewicht**](prototyp/integriert-v0.4a/index.html) – ergänzte vierte Ansicht A + B ⇌ C + D, separate Steuerung und Rechenkern; **noch ohne visuelle Abnahme**, Root-Datei bleibt v0.3e.
 - [**Prüfprotokoll v0.4a**](docs/PRUEFPROTOKOLL_V0_4A_2026-11-01.md) – konkrete Rechen- und Erhaltungstests sowie anstehende Browser-/Offline-Prüfung.
-- [**Arbeitsentwurf v0.4: Chemisches Gleichgewicht**](docs/KONZEPT_V0_4_CHEMISCHES_GLEICHGEWICHT.md) – erste chemische Modellreaktion, kinetische Gleichungen, Abnahmetests und anschließende Le-Chatelier-Stufen; noch nicht implementiert.
+- [**Arbeitsentwurf v0.4: Chemisches Gleichgewicht**](docs/KONZEPT_V0_4_CHEMISCHES_GLEICHGEWICHT.md) – erste chemische Modellreaktion, kinetische Gleichungen, Abnahmetests und anschließende Le-Chatelier-Stufen; Stufen v0.4a–v0.4c umgesetzt; weiterführende Störungen und Temperaturmodell noch nicht umgesetzt.
 - [**Aktuelle Übergabe 01.11.2026**](docs/UEBERGABE_NEUER_CHAT_2026-11-01.md) – v0.3e-Prüfstand, Bildauslagerungsplan, Abnahmetests und Fortsetzungsprompt für den nächsten Chat.
 - [**Kompakter Entwicklungsstand V0.3e für den Februar-Workshop**](docs/ENTWICKLUNGSSTAND_V0_3E_2026-10-31.md) – Versionsweg, Modellformeln, Bildphasenregeln, Modellgrenzen und Workshop-Prüffragen.
 - [Entwicklungsjournal und Konzeptstand](docs/ENTWICKLUNG.md) – Ausgangsidee, Mathematik, Darstellungsformen, didaktische Entscheidungen, Rückfallkonzept und offene Punkte.
