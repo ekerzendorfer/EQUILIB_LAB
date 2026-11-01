@@ -2,8 +2,8 @@
 
 **Stand:** 01.11.2026 · **Projekt:** CHEMIE mit KI – GLEICHGEWICHTS-LAB  
 **Repository:** https://github.com/ekerzendorfer/EQUILIB_LAB  
-**Aktuelle Testversion:** **v0.4e** unter `prototyp/integriert-v0.4e/index.html`  
-**Live-Test:** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4e/  
+**Aktuelle Testversion:** **v0.4f** unter `prototyp/integriert-v0.4f/index.html`  
+**Live-Test:** https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4f/  
 **Freigegebene Root-Startfassung:** `main/index.html` weiterhin v0.3e.
 
 ## Versionsübersicht
@@ -15,9 +15,10 @@
 | v0.4b | `prototyp/integriert-v0.4b/index.html` | Variable k-Werte, K/Q, gemeinsamer Reaktionsraum |
 | v0.4c | `prototyp/integriert-v0.4c/index.html` | Einmalzugabe A +0,20 mol/L und Q/K-/Zielwertneuberechnung; vom Nutzer als gut funktionierend bestätigt |
 | v0.4d | `prototyp/integriert-v0.4d/index.html` | Laufender D-(Wasser-)Entzug, Sammelgefäß, Live-Balken, getrennte Startteilchen, Reglerkopplung und Schnelllauf ×10; mathematisch geprüft |
-| **v0.4e** | `prototyp/integriert-v0.4e/index.html` | **Neu:** Apfelsteuerung im Chemie-Reiter ausgeblendet, historische Presets entfernt, Reaktionsraum standardmäßig geöffnet und vergrößert, Stoffbalken höher, Hilfetexte kompakter; JS/HTML-Quelltextprüfung bestanden, Browserabnahme offen |
+| **v0.4e** | `prototyp/integriert-v0.4e/index.html` | **Neu:** Apfelsteuerung im Chemie-Reiter ausgeblendet, historische Presets entfernt, Reaktionsraum standardmäßig geöffnet und vergrößert, Stoffbalken höher, Hilfetexte kompakter; JS/HTML-Quelltextprüfung bestanden, Browserabnahme vom Nutzer erfolgreich bestätigt |
+| **v0.4f** | `prototyp/integriert-v0.4f/index.html` | **Neu:** Katalysator EIN/AUS (3× beide Raten, K gleich), Basisfaktor 0,6, D-Auskreiser 10 % statt 25 %, 12 interne Teilschritte und violette Eingriffsmarken; numerisch geprüft, Browserabnahme ausständig |
 
-**Aktuelles Prüfprotokoll:** [PRUEFPROTOKOLL_V0_4E_2026-11-01.md](PRUEFPROTOKOLL_V0_4E_2026-11-01.md). **Übergabe:** [UEBERGABE_v0.4e.md](UEBERGABE_v0.4e.md). Rechenkern-Referenzen: [v0.4d-Prüfprotokoll](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
+**Aktuelles Prüfprotokoll:** [PRUEFPROTOKOLL_V0_4F_2026-11-01.md](PRUEFPROTOKOLL_V0_4F_2026-11-01.md). **Übergabe:** [UEBERGABE_v0.4f.md](UEBERGABE_v0.4f.md). v0.4e wurde im Browser bestätigt. Die folgenden Abschnitte zu v0.4d sind historisch und beschreiben den vorigen 25%-Auskreiser, nicht v0.4f. Rechenkern-Referenzen: [v0.4d-Prüfprotokoll](PRUEFPROTOKOLL_V0_4D_2026-11-01.md).
 
 ## Leitplanken
 
@@ -94,3 +95,15 @@ Nach Nutzerfeedback zur bewährten v0.4d wurde der Quelltext geprüft: `Gesamtbe
 - [Live-Test v0.4e](https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4e/) · [Prüfprotokoll](PRUEFPROTOKOLL_V0_4E_2026-11-01.md) · [Übergabe](UEBERGABE_v0.4e.md) · [Änderungs-Prompt](PROMPTS/INTEGRIERT_V0_4E.md).
 
 **Fachlich folgende Schritte:** Nach Sichtfreigabe v0.4f Katalysator (beschleunigt beide Reaktionen, K unverändert); danach v0.4g Temperatureffekt (eigene thermodynamische Modellannahmen und numerisch stabile Zeitintegration). **Root bleibt v0.3e bis zur ausdrücklichen Freigabe.**
+
+## v0.4f – Säurekatalysator und langsamere Wasserentnahme (01.11.2026)
+
+**Status:** [v0.4f als separate HTML-Testfassung](https://ekerzendorfer.github.io/EQUILIB_LAB/prototyp/integriert-v0.4f/), automatisierte Modell- und Syntaxprüfung bestanden; Browser-/Offlineabnahme durch den Nutzer noch offen. **v0.4e war vom Nutzer erfolgreich im Browser geprüft.**
+
+- Chemie-Basiszeitfaktor 0,6 (nur im Chemie-Rechenkern) und Schalter für dreifache Beschleunigung **beider** effektiver k-Werte. Die miteinander gekoppelten Apfel-/Chemie-Basisregler bleiben erhalten; Apfel-Rechenkern nicht verändert. Der Quotient K und die geschlossene Gleichgewichtslage ändern sich durch den Katalysator nicht.
+- Im Diagramm violette Linien für Kat EIN/AUS; im Schaltmoment bleiben Konzentrationen gleich. Die k-eff-Werte und der Katalysatorzustand werden angezeigt.
+- Wasserentzug auf 10 % des D-Bestands je äußerem Schritt verringert (vorher 25 %). Zwischen zwei äußeren Schritten 12 interne Euler-Teilschritte für stabilere Reaktionskinetik bei Katalyse; offene Bilanzen bleiben erhalten.
+- Modell qualitativ an die Ethylacetat-Synthese angelehnt, nicht an real gemessene k-Werte. Änderungen von `K(T)` sind ausdrücklich **nicht** Teil dieser Version.
+- [Aktuelles Prüfprotokoll](PRUEFPROTOKOLL_V0_4F_2026-11-01.md) · [Übergabe](UEBERGABE_v0.4f.md). Die historischen v0.4d/v0.4e-Zahlenbeispiele gelten nur für die damaligen Rechenparameter.
+
+**Folgestufe v0.4g:** 20–80 °C im 10-°C-Raster als Nutzerwunsch. Konstante k-Referenz und ΔrH° noch entscheiden und fachlich begründen; Arrhenius/van ’t Hoff konsistent umsetzen, kein unveränderter K-Wert für Temperaturänderungen behaupten. Root bis zur Freigabe v0.3e.
