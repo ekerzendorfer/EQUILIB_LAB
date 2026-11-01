@@ -16,6 +16,7 @@ Die erste Version wird bewusst klein gehalten: eine einzelne \`index.html\` ohne
 
 ## Dokumentation
 
+- [**Arbeitsentwurf v0.4: Chemisches Gleichgewicht**](docs/KONZEPT_V0_4_CHEMISCHES_GLEICHGEWICHT.md) – erste chemische Modellreaktion, kinetische Gleichungen, Abnahmetests und anschließende Le-Chatelier-Stufen; noch nicht implementiert.
 - [**Aktuelle Übergabe 01.11.2026**](docs/UEBERGABE_NEUER_CHAT_2026-11-01.md) – v0.3e-Prüfstand, Bildauslagerungsplan, Abnahmetests und Fortsetzungsprompt für den nächsten Chat.
 - [**Kompakter Entwicklungsstand V0.3e für den Februar-Workshop**](docs/ENTWICKLUNGSSTAND_V0_3E_2026-10-31.md) – Versionsweg, Modellformeln, Bildphasenregeln, Modellgrenzen und Workshop-Prüffragen.
 - [Entwicklungsjournal und Konzeptstand](docs/ENTWICKLUNG.md) – Ausgangsidee, Mathematik, Darstellungsformen, didaktische Entscheidungen, Rückfallkonzept und offene Punkte.
